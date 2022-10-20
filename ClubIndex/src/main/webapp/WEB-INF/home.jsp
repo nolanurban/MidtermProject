@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>Book Clubs!</h2>
+${SMOKETEST}
 </body>
 </html>

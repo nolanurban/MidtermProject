@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.data;
 
-public interface UserDAO {
+import com.skilldistillery.jpaclubindex.entities.User;
 
+public interface UserDAO {
+	User findUserById(int userId);
 }
