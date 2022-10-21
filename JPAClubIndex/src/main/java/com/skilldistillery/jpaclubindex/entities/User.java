@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,6 +28,7 @@ public class User {
 	private String email;
 	private String password;
 	private Boolean enabled;
+	
 	private String role;
 	@Column(name="profile_url")
 	private String profileUrl;
@@ -33,8 +37,13 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="location_id")
 	private Location location;
+//	@ManyToMany
+//	
+//	private BookClub bookClub;
+//
+	@OneToMany(mappedBy="user")
+	private List<Review> reviews;
 	
-
 	public User() {
 		
 	}
@@ -149,4 +158,25 @@ public class User {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	public void addReview(Review review) {
+		if (reviews == null) reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+		}
+		review.setUser(this);
+	}
+	public void removeRemove(Review review) {
+		review.setUser(null);
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+		}
+	}
+
 }

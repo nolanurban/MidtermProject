@@ -46,6 +46,7 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("ashozz", user.getUsername());
 		assertEquals("Texas", user.getLocation().getState());
+		assertEquals("Great book. Socially did not age well.", user.getReviews().get(0).getReview());
 	}
 
 }

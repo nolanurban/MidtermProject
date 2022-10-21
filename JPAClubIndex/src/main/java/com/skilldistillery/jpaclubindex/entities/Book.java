@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -22,7 +25,9 @@ public class Book {
 	private String description;
 	@Column(name="cover_url")
 	private String coverUrl;
-	
+	@OneToMany(mappedBy="book")
+	private List<Review> reviews;
+
 	public Book() {}
 
 	public String getIsbn() {
@@ -89,6 +94,28 @@ public class Book {
 		Book other = (Book) obj;
 		return Objects.equals(isbn, other.isbn);
 	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	public void addReview(Review review) {
+		if (reviews == null) reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+		}
+		review.setBook(this);
+	}
+	public void removeRemove(Review review) {
+		review.setUser(null);
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+		}
+	}
+
+
 	
 	
 }

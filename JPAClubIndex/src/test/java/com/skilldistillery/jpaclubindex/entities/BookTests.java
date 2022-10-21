@@ -47,6 +47,7 @@ class BookTests {
 		String actual = book.getTitle();
 		
 		assertEquals(expected, actual);
+		assertEquals(4, book.getReviews().get(0).getRating());
 	}
 
 }

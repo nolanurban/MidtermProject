@@ -49,6 +49,8 @@ class ReviewTest {
 		
 		assertEquals(expected, actual);
 		assertEquals(4, review.getRating());
+		assertEquals("ozz", review.getUser().getLastName());
+		assertEquals("Ender's Game", review.getBook().getTitle());
 	}
 
 

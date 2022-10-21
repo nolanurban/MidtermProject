@@ -1,11 +1,14 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -15,6 +18,12 @@ public class Review {
 	
 	private String review;
 	private int rating;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@ManyToOne
+	@JoinColumn(name="book_isbn")
+	private Book book;
 
 	public Review() {}
 
@@ -57,6 +66,22 @@ public class Review {
 			return false;
 		Review other = (Review) obj;
 		return id == other.id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	
 	
