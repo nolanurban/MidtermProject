@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -37,6 +38,9 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="location_id")
 	private Location location;
+	
+	@ManyToMany(mappedBy="users")
+	private List<BookClub> bookClubs;
 //	@ManyToMany
 //	
 //	private BookClub bookClub;
@@ -47,6 +51,20 @@ public class User {
 	public User() {
 		
 	}
+	
+	
+
+	public List<BookClub> getBookClubs() {
+		return bookClubs;
+	}
+
+
+
+	public void setBookClubs(List<BookClub> bookClubs) {
+		this.bookClubs = bookClubs;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -179,4 +197,18 @@ public class User {
 		}
 	}
 
+	public void addBookClub(BookClub bookClub) {
+		if (bookClubs == null) bookClubs = new ArrayList<>();
+		if (!bookClubs.contains(bookClub)) {
+			bookClubs.add(bookClub);
+			bookClub.addUser(this);
+		}
+	}
+	public void removeBookClub(BookClub bookClub) {
+		if (bookClubs != null && bookClubs.contains(bookClub)) {
+			bookClubs.remove(bookClub);
+			bookClub.removeUser(this);
+		}
+
+	}
 }

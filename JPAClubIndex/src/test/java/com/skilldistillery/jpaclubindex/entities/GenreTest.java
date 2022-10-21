@@ -47,6 +47,14 @@ class GenreTest {
 		String actual = genre.getName();
 		
 		assertEquals(expected, actual);
+		assertEquals("Ender's Game", genre.getBooks().get(0).getTitle());
+	}
+	
+	@Test
+	void test_Genre_BookClub_mapping() {
+		assertNotNull(genre);
+		
+		assertEquals("Pestilential Winter", genre.getBookClubs().get(0).getName());
 	}
 
 }

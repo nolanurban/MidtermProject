@@ -48,6 +48,16 @@ class BookTests {
 		
 		assertEquals(expected, actual);
 		assertEquals(4, book.getReviews().get(0).getRating());
+		
+		assertEquals("Orson", book.getAuthors().get(0).getFirstName());
+		assertEquals(1, book.getGenres().get(0).getId());
+	}
+	
+	@Test
+	void test_readinglist_mapping() {
+		assertNotNull(book);
+		
+		assertEquals(1, book.getReadingLists().get(0).getId());
 	}
 
 }

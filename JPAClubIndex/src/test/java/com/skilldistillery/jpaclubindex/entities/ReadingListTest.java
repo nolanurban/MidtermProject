@@ -48,5 +48,12 @@ class ReadingListTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void test_book_readingList_mapping() {
+		assertNotNull(readingList);
+		
+		assertEquals("0312932081", readingList.getBooks().get(0).getIsbn());
+	}
 
 }

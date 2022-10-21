@@ -1,6 +1,8 @@
 package com.skilldistillery.jpaclubindex.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,9 +39,44 @@ public class BookClub {
 	
 	private String name;
 	
+	@ManyToMany
+	@JoinTable(name="book_club_genre",
+	joinColumns=@JoinColumn(name="book_club_id"),
+	inverseJoinColumns=@JoinColumn(name="genre_id"))
+	private List<Genre> genres;
+	
+	@ManyToMany
+	@JoinTable(name="book_club_members",
+	joinColumns=@JoinColumn(name="book_club_id"),
+	inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> users;
 
 	public BookClub() {}
 	
+	
+	
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -108,6 +148,42 @@ public class BookClub {
 			return false;
 		BookClub other = (BookClub) obj;
 		return id == other.id;
+	}
+	
+	public void addGenre(Genre genre) {
+		if(genres == null) {
+			genres = new ArrayList<>();
+		}
+		
+		if(!genres.contains(genre)) {
+			genres.add(genre);
+			genre.addBookClub(this);
+		}
+	}
+	
+	public void removeGenre(Genre genre) {
+		if(genres != null && genres.contains(genre)) {
+			genres.remove(genre);
+			genre.removeBookClub(this);
+		}
+	}
+	
+	public void addUser(User user) {
+		if(users == null) {
+			users = new ArrayList<>();
+		}
+		
+		if(!users.contains(user)) {
+			users.add(user);
+			user.addBookClub(this);
+		}
+	}
+	
+	public void removeUser(User user) {
+		if(users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeBookClub(this);
+		}
 	}
 	
 	

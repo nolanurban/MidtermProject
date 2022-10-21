@@ -427,6 +427,36 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `author_book`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (1, '0312932081');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `book_club_members`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `book_club_members` (`book_club_id`, `user_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `book_club_genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `book_club_genre` (`book_club_id`, `genre_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `book_genre`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -442,6 +472,16 @@ COMMIT;
 START TRANSACTION;
 USE `clubindexdb`;
 INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (1, 'Great book. Socially did not age well.', 4, 1, '0312932081');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `book_list`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `book_list` (`book_isbn`, `reading_list_id`) VALUES ('0312932081', 1);
 
 COMMIT;
 

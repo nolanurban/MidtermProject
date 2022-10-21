@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,8 +28,48 @@ public class Book {
 	private String coverUrl;
 	@OneToMany(mappedBy="book")
 	private List<Review> reviews;
+	@ManyToMany(mappedBy="books")
+	private List<Author> authors;
+	@ManyToMany(mappedBy="books")
+	private List<Genre> genres;
+	@ManyToMany(mappedBy="books")
+	private List<ReadingList> readingLists;
 
 	public Book() {}
+
+	
+
+	public List<ReadingList> getReadingLists() {
+		return readingLists;
+	}
+
+
+
+	public void setReadingLists(List<ReadingList> readingLists) {
+		this.readingLists = readingLists;
+	}
+
+
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+
+
+
+
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -115,7 +156,63 @@ public class Book {
 		}
 	}
 
+	public void addAuthor(Author author) {
+		if(authors == null) {
+			authors = new ArrayList<>();
+		}
+		
+		if(!authors .contains(author)) {
+			authors .add(author);
+			author.addBook(this);
+		}
+	}
+	
+	public void removeAuthor(Author author) {
+		if(authors != null && authors.contains(author)) {
+			authors.remove(author);
+			author.removeBook(this);
+		}
 
+	}
+	
+	public void addGenre(Genre genre) {
+		if(genres == null) {
+			genres = new ArrayList<>();
+		}
+		
+		if(!genres.contains(genre)) {
+			genres.add(genre);
+			genre.addBook(this);
+		}
+	}
+	
+	public void removeGenre(Genre genre) {
+		if(genres != null && genres.contains(genre)) {
+			genres.remove(genre);
+			genre.removeBook(this);
+		}
+
+	}
+	
+	public void addReadingList(ReadingList readingList) {
+		if(readingLists == null) {
+			readingLists = new ArrayList<>();
+		}
+		
+		if(!readingLists.contains(readingList)) {
+			readingLists.add(readingList);
+			readingList.addBook(this);
+		}
+	}
+	
+	public void removeReadingList(ReadingList readingList) {
+		if(readingLists != null && readingLists.contains(readingList)) {
+			readingLists.remove(readingList);
+			readingList.removeBook(this);
+		}
+
+	}
+	
 	
 	
 }

@@ -48,5 +48,12 @@ class UserTest {
 		assertEquals("Texas", user.getLocation().getState());
 		assertEquals("Great book. Socially did not age well.", user.getReviews().get(0).getReview());
 	}
+	
+	@Test
+	void test_bookclub_mapping() {
+		assertNotNull(user);
+		assertEquals(1, user.getBookClubs().get(0).getId());
+	}
+	
 
 }

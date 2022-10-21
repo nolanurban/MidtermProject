@@ -46,6 +46,8 @@ class AuthorTests {
 		String actual = author.getFirstName();
 		
 		assertEquals(expected, actual);
+		
+		assertEquals("Ender's Game", author.getBooks().get(0).getTitle());
 	}
 
 }

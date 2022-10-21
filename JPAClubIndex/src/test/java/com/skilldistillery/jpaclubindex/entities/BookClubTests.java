@@ -46,7 +46,7 @@ class BookClubTests {
 	void test_BookClub_mapping() {
 		assertNotNull(bc);
 		
-		LocalDateTime expectedDateTime = LocalDateTime.of(2022, 10, 21, 12, 34, 10);
+		LocalDateTime expectedDateTime = LocalDateTime.of(2022, 10, 21, 11, 34, 10);
 		LocalDateTime actualDateTime = bc.getCreateDate();
 		
 		assertEquals(expectedDateTime, actualDateTime);
@@ -55,6 +55,20 @@ class BookClubTests {
 		String actualAbout = bc.getAboutClub();
 		
 		assertEquals(expectedAbout, actualAbout);
+	}
+	
+	@Test
+	void test_Genre_BookClub_mapping() {
+		assertNotNull(bc);
+		
+		assertEquals("Science-Fiction", bc.getGenres().get(0).getName());
+	}
+	
+	@Test
+	void test_user_mapping() {
+		assertNotNull(bc);
+		
+		assertEquals("ash", bc.getUsers().get(0).getFirstName());
 	}
 
 }

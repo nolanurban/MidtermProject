@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+
 
 @Entity
 public class Author {
@@ -28,7 +35,23 @@ public class Author {
 	@Column(name="headshot_url")
 	private String headshotUrl;
 	
+	@ManyToMany
+	@JoinTable(name="author_book",
+	joinColumns=@JoinColumn(name="author_id"),
+	inverseJoinColumns=@JoinColumn(name="book_isbn"))
+	private List<Book> books;
+	
 	public Author() {}
+	
+	
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 	public int getId() {
 		return id;
@@ -95,5 +118,22 @@ public class Author {
 		return id == other.id;
 	}
 	
+	public void addBook(Book book) {
+		if(books == null) {
+			books = new ArrayList<>();
+		}
+		
+		if(!books.contains(book)) {
+			books.add(book);
+			book.addAuthor(this);
+		}
+	}
+	
+	public void removeBook(Book book) {
+		if(books != null && books.contains(book)) {
+			books.remove(book);
+			book.removeAuthor(this);
+		}
+	}
 	
 }
