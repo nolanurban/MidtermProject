@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User loginUserAndPassword(String userName, String password) {
-		 String query = "Select s from User s where email = :email and password = :password";
+		 String query = "Select s from User s where username = :userName and password = :password";
 		 try {
 			 User user = em.createQuery(query, User.class).setParameter("userName", userName).setParameter("password",password).getSingleResult();
 			 user = findUserById(user.getId());
