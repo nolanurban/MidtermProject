@@ -51,9 +51,10 @@ public class BookClub {
 	inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> users;
 
+	@JoinColumn(name="owner_id")
+	private User owner;
+	
 	public BookClub() {}
-	
-	
 	
 	public List<User> getUsers() {
 		return users;
@@ -185,6 +186,13 @@ public class BookClub {
 			user.removeBookClub(this);
 		}
 	}
-	
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 	
 }
