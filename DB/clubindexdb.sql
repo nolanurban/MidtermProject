@@ -126,6 +126,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `user_reading_list`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_reading_list` ;
+
+CREATE TABLE IF NOT EXISTS `user_reading_list` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(120) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_reading_list_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_reading_list_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `book_club`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `book_club` ;
@@ -152,32 +171,6 @@ CREATE TABLE IF NOT EXISTS `book_club` (
   CONSTRAINT `fk_book_club_location1`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `reading_list`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `reading_list` ;
-
-CREATE TABLE IF NOT EXISTS `reading_list` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(120) NOT NULL,
-  `user_id` INT NOT NULL,
-  `book_club_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_reading_list_user1_idx` (`user_id` ASC),
-  INDEX `fk_reading_list_book_club1_idx` (`book_club_id` ASC),
-  CONSTRAINT `fk_reading_list_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reading_list_book_club1`
-    FOREIGN KEY (`book_club_id`)
-    REFERENCES `book_club` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -307,11 +300,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `book_list`
+-- Table `user_book_list`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `book_list` ;
+DROP TABLE IF EXISTS `user_book_list` ;
 
-CREATE TABLE IF NOT EXISTS `book_list` (
+CREATE TABLE IF NOT EXISTS `user_book_list` (
   `book_isbn` VARCHAR(30) NOT NULL,
   `reading_list_id` INT NOT NULL,
   PRIMARY KEY (`book_isbn`, `reading_list_id`),
@@ -324,7 +317,50 @@ CREATE TABLE IF NOT EXISTS `book_list` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_book_has_reading_list_reading_list1`
     FOREIGN KEY (`reading_list_id`)
-    REFERENCES `reading_list` (`id`)
+    REFERENCES `user_reading_list` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bookclub_reading_list`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bookclub_reading_list` ;
+
+CREATE TABLE IF NOT EXISTS `bookclub_reading_list` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(250) NOT NULL,
+  `book_club_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bookclub_reading_list_book_club1_idx` (`book_club_id` ASC),
+  CONSTRAINT `fk_bookclub_reading_list_book_club1`
+    FOREIGN KEY (`book_club_id`)
+    REFERENCES `book_club` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bookclub_book_list`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bookclub_book_list` ;
+
+CREATE TABLE IF NOT EXISTS `bookclub_book_list` (
+  `book_isbn` VARCHAR(30) NOT NULL,
+  `bookclub_reading_list_id` INT NOT NULL,
+  PRIMARY KEY (`book_isbn`, `bookclub_reading_list_id`),
+  INDEX `fk_book_has_reading_list_book1_idx` (`book_isbn` ASC),
+  INDEX `fk_bookclub_book_list_bookclub_reading_list1_idx` (`bookclub_reading_list_id` ASC),
+  CONSTRAINT `fk_book_has_reading_list_book10`
+    FOREIGN KEY (`book_isbn`)
+    REFERENCES `book` (`isbn`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bookclub_book_list_bookclub_reading_list1`
+    FOREIGN KEY (`bookclub_reading_list_id`)
+    REFERENCES `bookclub_reading_list` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -407,21 +443,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `book_club`
+-- Data for table `user_reading_list`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, NULL, 'Scifi nerds', 'Pestilential Winter');
+INSERT INTO `user_reading_list` (`id`, `name`, `user_id`) VALUES (1, 'scifi', 1);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `reading_list`
+-- Data for table `book_club`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `reading_list` (`id`, `name`, `user_id`, `book_club_id`) VALUES (1, 'scifi', 1, 1);
+INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, NULL, 'Scifi nerds', 'Pestilential Winter');
 
 COMMIT;
 
@@ -477,11 +513,31 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `book_list`
+-- Data for table `user_book_list`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `book_list` (`book_isbn`, `reading_list_id`) VALUES ('0312932081', 1);
+INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('0312932081', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bookclub_reading_list`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `bookclub_reading_list` (`id`, `name`, `book_club_id`) VALUES (1, 'Scifi books', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bookclub_book_list`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `clubindexdb`;
+INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('0312932081', 1);
 
 COMMIT;
 
