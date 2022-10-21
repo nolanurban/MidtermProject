@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -28,6 +30,10 @@ public class User {
 	private String profileUrl;
 	@Column(name="about_me")
 	private String aboutMe;
+	@OneToOne
+	@JoinColumn(name="location_id")
+	private Location location;
+	
 
 	public User() {
 		
@@ -136,4 +142,11 @@ public class User {
 				+ ", role=" + role + ", email=" + email + "]";
 	}
 
+	public Location getLocation() {
+		return location;
+	}
+	
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 }
