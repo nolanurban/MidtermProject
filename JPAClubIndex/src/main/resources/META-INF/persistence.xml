@@ -3,8 +3,16 @@
 	<persistence-unit name="JPAClubIndex">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
-    
-		<class>com.skilldistillery.jpaclubindex.entities.User</class>
+
+	<class>com.skilldistillery.jpaclubindex.entities.User</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Book</class>
+	<class>com.skilldistillery.jpaclubindex.entities.BookClub</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Genre</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Language</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Location</class>
+	<class>com.skilldistillery.jpaclubindex.entities.ReadingList</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Review</class>
+	<class>com.skilldistillery.jpaclubindex.entities.Author</class>
 		
 
 
