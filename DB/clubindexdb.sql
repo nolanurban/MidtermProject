@@ -139,9 +139,11 @@ CREATE TABLE IF NOT EXISTS `book_club` (
   `location_id` INT NOT NULL,
   `profile_url` TEXT NULL,
   `about_club` TEXT NULL,
+  `name` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_book_club_user1_idx` (`owner_id` ASC),
   INDEX `fk_book_club_location1_idx` (`location_id` ASC),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   CONSTRAINT `fk_book_club_user1`
     FOREIGN KEY (`owner_id`)
     REFERENCES `user` (`id`)
@@ -344,6 +346,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `clubindexdb`;
 INSERT INTO `location` (`id`, `state`, `city`, `zip_code`, `street`, `unit`, `state_abbr`) VALUES (1, 'Texas', 'aledo', '76008', NULL, NULL, 'TX');
+INSERT INTO `location` (`id`, `state`, `city`, `zip_code`, `street`, `unit`, `state_abbr`) VALUES (2, 'Wisconsin', 'Pulaski', '54162', NULL, NULL, 'WI');
 
 COMMIT;
 
@@ -353,7 +356,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `enabled`, `role`, `location_id`, `profile_url`, `about_me`) VALUES (1, 'ash', 'ozz', 'ashozz', 'ashley@abc.com', 'abc', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `enabled`, `role`, `location_id`, `profile_url`, `about_me`) VALUES (1, 'ash', 'ozz', 'ashozz', 'ashley@abc.com', 'abc', NULL, NULL, 1, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `enabled`, `role`, `location_id`, `profile_url`, `about_me`) VALUES (2, 'tyler', 'tanner', 'dopeyboy', 'tylert123@abc.com', 'abc', NULL, NULL, 2, NULL, NULL);
 
 COMMIT;
 
@@ -407,7 +411,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, NULL, 'Scifi nerds');
+INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, NULL, 'Scifi nerds', 'Pestilential Winter');
 
 COMMIT;
 

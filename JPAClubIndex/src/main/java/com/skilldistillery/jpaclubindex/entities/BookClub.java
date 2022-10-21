@@ -32,7 +32,18 @@ public class BookClub {
 	@Column(name="about_club")
 	private String aboutClub;
 	
+	private String name;
+	
+
 	public BookClub() {}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getId() {
 		return id;
