@@ -1,12 +1,12 @@
 package com.skilldistillery.jpaclubindex.data;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Service
@@ -20,6 +20,20 @@ public class UserDaoImpl implements UserDAO {
 	public User findUserById(int userId) {
 		return em.find(User.class, userId);
 	}
+
+	@Override
+	public User loginUserAndPassword(String userName, String password) {
+		 String query = "Select s from User s where email = :email and password = :password";
+		 try {
+			 User user = em.createQuery(query, User.class).setParameter("userName", userName).setParameter("password",password).getSingleResult();
+			 user = findUserById(user.getId());
+			 return user; // Currently doesn't do much but return Userdata
+		 } catch(NoResultException e) {
+			 User user = null;
+			 return user;
+		 }
+	}
+	
 	
 	
 }
