@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Club Index: A Way To Track Down a Book Club</title>
-</head>
-<body>
-<h2>Book Clubs!</h2>
-${SMOKETEST}
-</body>
+	<head>
+		<jsp:include page="header.jsp"/>
+	</head>
+	<body>
+		<jsp:include page="nav.jsp"/>
+		<h2>Welcome to club index!</h2>
+		<jsp:include page="footer.jsp"/>
+	</body>
 </html>
