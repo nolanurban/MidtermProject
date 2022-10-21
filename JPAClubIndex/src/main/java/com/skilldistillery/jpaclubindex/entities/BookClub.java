@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -51,6 +52,7 @@ public class BookClub {
 	inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> users;
 
+	@OneToOne
 	@JoinColumn(name="owner_id")
 	private User owner;
 	
