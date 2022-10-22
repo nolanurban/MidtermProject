@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -56,29 +58,26 @@ public class BookClub {
 	@JoinColumn(name="owner_id")
 	private User owner;
 	
+	@OneToMany(mappedBy = "bookClub")
+	private List<BookClubReadingList> readingLists;
+	
 	public BookClub() {}
 	
 	public List<User> getUsers() {
 		return users;
 	}
 
-
-
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-
 
 	public List<Genre> getGenres() {
 		return genres;
 	}
 
-
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
-
 
 	public String getName() {
 		return name;
@@ -196,5 +195,30 @@ public class BookClub {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+
+	public List<BookClubReadingList> getReadingLists() {
+		return readingLists;
+	}
+
+	public void setReadingLists(List<BookClubReadingList> readingLists) {
+		this.readingLists = readingLists;
+	}
 	
+	public void addReadingList(BookClubReadingList readingList) {
+		if(readingLists == null) {
+			readingLists = new ArrayList<>();
+		}
+		
+		if(!readingLists.contains(readingList)) {
+			readingLists.add(readingList);
+		}
+		readingList.setBookClub(this);
+	}
+	
+	public void removeReadingList(BookClubReadingList readingList) {
+		readingList.setBookClub(null);
+		if(readingLists.contains(readingList)) {
+			readingLists.remove(readingList);
+		}
+	}
 }

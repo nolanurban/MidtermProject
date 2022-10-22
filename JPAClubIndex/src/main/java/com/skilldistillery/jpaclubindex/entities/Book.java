@@ -33,19 +33,19 @@ public class Book {
 	@ManyToMany(mappedBy="books")
 	private List<Genre> genres;
 	@ManyToMany(mappedBy="books")
-	private List<ReadingList> readingLists;
+	private List<UserReadingList> readingLists;
 
 	public Book() {}
 
 	
 
-	public List<ReadingList> getReadingLists() {
+	public List<UserReadingList> getReadingLists() {
 		return readingLists;
 	}
 
 
 
-	public void setReadingLists(List<ReadingList> readingLists) {
+	public void setReadingLists(List<UserReadingList> readingLists) {
 		this.readingLists = readingLists;
 	}
 
@@ -194,7 +194,7 @@ public class Book {
 
 	}
 	
-	public void addReadingList(ReadingList readingList) {
+	public void addReadingList(UserReadingList readingList) {
 		if(readingLists == null) {
 			readingLists = new ArrayList<>();
 		}
@@ -205,7 +205,7 @@ public class Book {
 		}
 	}
 	
-	public void removeReadingList(ReadingList readingList) {
+	public void removeReadingList(UserReadingList readingList) {
 		if(readingLists != null && readingLists.contains(readingList)) {
 			readingLists.remove(readingList);
 			readingList.removeBook(this);

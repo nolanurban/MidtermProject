@@ -10,10 +10,10 @@
 	<class>com.skilldistillery.jpaclubindex.entities.Genre</class>
 	<class>com.skilldistillery.jpaclubindex.entities.Language</class>
 	<class>com.skilldistillery.jpaclubindex.entities.Location</class>
-	<class>com.skilldistillery.jpaclubindex.entities.ReadingList</class>
+	<class>com.skilldistillery.jpaclubindex.entities.UserReadingList</class>
 	<class>com.skilldistillery.jpaclubindex.entities.Review</class>
 	<class>com.skilldistillery.jpaclubindex.entities.Author</class>
-		
+	<class>com.skilldistillery.jpaclubindex.entities.BookClubReadingList</class>
 
 
 	<properties>

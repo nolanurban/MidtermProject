@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -41,18 +43,46 @@ public class User {
 	
 	@ManyToMany(mappedBy="users")
 	private List<BookClub> bookClubs;
-//	@ManyToMany
-//	
-//	private BookClub bookClub;
-//
+
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "user")
+	private List<UserReadingList> readingLists;
 	
 	public User() {
 		
 	}
 	
+	public void addReadingList(UserReadingList readingList) {
+		if(readingLists == null) {
+			readingLists = new ArrayList<>();
+		}
+		
+		if(!readingLists.contains(readingList)) {
+			readingLists.add(readingList);
+		}
+		readingList.setUser(this);
+	}
+
+	public void removeReadingList(UserReadingList readingList) {
+		readingList.setUser(null);
+		if(readingLists.contains(readingList)) {
+			readingLists.remove(readingList);
+		}
+	}
 	
+	public List<UserReadingList> getReadingLists() {
+		return readingLists;
+	}
+
+
+
+	public void setReadingLists(List<UserReadingList> readingLists) {
+		this.readingLists = readingLists;
+	}
+
+
 
 	public List<BookClub> getBookClubs() {
 		return bookClubs;

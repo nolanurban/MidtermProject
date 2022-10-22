@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="reading_list")
-public class ReadingList {
+@Table(name="user_reading_list")
+public class UserReadingList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -23,23 +25,27 @@ public class ReadingList {
 	private String name;
 	
 	@ManyToMany
-	@JoinTable(name="book_list",
+	@JoinTable(name="user_book_list",
 	joinColumns=@JoinColumn(name="reading_list_id"),
 	inverseJoinColumns=@JoinColumn(name="book_isbn"))
 	private List<Book> books;
 	
-	public List<Book> getBooks() {
-		return books;
-	}
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
-	public ReadingList() {}
+	public UserReadingList() {}
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+	
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 	public void setId(int id) {
@@ -67,7 +73,7 @@ public class ReadingList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ReadingList other = (ReadingList) obj;
+		UserReadingList other = (UserReadingList) obj;
 		return id == other.id;
 	}
 	
@@ -88,4 +94,14 @@ public class ReadingList {
 			book.removeReadingList(this);
 		}
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 }

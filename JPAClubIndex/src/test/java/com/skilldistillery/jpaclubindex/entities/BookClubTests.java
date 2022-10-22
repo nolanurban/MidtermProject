@@ -71,4 +71,11 @@ class BookClubTests {
 		assertEquals("ash", bc.getUsers().get(0).getFirstName());
 	}
 
+	@Test
+	void test_BookClub_BookClubReadingList_mapping() {
+		String expected = "Scifi books";
+		String actual = bc.getReadingLists().get(0).getName();
+		
+		assertEquals(expected, actual);
+	}
 }

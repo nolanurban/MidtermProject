@@ -15,13 +15,12 @@ import org.junit.jupiter.api.Test;
 
 class UserTest {
 	
-	private static EntityManagerFactory emf;
+	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAClubIndex");
 	private EntityManager em;
 	private User user;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("JPAClubIndex");
 	}
 
 	@AfterAll
@@ -54,6 +53,15 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals(1, user.getBookClubs().get(0).getId());
 	}
+	
+	@Test
+	void test_User_UserReadingList_mapping() {
+		String expected = "scifi";
+		String actual = user.getReadingLists().get(0).getName();
+		
+		assertEquals(expected, actual);
+	}
+	
 	
 
 }

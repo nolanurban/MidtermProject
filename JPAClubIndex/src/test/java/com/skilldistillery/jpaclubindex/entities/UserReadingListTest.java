@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ReadingListTest {
+class UserReadingListTest {
 
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAClubIndex");
 	private EntityManager em;
-	private ReadingList readingList;
+	private UserReadingList readingList;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ class ReadingListTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		readingList = em.find(ReadingList.class, 1);
+		readingList = em.find(UserReadingList.class, 1);
 	}
 
 	@AfterEach
