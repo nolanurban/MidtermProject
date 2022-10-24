@@ -35,7 +35,7 @@
 					 				<td>${bookClub.name}</td>
 					 				<td>
 										<c:forEach var="genre" items="${bookClub.genres}">
-											${genre} 
+											${genre.name} 
 										</c:forEach>
 									</td>
 					 				<td>${bookClub.owner.username}</td>
