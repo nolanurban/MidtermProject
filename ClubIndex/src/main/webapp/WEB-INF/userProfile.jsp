@@ -33,15 +33,19 @@
 					 			<tr>
 					 				<td>${bookClub.profileUrl}</td>
 					 				<td>${bookClub.name}</td>
-					 				<td>${bookClub.genres}</td>
+					 				<td>
+										<c:forEach var="genre" items="${bookClub.genres}">
+											${genre} 
+										</c:forEach>
+									</td>
 					 				<td>${bookClub.owner.username}</td>
-					 				<td>${bookClub.users.size} / ${bookClub.maxMembers}</td>
+					 				<td>${bookClub.users.size()} / ${bookClub.maxMembers}</td>
 					 			</tr>
 					 		</c:forEach>
 		 				</tbody>
 		 			</table>
 		 	</div>
-		 	<div class="col-2">
+		 	<div class="col-4">
 		 		<p>${user.username}<p>
 		 	</div>
 		 </div>

@@ -1,13 +1,14 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.User;
 
@@ -16,6 +17,8 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private BookClubDAO bcDao;
 	
 	@RequestMapping(path= {"/", "home.do"})
 	public String home(HttpSession session) {
@@ -36,6 +39,21 @@ public class UserController {
 			return "home";
 		}
 		return "login";		
+	}
+	
+	@RequestMapping(path="account.do")
+	public String showAccount(HttpSession session) {
+		User user = ((User) (session.getAttribute("user")));
+		user.setBookClubs(bcDao.getBookClubsByUserId(user));
+		
+		session.setAttribute("user", user);
+		return "userProfile";
+	}
+	
+	@RequestMapping(path="logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "home";
 	}
 }
 
