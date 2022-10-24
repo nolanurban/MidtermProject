@@ -6,11 +6,15 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Book {
@@ -24,14 +28,21 @@ public class Book {
 	private Integer pages;
 	private String title;
 	private String description;
+	
 	@Column(name="cover_url")
 	private String coverUrl;
+	
 	@OneToMany(mappedBy="book")
 	private List<Review> reviews;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy="books")
 	private List<Author> authors;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy="books")
 	private List<Genre> genres;
+	
 	@ManyToMany(mappedBy="books")
 	private List<UserReadingList> readingLists;
 
