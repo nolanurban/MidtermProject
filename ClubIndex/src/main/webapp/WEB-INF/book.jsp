@@ -28,7 +28,7 @@
 		 					<tr><td><em>Book Title</em><td>${book.title}</td></tr>
 							<tr><td><em>Book Description</em><td>${book.description}</td></tr>
 							<c:forEach var="aList" items="${book.authors }">
-		 					<tr><td><em>Book Author</em></td><td>${aList.firstName } ${aList.lastName }</td></c:forEach>
+		 					<tr><td><em>Book Author</em></td><td><a href="getAuthor.do?id=${aList.id}">${aList.firstName } ${aList.lastName }</a></td></c:forEach>
 		 					<tr><td><em>Book Pages</em></td><td>${book.pages}</td>
 		 					<c:forEach var="gList" items="${book.genres }">
 		 					<tr><td>Book Genre</td><td>${gList.name}</td></tr></c:forEach>
