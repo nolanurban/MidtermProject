@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="book_club")
 public class BookClub {
@@ -43,12 +46,14 @@ public class BookClub {
 	
 	private String name;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
 	@JoinTable(name="book_club_genre",
 	joinColumns=@JoinColumn(name="book_club_id"),
 	inverseJoinColumns=@JoinColumn(name="genre_id"))
 	private List<Genre> genres;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
 	@JoinTable(name="book_club_members",
 	joinColumns=@JoinColumn(name="book_club_id"),
@@ -61,6 +66,9 @@ public class BookClub {
 	
 	@OneToMany(mappedBy = "bookClub")
 	private List<BookClubReadingList> readingLists;
+	
+	@JoinColumn(name="location_id")
+	private Location location;
 	
 	public BookClub() {}
 	
@@ -222,4 +230,14 @@ public class BookClub {
 			readingLists.remove(readingList);
 		}
 	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	
 }
