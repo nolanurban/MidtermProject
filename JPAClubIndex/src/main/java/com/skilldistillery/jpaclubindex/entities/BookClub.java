@@ -67,6 +67,9 @@ public class BookClub {
 	@OneToMany(mappedBy = "bookClub")
 	private List<BookClubReadingList> readingLists;
 	
+	@JoinColumn(name="location_id")
+	private Location location;
+	
 	public BookClub() {}
 	
 	public List<User> getUsers() {
@@ -227,4 +230,14 @@ public class BookClub {
 			readingLists.remove(readingList);
 		}
 	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	
 }
