@@ -17,7 +17,6 @@ public class BookDaoImpl implements BookDAO {
 	@Override
 	public Book findBookById(String isbn) {
 		Book book = em.find(Book.class, isbn);
-		if (book == null) return null;
 		return book;
 	}
 

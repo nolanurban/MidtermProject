@@ -12,6 +12,7 @@ import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 
 import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.Book;
+import com.skilldistillery.jpaclubindex.entities.Location;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Controller
@@ -65,7 +66,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="userCreation.do", method = RequestMethod.POST) 
-		public String createAccount(HttpSession session, User newUser) {
+		public String createAccount(HttpSession session, User newUser, Location location) {
+		newUser.setLocation(location);
 		newUser = userDao.create(newUser);
 		session.setAttribute("user", newUser);
 		return"home";
@@ -78,7 +80,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="updateUser.do", method = RequestMethod.POST)
-		public String update(HttpSession session, User currentUser) {
+		public String update(HttpSession session, User currentUser, Location location) {
+		currentUser.setLocation(location);
 		currentUser = userDao.update(currentUser);
 		return "redirect:updatedUser.do";
 	}

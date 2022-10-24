@@ -20,7 +20,6 @@ public class BookController {
 	public String searchForBook(HttpSession session) {
 		return "book";
 	}
-		
 	
 	@RequestMapping(path="showBook.do", params="bookSearch", method = RequestMethod.GET)
 	public String showBookDetails(String bookSearch, HttpSession session) {

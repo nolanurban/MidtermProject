@@ -21,12 +21,12 @@
 						</tr>
 						<tr>
 							<th scope="row">About us</th>
-							<td>${bookClub.aboutClub }</td>
+							<td>${bookClub.aboutClub}</td>
 						</tr>
 						<tr>
 							<th scope ="row">Genre(s) we cover</th>
 							<c:forEach var="genre" items="${bookClub.genres}">
-								<td>${genre}</td>
+								<td>${genre.name}</td>
 							</c:forEach>
 						</tr>
 						<tr>

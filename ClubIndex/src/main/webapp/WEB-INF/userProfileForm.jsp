@@ -47,7 +47,7 @@
 		<input type="text" name="email" value="${user.email}" required><br>
 	</c:when>
 	<c:otherwise>
-		<label for="email">User Name</label>	
+		<label for="email">Email</label>	
 		<input type="text" name="email" required><br>
 	</c:otherwise>
 </c:choose>

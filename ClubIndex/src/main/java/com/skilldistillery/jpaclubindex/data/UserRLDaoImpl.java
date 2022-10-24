@@ -9,11 +9,11 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
-import com.skilldistillery.jpaclubindex.data.userRLDAO;
+import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 
 @Service
 @Transactional
-public class UserRLDaoImpl implements userRLDAO {
+public class UserRLDaoImpl implements UserRLDAO {
 		
 		@PersistenceContext
 		private EntityManager em;
@@ -30,11 +30,9 @@ public class UserRLDaoImpl implements userRLDAO {
 		
 		@Override
 		public List<UserReadingList> findlistofAllUserReadingList() {
-			List<UserReadingList> results = null;
 			String query = "SELECT l FROM UserReadingList l";
 					
-			return results = em.createQuery(query, UserReadingList.class).getResultList();
-			
+			return em.createQuery(query, UserReadingList.class).getResultList();
 		}
 		
 		
