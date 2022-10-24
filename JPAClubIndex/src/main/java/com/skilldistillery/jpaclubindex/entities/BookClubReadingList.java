@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -87,6 +88,25 @@ public class BookClubReadingList {
 			return false;
 		BookClubReadingList other = (BookClubReadingList) obj;
 		return id == other.id;
+	}
+	
+	public void addBook(Book book) {
+		if(books == null) {
+			books = new ArrayList<>();
+		}
+		
+		if(!books.contains(book)) {
+			books.add(book);
+			book.addReadingList(this);
+		}
+	}
+	
+	public void removeBook(Book book) {
+		if(books != null && books.contains(books)) {
+			books.remove(book);
+			book.removeReadingList(this);
+		}
+
 	}
 	
 	

@@ -44,23 +44,16 @@ public class Book {
 	private List<Genre> genres;
 	
 	@ManyToMany(mappedBy="books")
-	private List<UserReadingList> readingLists;
+	private List<UserReadingList> userReadingLists;
 
+	@ManyToMany(mappedBy="books")
+	private List<BookClubReadingList> bcReadingLists;
+	
 	public Book() {}
 
-	
-
-	public List<UserReadingList> getReadingLists() {
-		return readingLists;
+	public void setUserReadingLists(List<UserReadingList> readingLists) {
+		this.userReadingLists = readingLists;
 	}
-
-
-
-	public void setReadingLists(List<UserReadingList> readingLists) {
-		this.readingLists = readingLists;
-	}
-
-
 
 	public List<Genre> getGenres() {
 		return genres;
@@ -69,11 +62,7 @@ public class Book {
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
-
-
-
-
-
+	
 	public List<Author> getAuthors() {
 		return authors;
 	}
@@ -160,8 +149,8 @@ public class Book {
 		}
 		review.setBook(this);
 	}
-	public void removeRemove(Review review) {
-		review.setUser(null);
+	public void removeReview(Review review) {
+		review.setBook(null);
 		if (reviews != null && reviews.contains(review)) {
 			reviews.remove(review);
 		}
@@ -172,8 +161,8 @@ public class Book {
 			authors = new ArrayList<>();
 		}
 		
-		if(!authors .contains(author)) {
-			authors .add(author);
+		if(!authors.contains(author)) {
+			authors.add(author);
 			author.addBook(this);
 		}
 	}
@@ -205,23 +194,54 @@ public class Book {
 
 	}
 	
-	public void addReadingList(UserReadingList readingList) {
-		if(readingLists == null) {
-			readingLists = new ArrayList<>();
+	public void addReadingList(BookClubReadingList readingList) {
+		if(bcReadingLists == null) {
+			bcReadingLists = new ArrayList<>();
 		}
 		
-		if(!readingLists.contains(readingList)) {
-			readingLists.add(readingList);
+		if(!bcReadingLists.contains(readingList)) {
+			bcReadingLists.add(readingList);
+			readingList.addBook(this);
+		}
+	}
+	
+	public void removeReadingList(BookClubReadingList readingList) {
+		if(bcReadingLists != null && bcReadingLists.contains(readingList)) {
+			bcReadingLists.remove(readingList);
+			readingList.removeBook(this);
+		}
+
+	}
+	
+	public void addReadingList(UserReadingList readingList) {
+		if(userReadingLists == null) {
+			userReadingLists = new ArrayList<>();
+		}
+		
+		if(!userReadingLists.contains(readingList)) {
+			userReadingLists.add(readingList);
 			readingList.addBook(this);
 		}
 	}
 	
 	public void removeReadingList(UserReadingList readingList) {
-		if(readingLists != null && readingLists.contains(readingList)) {
-			readingLists.remove(readingList);
+		if(userReadingLists != null && userReadingLists.contains(readingList)) {
+			userReadingLists.remove(readingList);
 			readingList.removeBook(this);
 		}
+		
+	}
 
+	public List<BookClubReadingList> getBcReadingLists() {
+		return bcReadingLists;
+	}
+
+	public void setBcReadingLists(List<BookClubReadingList> bcReadingLists) {
+		this.bcReadingLists = bcReadingLists;
+	}
+
+	public List<UserReadingList> getUserReadingLists() {
+		return userReadingLists;
 	}
 	
 	
