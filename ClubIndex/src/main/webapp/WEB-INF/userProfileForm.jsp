@@ -23,17 +23,17 @@
 </c:choose>
 <c:choose>
 	<c:when test="${not empty user}">
-		<label for="userName">User Name</label>	
-		<input type="text" name="userName" value="${user.userName}" required><br>
+		<label for="username">User Name</label>	
+		<input type="text" name="username" value="${user.username}" required><br>
 	</c:when>
 	<c:otherwise>
-		<label for="userName">User Name</label>	
-		<input type="text" name="userName" required><br>
+		<label for="username">User Name</label>	
+		<input type="text" name="username" required><br>
 	</c:otherwise>
 </c:choose>
 <c:choose>
 	<c:when test="${not empty user}">
-		<img src="${user.imageUrl}" width="300" height="300"><br>
+		<img src="${user.profileUrl}" width="300" height="300"><br>
 		<input type="url" name="profileUrl" value="${user.profileUrl}"><br>
 	</c:when>
 	<c:otherwise>
@@ -74,41 +74,41 @@
 <c:choose>
 	<c:when test="${not empty user}">
 		<label for="street">Street</label>	
-		<input type="text" name="street" value="${user.location.street}" required><br>
+		<input type="text" name="street" value="${user.location.street}"><br>
 	</c:when>
 	<c:otherwise>
 		<label for="street">Street</label>	
-		<input type="text" name="street" required><br>
+		<input type="text" name="street"><br>
 	</c:otherwise>
 </c:choose>
 <c:choose>
 	<c:when test="${not empty user}">
 		<label for="unit">Street part 2. (unit, fpo/ap ect)</label>	
-		<input type="text" name="unit" value="${user.location.unit}" required><br>
+		<input type="text" name="unit" value="${user.location.unit}"><br>
 	</c:when>
 	<c:otherwise>
 		<label for="unit">Street part 2. (unit, fpo/ap ect)</label>	
-		<input type="text" name="unit" required><br>
+		<input type="text" name="unit"><br>
 	</c:otherwise>
 </c:choose>
 <c:choose>
 	<c:when test="${not empty user}">
 		<label for="city">City</label>	
-		<input type="text" name="city" value="${user.location.city}" required><br>
+		<input type="text" name="city" value="${user.location.city}"><br>
 	</c:when>
 	<c:otherwise>
 		<label for="city">City</label>	
-		<input type="text" name="city" required><br>
+		<input type="text" name="city"><br>
 	</c:otherwise>
 </c:choose>
 <c:choose>
 	<c:when test="${not empty user}">
 		<label for="state">State</label>	
-		<input type="text" name="state" value="${user.location.state}" required><br>
+		<input type="text" name="state" value="${user.location.state}"><br>
 	</c:when>
 	<c:otherwise>
 		<label for="state">State</label>	
-		<input type="text" name="state" required><br>
+		<input type="text" name="state"><br>
 	</c:otherwise>
 </c:choose>
 <c:choose>

@@ -6,6 +6,8 @@
 		<tr>
 			<td><a href="home.do" class="btn">Home</a></td>
 					<td><a href="showBook.do" class="btn">Books</a></td>
+	
+					
 			<c:choose>
 				<c:when test="${not empty user}">
 					<td><a href="account.do" class="btn">Account view</a></td>
@@ -13,7 +15,7 @@
 					
 				</c:when>
 				<c:otherwise>
-					<td><a href="login.do" class="btn">Login</a></td>
+					<td><a href="login.do" class="btn">Login/Sign-up</a></td>
 				</c:otherwise>
 			</c:choose>
 		</tr>

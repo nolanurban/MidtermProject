@@ -11,10 +11,11 @@
 	<jsp:include page="nav.jsp" />
 	<div class="container">
 		<form action="login.do" method="POST">
-			<input type="text" name="username" required><br>
-			<input type="password" name="password" required><br>
-			<input type="submit" value="Log In">
+			<input type="text" name="username" required><br> <input
+				type="password" name="password" required><br> <input
+				type="submit" value="Log In">
 		</form>
+		<a href="userCreation.do" class="btn">Create Account Now</a>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

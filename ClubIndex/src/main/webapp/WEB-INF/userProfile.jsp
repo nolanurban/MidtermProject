@@ -66,6 +66,7 @@
 				</div>
 			</div>
 		 </div>
+		 <a href="updateUser.do" class="btn">Update Account Now</a>
 		<jsp:include page="footer.jsp"/>	
 	</body>
 </html>

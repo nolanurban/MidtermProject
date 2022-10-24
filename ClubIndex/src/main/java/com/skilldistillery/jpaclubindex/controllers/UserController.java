@@ -58,5 +58,39 @@ public class UserController {
 		session.invalidate();
 		return "home";
 	}
+	
+	@RequestMapping(path="userCreation.do", method = RequestMethod.GET) 
+	public String createForm(HttpSession session) {
+		return"userCreation";
+	}
+	
+	@RequestMapping(path="userCreation.do", method = RequestMethod.POST) 
+		public String createAccount(HttpSession session, User newUser) {
+		newUser = userDao.create(newUser);
+		session.setAttribute("user", newUser);
+		return"home";
+	}
+	
+	
+	@RequestMapping(path="updateUser.do", method = RequestMethod.GET) 
+	public String createFormToUpdate(HttpSession session) {
+		return"updateUser";
+	}
+	
+	@RequestMapping(path="updateUser.do", method = RequestMethod.POST)
+		public String update(HttpSession session, User currentUser) {
+		currentUser = userDao.update(currentUser);
+		return "redirect:updatedUser.do";
+	}
+	
+	@RequestMapping(path="updatedUser.do")
+	public String updated(HttpSession session) {
+		return "home";
+	}
+	
+	@RequestMapping(path="createdUser.do")
+	public String userCreated(HttpSession session) {
+		return "home";
+	}
 }
 
