@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaclubindex.entities.Genre;
+import com.skilldistillery.jpaclubindex.entities.User;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
 import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 
@@ -18,15 +20,12 @@ public class UserRLDaoImpl implements UserRLDAO {
 		@PersistenceContext
 		private EntityManager em;
 		
-		
-	
 		@Override
 		public UserReadingList findReadingListByID(int readingListId) {
 			String query = "SELECT l from UserReadingList l WHERE id = :readingListId";
 
 			return em.find(UserReadingList.class, readingListId);
 		}
-
 		
 		@Override
 		public List<UserReadingList> findlistofAllUserReadingList() {
@@ -34,6 +33,16 @@ public class UserRLDaoImpl implements UserRLDAO {
 					
 			return em.createQuery(query, UserReadingList.class).getResultList();
 		}
+
+		@Override
+		public List<UserReadingList> getReadingListByUser(User user) {
+			String query = "SELECT rl FROM UserReadingList rl WHERE user = :user ";
+			return em.createQuery(query, UserReadingList.class).setParameter("user", user).getResultList();
+		}
 		
-		
+		@Override
+		public List<UserReadingList> getUserReadingListByGenre(Genre genre) {
+			String query = "SELECT rl FROM UserReadingList rl WHERE genre = :genre";
+			return em.createQuery(query, UserReadingList.class).setParameter("genre", genre).getResultList();		
+		}
 }

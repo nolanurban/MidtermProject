@@ -67,6 +67,7 @@
 			</div>
 		 </div>
 		 <a href="updateUser.do" class="btn">Update Account Now</a>
+		 <a href="deleteUser.do" class="btn">Delete Account Now</a>
 		<jsp:include page="footer.jsp"/>	
 	</body>
 </html>

@@ -7,13 +7,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Location;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Service
 @Transactional
 public class UserDaoImpl implements UserDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -24,15 +25,16 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User loginUserAndPassword(String userName, String password) {
-		 String query = "Select s from User s where username = :userName and password = :password";
-		 try {
-			 User user = em.createQuery(query, User.class).setParameter("userName", userName).setParameter("password",password).getSingleResult();
-			 user = findUserById(user.getId());
-			 return user; // Currently doesn't do much but return Userdata
-		 } catch(NoResultException e) {
-			 User user = null;
-			 return user;
-		 }
+		String query = "Select s from User s where username = :userName and password = :password";
+		try {
+			User user = em.createQuery(query, User.class).setParameter("userName", userName)
+					.setParameter("password", password).getSingleResult();
+			user = findUserById(user.getId());
+			return user; // Currently doesn't do much but return Userdata
+		} catch (NoResultException e) {
+			User user = null;
+			return user;
+		}
 	}
 
 	@Override
@@ -46,17 +48,27 @@ public class UserDaoImpl implements UserDAO {
 	public User update(User currentUser) {
 		Location newLocation = currentUser.getLocation();
 		User updated = em.find(User.class, currentUser.getId());
-		
+
 		updated.setFirstName(currentUser.getFirstName());
-		
+		updated.setLastName(currentUser.getLastName());
+		updated.setAboutMe(currentUser.getAboutMe());
+		updated.setEmail(currentUser.getEmail());
+		updated.setUsername(currentUser.getUsername());
+		updated.setProfileUrl(currentUser.getProfileUrl());
+		updated.getLocation().setState(newLocation.getState());
+		updated.getLocation().setZipCode(newLocation.getZipCode());
+		updated.getLocation().setUnit(newLocation.getZipCode());
 		updated.getLocation().setCity(newLocation.getCity());
-		
-		em.flush();	
+		updated.getLocation().setStreet(newLocation.getStreet());
+
+		em.flush();
 		return updated;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public boolean removeUser(User currentUser) {
+		em.remove(currentUser);
+		return !em.contains(currentUser);
+	}
+
 }

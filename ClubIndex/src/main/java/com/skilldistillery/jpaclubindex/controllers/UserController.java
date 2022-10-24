@@ -96,5 +96,22 @@ public class UserController {
 	public String userCreated(HttpSession session) {
 		return "home";
 	}
+	
+	@RequestMapping(path="deleteUser.do", method = RequestMethod.GET)
+	public String deleteUserConfirmation(HttpSession session) {
+		return"deleteUser";
+	}
+	
+	@RequestMapping(path="deleteUser.do", method = RequestMethod.POST)
+		public String delete(HttpSession session, User currentUser) {
+		boolean deleted = userDao.removeUser(currentUser);
+		session.setAttribute("user", deleted);
+		return "home";
+	}
+	
+	@RequestMapping(path="deleteUser.do")
+	public String userDeleted(HttpSession session) {
+		return "home";
+	}
 }
 

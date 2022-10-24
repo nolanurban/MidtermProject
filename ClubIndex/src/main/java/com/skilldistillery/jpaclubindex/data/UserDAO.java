@@ -3,7 +3,14 @@ package com.skilldistillery.jpaclubindex.data;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 public interface UserDAO {
+	
+	/**
+	 * This method was part of initial build and SMOKETEST
+	 * @author Ashley Osburn
+	 */
 	User findUserById(int userId);
+	
+	
 	User loginUserAndPassword(String username, String passsword);
 	
 	/** 
@@ -17,4 +24,10 @@ public interface UserDAO {
 	 * @author Ashley Osburn
 	 */
 	User update(User newUser);
+	
+	/**
+	 * Allows a user to delete account
+	 * @author Ashley Osburn
+	 */
+	boolean removeUser(User currentUser);
 }
