@@ -54,7 +54,7 @@
 <c:choose>
 	<c:when test="${not empty user}">
 		<label for="password">Password</label>	
-		<input type="text" name="password" value="${user.password}" required><br>
+		<input type="password" name="password" value="${user.password}" required><br>
 	</c:when>
 	<c:otherwise>
 		<label for="password">Password</label>	
@@ -121,6 +121,10 @@
 		<input type="text" name="zipCode" required><br>
 	</c:otherwise>
 </c:choose>
-
+<c:choose>
+	<c:when test="${not empty user}">
+		<input type="hidden" name="id" value="${user.id}"/>
+	</c:when>
+</c:choose>
 <button type="submit">Submit Account</button>
 	

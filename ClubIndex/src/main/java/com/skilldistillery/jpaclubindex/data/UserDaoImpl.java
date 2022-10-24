@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaclubindex.entities.Location;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Service
@@ -43,9 +44,14 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User update(User currentUser) {
+		Location newLocation = currentUser.getLocation();
 		User updated = em.find(User.class, currentUser.getId());
-		updated = currentUser;
-			em.flush();	
+		
+		updated.setFirstName(currentUser.getFirstName());
+		
+		updated.getLocation().setCity(newLocation.getCity());
+		
+		em.flush();	
 		return updated;
 	}
 	

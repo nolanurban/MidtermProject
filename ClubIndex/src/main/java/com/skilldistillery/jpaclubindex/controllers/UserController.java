@@ -83,6 +83,7 @@ public class UserController {
 		public String update(HttpSession session, User currentUser, Location location) {
 		currentUser.setLocation(location);
 		currentUser = userDao.update(currentUser);
+		session.setAttribute("user", currentUser);
 		return "redirect:updatedUser.do";
 	}
 	

@@ -41,7 +41,8 @@ public class User {
 	private String profileUrl;
 	@Column(name="about_me")
 	private String aboutMe;
-	@OneToOne
+	
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="location_id")
 	private Location location;
 	
