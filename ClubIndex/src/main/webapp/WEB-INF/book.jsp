@@ -14,21 +14,28 @@
 		so a book.do?=ISBN -> java side getBookById(isbn)
 		
 		 -->
+		 Find a book:
+		    <form action="showBook.do" method="GET">
+        <input type="text" name="bookSearch"/> <input
+            type="submit" value="Find Book" />
+   		 </form>
 		 <div class="container">
 		 	<div class="col-1">
-
+		 	
+			<c:if test="${! empty book }">
 		 			<table>
-		 				<thead>
 							<!--  will add an if exists in JSTL lingo for the URL <IMG> -->
-		 					<tr><td>Book Title</tr><td>${book.title}</td>
-		 					<tr><td>Book Author</td><td>${book.author }</td>
-							<tr><td>Book Description</tr>td><td>${book.description}</td>
-		 					<tr><td>Book Author</td><td>${book.author }</td>
-		 					<tr><td>Book Pages</td><td>${book.pages}</td>
-		 			<!-- 		<tr><td>Book Genre</td>${book.genre }  -->
+		 					<tr><td><em>Book Title</em><td>${book.title}</td></tr>
+							<tr><td><em>Book Description</em><td>${book.description}</td></tr>
+							<c:forEach var="aList" items="${book.authors }">
+		 					<tr><td><em>Book Author</em></td><td>${aList.firstName } ${aList.lastName }</td></c:forEach>
+		 					<tr><td><em>Book Pages</em></td><td>${book.pages}</td>
+		 					<c:forEach var="gList" items="${book.genres }">
+		 					<tr><td>Book Genre</td><td>${gList.name}</td></tr></c:forEach>
+		 					<tr><td><em>Book Published Year</em><td>${book.publishYear}</td></tr>
 		 			
 		 					
-		 								 			</table>
+		 								 			</table></c:if>
 		 	</div>
 		 	<div class="col-2">
 		 		<p>${user.username}<p>
