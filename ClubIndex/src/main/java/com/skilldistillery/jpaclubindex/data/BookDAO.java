@@ -6,5 +6,4 @@ import com.skilldistillery.jpaclubindex.entities.Book;
 public interface BookDAO {
 
 	Book findBookById(String isbn);
-	
 }

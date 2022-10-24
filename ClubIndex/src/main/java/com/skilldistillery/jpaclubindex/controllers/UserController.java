@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jpaclubindex.data.BookClubDAO;
+
 import com.skilldistillery.jpaclubindex.data.UserDAO;
+import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Controller
@@ -19,6 +21,7 @@ public class UserController {
 	private UserDAO userDao;
 	@Autowired
 	private BookClubDAO bcDao;
+
 	
 	@RequestMapping(path= {"/", "home.do"})
 	public String home(HttpSession session) {
