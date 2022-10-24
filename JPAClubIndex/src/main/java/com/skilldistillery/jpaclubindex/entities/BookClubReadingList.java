@@ -1,9 +1,11 @@
 package com.skilldistillery.jpaclubindex.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="bookclub_reading_list")
@@ -27,6 +32,7 @@ public class BookClubReadingList {
 	@JoinColumn(name="book_club_id")
 	private BookClub bookClub;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
 	@JoinTable(name="bookclub_book_list",
 	joinColumns=@JoinColumn(name="bookclub_reading_list_id"),
@@ -82,6 +88,25 @@ public class BookClubReadingList {
 			return false;
 		BookClubReadingList other = (BookClubReadingList) obj;
 		return id == other.id;
+	}
+	
+	public void addBook(Book book) {
+		if(books == null) {
+			books = new ArrayList<>();
+		}
+		
+		if(!books.contains(book)) {
+			books.add(book);
+			book.addReadingList(this);
+		}
+	}
+	
+	public void removeBook(Book book) {
+		if(books != null && books.contains(books)) {
+			books.remove(book);
+			book.removeReadingList(this);
+		}
+
 	}
 	
 	

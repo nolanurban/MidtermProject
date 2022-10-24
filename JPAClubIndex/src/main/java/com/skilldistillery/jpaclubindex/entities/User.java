@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class User {
 
@@ -48,6 +51,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user")
 	private List<UserReadingList> readingLists;
 	

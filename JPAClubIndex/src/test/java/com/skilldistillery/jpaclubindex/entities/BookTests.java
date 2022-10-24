@@ -57,7 +57,7 @@ class BookTests {
 	void test_readinglist_mapping() {
 		assertNotNull(book);
 		
-		assertEquals(1, book.getReadingLists().get(0).getId());
+		assertEquals(1, book.getUserReadingLists().get(0).getId());
 	}
 
 }
