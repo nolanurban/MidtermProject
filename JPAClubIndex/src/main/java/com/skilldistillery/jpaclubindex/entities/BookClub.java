@@ -67,6 +67,7 @@ public class BookClub {
 	@OneToMany(mappedBy = "bookClub")
 	private List<BookClubReadingList> readingLists;
 	
+	@OneToOne
 	@JoinColumn(name="location_id")
 	private Location location;
 	
