@@ -47,7 +47,7 @@ public class UserController {
 	@RequestMapping(path="account.do")
 	public String showAccount(HttpSession session) {
 		User user = ((User) (session.getAttribute("user")));
-		user.setBookClubs(bcDao.getBookClubsByUserId(user));
+		user.setBookClubs(bcDao.getBookClubsByUser(user));
 		
 		session.setAttribute("user", user);
 		return "userProfile";
