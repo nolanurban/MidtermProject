@@ -4,11 +4,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.jpaclubindex.data.BookDAO;
 import com.skilldistillery.jpaclubindex.data.UserDAO;
+import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Controller
@@ -16,6 +17,7 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	@Autowired BookDAO bookDao;
 	
 	@RequestMapping(path= {"/", "home.do"})
 	public String home(HttpSession session) {
@@ -36,6 +38,12 @@ public class UserController {
 			return "home";
 		}
 		return "login";		
+	}
+	@RequestMapping(path="book.do", method = RequestMethod.GET)
+	public String checkBook (HttpSession session) {
+		Book book = bookDao.findBookById("0312932081");
+		session.setAttribute("book", book);
+		return "book";
 	}
 }
 
