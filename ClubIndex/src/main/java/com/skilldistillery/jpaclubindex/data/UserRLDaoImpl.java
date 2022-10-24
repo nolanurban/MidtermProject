@@ -1,6 +1,5 @@
 package com.skilldistillery.jpaclubindex.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,14 +9,17 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
+import com.skilldistillery.jpaclubindex.data.userRLDAO;
 
 @Service
 @Transactional
-public class userRLDAOImpl implements userRLDAO {
+public class UserRLDaoImpl implements userRLDAO {
 		
 		@PersistenceContext
 		private EntityManager em;
 		
+		
+	
 		@Override
 		public UserReadingList findReadingListByID(int readingListId) {
 			String query = "SELECT l from UserReadingList l WHERE id = :readingListId";
@@ -25,6 +27,7 @@ public class userRLDAOImpl implements userRLDAO {
 			return em.find(UserReadingList.class, readingListId);
 		}
 
+		
 		@Override
 		public List<UserReadingList> findlistofAllUserReadingList() {
 			List<UserReadingList> results = null;

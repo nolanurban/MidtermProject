@@ -33,6 +33,20 @@ public class UserDaoImpl implements UserDAO {
 			 return user;
 		 }
 	}
+
+	@Override
+	public User create(User newUser) {
+		em.persist(newUser);
+		return newUser;
+	}
+
+	@Override
+	public User update(User currentUser) {
+		User updated = em.find(User.class, currentUser.getId());
+		updated = currentUser;
+			em.flush();	
+		return updated;
+	}
 	
 	
 	
