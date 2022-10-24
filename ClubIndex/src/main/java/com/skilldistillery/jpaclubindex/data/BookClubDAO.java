@@ -61,6 +61,7 @@ public interface BookClubDAO {
 	 * Given an owner, will return all BookClubs owned by that user
 	 * @param owner - the owner of the BookClub(s) you would like to see
 	 * @return List<BookClub> - All BookClubs owned by owner
+	 * @author tylertanner
 	 */
 	List<BookClub> getBookClubsByOwner(User owner);
 	
@@ -68,6 +69,7 @@ public interface BookClubDAO {
 	 * Given a Genre, will return all BookClubs that have that genre
 	 * @param genre - the genre you are looking for
 	 * @return List<BookClub> - All BookClubs with that genre listed
+	 * @author tylertanner
 	 */
 	List<BookClub> getBookClubsByGenre(Genre genre);
 	
@@ -77,6 +79,51 @@ public interface BookClubDAO {
 	 * @param location - The Location fields you are trying to match
 	 * @return List<BookClub> - All BookClubs that match any of the given Location
 	 * fields
+	 * @author tylertanner
 	 */
 	List<BookClub> getBookClubsByLocation(Location location);
+	
+	/**
+	 * Given a BookClub object, will persist and return the persisted BookClub
+	 * @param bc - The BookClub to persist
+	 * @return BookClub - the persisted BookClub
+	 * @author tylertanner
+	 */
+	BookClub createBookClub(BookClub bc);
+	
+	/**
+	 * Given a BookClub, will remove it from the persistence layer
+	 * @param bc - The BookClub to delete
+	 * @return boolean - Whether the removal was successful
+	 * @author tylertanner
+	 */
+	boolean removeBookClub(BookClub bc);
+	
+	/**
+	 * Given two BookClubs, will take bcOld from the database (if it exists) and
+	 * replace it with bcNew
+	 * @param bcOld - The old BookClub
+	 * @param bcNew - the new BookClub
+	 * @return BookClub - the persisted, updated BookClub
+	 * @author tylertanner
+	 */
+	BookClub updateBookClub(BookClub bcOld, BookClub bcNew);
+	
+	/**
+	 * Given a BookClub and a User, will add the User to the BookClub
+	 * @param bc - The BookClub to add to
+	 * @param user - The User being added
+	 * @return BookClub - The updated BookClub
+	 * @author tylertanner
+	 */
+	BookClub addUserToBookClub(BookClub bc, User user);
+	
+	/**
+	 * Given a BookClub and a User, will remove the User from the BookClub
+	 * @param bc - The BookClub to modify
+	 * @param user - The user to remove
+	 * @return BookClub - The updated BookClub
+	 * @author tylertanner
+	 */
+	BookClub removeUserFromBookClub(BookClub bc, User user);
 }
