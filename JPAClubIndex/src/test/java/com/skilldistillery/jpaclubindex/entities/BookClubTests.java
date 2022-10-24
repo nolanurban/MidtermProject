@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.SystemColor;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.TimeZone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BookClubTests {
-
+	
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAClubIndex");
 	private EntityManager em;
 	private BookClub bc;
@@ -45,9 +47,17 @@ class BookClubTests {
 	@Test
 	void test_BookClub_mapping() {
 		assertNotNull(bc);
-		
+				
 		LocalDateTime expectedDateTime = LocalDateTime.of(2022, 10, 21, 11, 34, 10);
-		LocalDateTime actualDateTime = bc.getCreateDate();
+		/*
+		 * Will take the system default time zone, assign it to the LocalDateTime owned by the BookClub
+		 * object, then convert it to MST ("America/Denver") to ensure that the JUnit (should) pass
+		 * no matter what TimeZone your system is in. This functions this way because the time is the "same"
+		 * as in the database, but just in a different time zone.
+		 */
+		LocalDateTime actualDateTime = bc.getCreateDate().atZone(ZoneId.systemDefault())
+				.withZoneSameInstant(ZoneId.of("America/Denver")).toLocalDateTime();
+
 		
 		assertEquals(expectedDateTime, actualDateTime);
 		
