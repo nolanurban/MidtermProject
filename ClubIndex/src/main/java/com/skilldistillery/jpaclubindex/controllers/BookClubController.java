@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 import com.skilldistillery.jpaclubindex.data.GenreDAO;
+import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.Location;
@@ -23,6 +24,8 @@ public class BookClubController {
 	BookClubDAO bcDao;
 	@Autowired
 	GenreDAO genreDao;
+	@Autowired
+	UserDAO userDao;
 	
 	@RequestMapping(path="showBookClub.do")
 	public String showBookClub(HttpSession session, int id) {
@@ -80,6 +83,25 @@ public class BookClubController {
 	
 	@RequestMapping(path="updatedBookClub.do")
 	public String updatedBookClub(HttpSession session) {
+		return "bookClub";
+	}
+	
+	@RequestMapping(path="createBookClub.do")
+	public String createBookClubForm(HttpSession session) {
+		session.setAttribute("genres", genreDao.getAllGenres());
+		return "createBookClub";
+	}
+	
+	@RequestMapping(path="createBookClub.do", method = RequestMethod.POST)
+	public String createBookClub(HttpSession session, BookClub bc, int ownerId) {
+		bc.setOwner(userDao.findUserById(ownerId));
+		
+		session.setAttribute("bookClub", bcDao.createBookClub(bc));
+		return "redirect:createdBookClub.do";
+	}
+	
+	@RequestMapping(path="createdBookClub.do")
+	public String createdBookClub(HttpSession session) {
 		return "bookClub";
 	}
 }

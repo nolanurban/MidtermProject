@@ -100,4 +100,6 @@
 	<input type="hidden" value="${bookClub.id}" name="id"/>
 </c:if>
 
+<input type="hidden" value="${user.id}" name="ownerId"/>
+
 <input type="submit" value="Submit">
