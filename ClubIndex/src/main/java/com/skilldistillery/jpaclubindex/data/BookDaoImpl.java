@@ -88,6 +88,25 @@ public class BookDaoImpl implements BookDAO {
 			return noBook;
 		}
 	}
+	@Override
+	public List<Book> findBookByGenre(String genre) {
+		String query = "SELECT b from Book b";
+		List<Book> bList = em.createQuery(query, Book.class).getResultList();
+		List<Book> returnList = new ArrayList<>();
+		for (Book b : bList) {
+			for (int j = 0 ; j < b.getGenres().size(); j++) {
+				if (b.getGenres().get(j).getName().equals(genre)) {
+					returnList.add(b);
+				}
+			}
+		}
+		return returnList;
+	}
+	@Override
+	public List<Book> getAllBooks() {
+		String query = "SELECT b from Book b";
+		return em.createQuery(query, Book.class).getResultList();
+	}
 
 
 }

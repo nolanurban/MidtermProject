@@ -19,13 +19,14 @@ public class AuthorController {
 	
 	@RequestMapping(path="getAuthor.do")
 	public String searchForBook(HttpSession session) {
+		session.removeAttribute("author");
 		return "author";
 	}
 
 
 	@RequestMapping(path="getAuthor.do", params = "id")
 	public String getAuthorById(int id, HttpSession session) {
-		Author author = authorDao.findAuthorById(id); 
+		List<Author> author = authorDao.findAuthorById(id); 
 		session.setAttribute("author", author);
 		return "author";
 	}

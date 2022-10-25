@@ -12,4 +12,6 @@ public interface BookDAO {
 	List<Book> findBookByYear(int year);
 	List<Book> findBookByTitle(String title);
 	List<Book> findBookByAuthorLastName(String lastName);
+	List<Book> findBookByGenre(String genre);
+	List<Book> getAllBooks();
 }

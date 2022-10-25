@@ -25,9 +25,7 @@
 		</form>
 
 		<div class="container">
-			<div class="col-1">
-
-				<div class="col-1">
+	
 
 					<table>
 						<c:if test="${! empty author }">
