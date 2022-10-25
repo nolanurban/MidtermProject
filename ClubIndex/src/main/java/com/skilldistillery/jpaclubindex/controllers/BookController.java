@@ -20,6 +20,7 @@ public class BookController {
 	
 	@RequestMapping(path="showBook.do")
 	public String searchForBook(HttpSession session) {
+		session.removeAttribute("book");
 		return "book";
 	}
 	
@@ -53,5 +54,16 @@ public class BookController {
 		session.setAttribute("book", book);
 		return "book";
 	}
-
+	@RequestMapping(path="showBook.do", params="bookSearchGenre", method = RequestMethod.GET)
+	public String getBookByGenre(String bookSearchGenre, HttpSession session) {
+		List<Book> book = bookDao.findBookByGenre(bookSearchGenre);
+		session.setAttribute("book", book);
+		return "book";
+	}
+	@RequestMapping(path="showBook.do", params="getAllBooks", method = RequestMethod.GET)
+	public String getAllBooks(HttpSession session) {
+		List<Book> book = bookDao.getAllBooks();
+		session.setAttribute("book", book);
+		return "book";
+	}
 }

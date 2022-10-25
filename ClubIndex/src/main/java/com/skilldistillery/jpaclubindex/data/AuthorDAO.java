@@ -10,7 +10,7 @@ public interface AuthorDAO {
 	 * an author obj.
 	 * 
 	 */
-	Author findAuthorById(int id);
+	List<Author> findAuthorById(int id);
 	List<Author> findAuthorByIsbn(String isbn);
 	List<Author> findAuthorByLastName(String lastName);
 	List<Author> findAuthorByGenre(String genre);
