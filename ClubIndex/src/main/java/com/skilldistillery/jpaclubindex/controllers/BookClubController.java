@@ -20,9 +20,9 @@ public class BookClubController {
 	@Autowired
 	BookClubDAO bcDao;
 	
-	@RequestMapping(path="showBookClub.do")
-	public String showBookClub(HttpSession session, Integer id) {
-		session.setAttribute("bookClubs", bcDao.getBookClubById(id));
+	@RequestMapping(path="bookClub.do")
+	public String showBookClub(HttpSession session, int id) {
+		session.setAttribute("bookClub", bcDao.getBookClubById(id));
 		return "bookClub";
 	}
 	
@@ -32,18 +32,18 @@ public class BookClubController {
 		return "bookClubSearch";
 	}
 	
-	@RequestMapping(path="showBookClub.do", params="bookClubSearchByLocation", method = RequestMethod.GET)
+	@RequestMapping(path="bookClubSearchByLocation.do")
 	public String bookClubById(HttpSession session, Location location) {
 		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
 		session.setAttribute("bookClubs", bookClubs);
-		return "showBookClub";
+		return "bookClub";
 	}
 	
-	@RequestMapping(path="showBookClub.do", params="bookClubSearchByGenre", method = RequestMethod.GET)
+	@RequestMapping(path="bookClubSearchByGenre.do")
 	public String bookClubByGenre(HttpSession session, Genre genre) {
 		List<BookClub> bookClubs = bcDao.getBookClubsByGenre(genre);
 		session.setAttribute("bookClubs", bookClubs);
-		return "showBookClub";
+		return "bookClub";
 	}
 	
 //	@RequestMapping(path="bookClubSearch.do")

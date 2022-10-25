@@ -46,10 +46,6 @@
 			</tr>
 		</c:forEach>
 		</table>
-	<%-- 		<ul>
-				<li><a href="bookClub.do?id=${bookClub.id}">ID: ${bookClub.id}
-						Name: ${bookClub.name}</a></li>
-			</ul> --%>
 	</form>
 
 </body>
