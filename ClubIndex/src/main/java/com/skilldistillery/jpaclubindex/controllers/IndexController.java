@@ -24,9 +24,9 @@ public class IndexController {
 	
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(HttpSession session) {
-//		List<Book> allBooks = bookDao.getAllBooks();
-//		int randNum = (int)(Math.random() * allBooks.size());
-//		session.setAttribute("randBook", allBooks.get(randNum));
+		List<Book> allBooks = bookDao.getAllBooks();
+		int randNum = (int)(Math.random() * allBooks.size());
+		session.setAttribute("book", allBooks.get(randNum));
 		session.setAttribute("reviews", reviewDao.getAllReviews());
 		return "home";
 	}

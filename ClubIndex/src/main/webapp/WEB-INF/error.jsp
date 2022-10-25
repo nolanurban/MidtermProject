@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<jsp:include page="nav.jsp"/>
-		<div class="container">
+		<div class="container error-page">
 			<h1>Uh-Oh! Something went wrong!</h1>
 			<a href="home.do">Return to home</a>
 		</div>

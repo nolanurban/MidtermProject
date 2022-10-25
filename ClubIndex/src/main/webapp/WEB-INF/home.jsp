@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<title>Club Index: A Way To Track Down a Book Club</title>
-<jsp:include page="header.jsp"/>
+		<title>Club Index: A Way To Track Down a Book Club</title>
+		<jsp:include page="header.jsp"/>
 	</head>
 	<body>
 		<jsp:include page="nav.jsp"/>
@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-4">
 					<h3>What our users are saying:</h3>
-					<table>
+					<table class="table">
 						<tr>
 							<th>Book</th>
 							<th>Review</th>
@@ -39,11 +39,24 @@
 						</c:forEach>
 					</table>
 				</div>
-				<div class="col-8">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
 					<h3>Random Book</h3>
-					<table>
+					<table class="table table-borderless">
 						<tr>
-							<td><img src="" alt="imageNotFound"></td>
+							<td><img src="${book.coverUrl}" alt="imageNotFound"></td>
+						</tr>
+						<tr>
+							<td>${book.title}</td>
+						</tr>
+						<tr>
+							<c:forEach var="author" items="${book.authors}">
+								<td>${author.firstName} ${author.lastName}</td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<td>${book.description}</td>
 						</tr>
 					</table>
 				</div>
