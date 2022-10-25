@@ -29,5 +29,5 @@ public interface UserDAO {
 	 * Allows a user to delete account
 	 * @author Ashley Osburn
 	 */
-	boolean removeUser(User currentUser);
+	boolean removeUser(int userId);
 }

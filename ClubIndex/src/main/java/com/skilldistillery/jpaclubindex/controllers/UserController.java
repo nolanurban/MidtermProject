@@ -71,6 +71,10 @@ public class UserController {
 		session.setAttribute("user", newUser);
 		return "home";
 	}
+	@RequestMapping(path = "createdUser.do")
+	public String userCreated(HttpSession session) {
+		return "home";
+	}
 
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.GET)
 	public String createFormToUpdate(HttpSession session) {
@@ -90,10 +94,6 @@ public class UserController {
 		return "home";
 	}
 
-	@RequestMapping(path = "createdUser.do")
-	public String userCreated(HttpSession session) {
-		return "home";
-	}
 
 	@RequestMapping(path = "deleteUser.do", method = RequestMethod.GET)
 	public String deleteUserConfirmation(HttpSession session) {
@@ -101,17 +101,18 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "deleteUserConfirmation.do")
-	public String delete(HttpSession session, User currentUser) {
-		boolean successful = userDao.removeUser(currentUser);
+	public String delete(HttpSession session) {
+		User user = (User)(session.getAttribute("user"));
+		boolean successful = userDao.removeUser(user.getId());
 		if (successful) {
-		return "redirect:deleteUser.do";
+		return "redirect:deleteUserHome.do";
 		}
 		else {
-			return "home";
+			return "userProfile";
 		}
 	}
 
-	@RequestMapping(path = "deleteUser.do")
+	@RequestMapping(path = "deleteUserHome.do")
 	public String userDeleted(HttpSession session) {
 		return "home";
 	}

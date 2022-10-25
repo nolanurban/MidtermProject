@@ -9,8 +9,8 @@
 		<jsp:include page="nav.jsp"/>
 		<div class="container">
 		<h2>Search For Your Favorite Reading Lists</h2>
-			<form action="userReadingList.do" method="GET">
-			<label for="bookSearch(FIXME)">Find a Reading List by Genre:</label> 
+			<form action="showUserRL.do" method="GET">
+			<label for="bookSearch(FIXME)">Find all reading lists</label> 
 			<input type="text" name="bookSearch" />
 			<input type="submit" value="Find Book(FIXME)" />
 		</form>

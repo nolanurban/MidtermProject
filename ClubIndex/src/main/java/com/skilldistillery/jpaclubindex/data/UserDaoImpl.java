@@ -48,7 +48,6 @@ public class UserDaoImpl implements UserDAO {
 	public User update(User currentUser) {
 		Location newLocation = currentUser.getLocation();
 		User updated = em.find(User.class, currentUser.getId());
-
 		updated.setFirstName(currentUser.getFirstName());
 		updated.setLastName(currentUser.getLastName());
 		updated.setAboutMe(currentUser.getAboutMe());
@@ -60,15 +59,16 @@ public class UserDaoImpl implements UserDAO {
 		updated.getLocation().setUnit(newLocation.getZipCode());
 		updated.getLocation().setCity(newLocation.getCity());
 		updated.getLocation().setStreet(newLocation.getStreet());
-
 		em.flush();
 		return updated;
 	}
 
 	@Override
-	public boolean removeUser(User currentUser) {
+	public boolean removeUser(int userId) {
+		User currentUser = em.find(User.class, userId);
 		em.remove(currentUser);
 		return !em.contains(currentUser);
 	}
+	
 
 }
