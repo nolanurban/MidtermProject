@@ -9,59 +9,87 @@
 <body>
 	<jsp:include page="nav.jsp" />
 
-	<div class="container">
-
-		<form action="getAuthor.do" method="GET">
-			Find an Author by ISBN: <input type="text" name="isbn" /> <input
-				type="submit" value="Find Author" />
-		</form>
-		<form action="getAuthor.do" method="GET">
-			Find an Author by Last Name: <input type="text" name="authorName" />
-			<input type="submit" value="Find Author" />
-		</form>
-		<form action="getAuthor.do" method="GET">
-			Find an Author by Genre: <input type="text" name="authorGenre" /> <br>
-			<input type="submit" value="Find Author" />
-		</form>
-
-		<div class="container">
-	
-
-					<table>
-						<c:if test="${! empty author }">
-							<!--  will add an if exists in JSTL lingo for the URL <IMG> -->
-							<tr>
-								<c:forEach var="aList" items="${author}">
-									<td><em>Author</em></td>
-									<td>${aList.firstName}${aList.lastName}</td>
-							</tr>
-							<tr>
-								<td><em>Author Biography</em></td>
-								<td>${aList.biography}</td>
-							</tr>
-							<c:forEach var="bookList" items="${aList.books }">
-								<tr>
-									<td><em>Book Author, Year, & Genre</em></td>
-									<td>ISBN: ${bookList.isbn} Title: <a
-										href="showBook.do?bookSearch=${bookList.isbn}">${bookList.title}</a>
-										Genre: <c:forEach var="gList" items="${bookList.genres }">${gList.name}</c:forEach>
-										Year: ${bookList.publishYear } Pages: ${bookList.pages }
-									</td>
-								</tr>
-							</c:forEach>
-							</c:forEach>
-						</c:if>
-
-
-
-
-					</table>
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">
+				<div class="input-group mb-3">
+					<form action="getAuthor.do" method="GET">
+						<input type="text" name="authorName" class="form-control"
+							aria-describedby="basic-addon2"> <input type="submit"
+							value="Find Author by Last Name" />
+					</form>
 				</div>
-				<div class="col-2">
-					<p>${user.username}
-					<p>
-				</div>
+
 			</div>
-			<jsp:include page="footer.jsp" />
+			<div class="col">
+				<form action="getAuthor.do" method="GET">
+					<select name="authorGenre">
+						<option value="Horror">Horror</option>
+						<option value="Fantasy">Fantasy</option>
+						<option value="Childrens Literature">Children's
+							Literature</option>
+						<option value="Historical Fiction">Historical Fiction</option>
+						<option value="Romance">Romance</option>
+						<option value="Narrative">Narrative</option>
+						<option value="Mystery">Mystery</option>
+						<option value="Science-Fiction">Science Fiction</option>
+						<option value="Biography">Biography</option>
+					</select><input type="submit" value="Authors By Genre" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<c:if test="${! empty author }">
+	<c:forEach var="aList" items="${author}">
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Biography</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${aList.firstName} ${aList.lastName}</td>
+      <td>${aList.biography}</td>
+
+    </tr>
+   </tbody>
+</table>
+</c:forEach>
+</c:if>
+	<c:if test="${! empty author }">
+	<c:forEach var="aList" items="${author}"><c:forEach var="bookList" items="${aList.books}">
+	<table class="table">
+  <thead>
+    <tr>
+     <th scope="col">ISBN</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Pages</th>
+      <th scope="col">Year</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+	<td>${booklist.isbn}</td>
+	<td>${bookList.title}</td>
+	<td>${bookList.description }</td>
+	<c:forEach var="gList" items="${bookList.genres}">
+	<td>${gList.name }</td></c:forEach>
+	<td>${bookList.pages }</td>
+	<td>${bookList.publishYear }</td>
+    </tr>
+   </tbody>
+</table>
+</c:forEach></c:forEach>
+</c:if>					
+<div class="col-2">
+		<p>${user.username}
+		<p>
+	</div>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
