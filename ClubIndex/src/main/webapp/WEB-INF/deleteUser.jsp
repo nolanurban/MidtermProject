@@ -9,8 +9,10 @@
 		<jsp:include page="nav.jsp"/>
 		<div class="container">
 		<h2>Are you sure you want to delete this account? This is a final decision</h2>
-		<form action="deleteUser.do" method="POST">
-				<a href="deleteUser.do" class="btn">Delete Account</a>
+		<form action="deleteUserConfirmation.do" method="POST">
+		<jsp:include page="userProfileForm.jsp"/>
+		
+				<input type="submit" value="Delete Account">
 			</form>
 		</div>
 		<jsp:include page="footer.jsp"/>

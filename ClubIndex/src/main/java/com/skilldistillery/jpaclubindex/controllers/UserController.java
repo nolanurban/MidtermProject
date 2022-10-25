@@ -23,95 +23,96 @@ public class UserController {
 	@Autowired
 	private BookClubDAO bcDao;
 
-	
-	@RequestMapping(path= {"/", "home.do"})
+	@RequestMapping(path = { "/", "home.do" })
 	public String home(HttpSession session) {
 		session.setAttribute("SMOKETEST", userDao.findUserById(1));
 		return "home";
 	}
-	
-	@RequestMapping(path="login.do")
-	public String gotoLoginAccount(HttpSession session){
+
+	@RequestMapping(path = "login.do")
+	public String gotoLoginAccount(HttpSession session) {
 		return "login";
 	}
-	
-	@RequestMapping(path="login.do", method = RequestMethod.POST)
-	public String loginAccount (HttpSession session, String username, String password) {
+
+	@RequestMapping(path = "login.do", method = RequestMethod.POST)
+	public String loginAccount(HttpSession session, String username, String password) {
 		User user = userDao.loginUserAndPassword(username, password);
 		if (user != null) {
 			session.setAttribute("user", user);
 			return "home";
 		}
-		return "login";		
+		return "login";
 	}
-	
-	@RequestMapping(path="account.do")
+
+	@RequestMapping(path = "account.do")
 	public String showAccount(HttpSession session) {
 		User user = ((User) (session.getAttribute("user")));
 		user.setBookClubs(bcDao.getBookClubsByUser(user));
-		
+
 		session.setAttribute("user", user);
 		return "userProfile";
 	}
-	
-	@RequestMapping(path="logout.do")
+
+	@RequestMapping(path = "logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "home";
 	}
-	
-	@RequestMapping(path="userCreation.do", method = RequestMethod.GET) 
+
+	@RequestMapping(path = "userCreation.do", method = RequestMethod.GET)
 	public String createForm(HttpSession session) {
-		return"userCreation";
+		return "userCreation";
 	}
-	
-	@RequestMapping(path="userCreation.do", method = RequestMethod.POST) 
-		public String createAccount(HttpSession session, User newUser, Location location) {
+
+	@RequestMapping(path = "userCreation.do", method = RequestMethod.POST)
+	public String createAccount(HttpSession session, User newUser, Location location) {
 		newUser.setLocation(location);
 		newUser = userDao.create(newUser);
 		session.setAttribute("user", newUser);
-		return"home";
+		return "home";
 	}
-	
-	
-	@RequestMapping(path="updateUser.do", method = RequestMethod.GET) 
+
+	@RequestMapping(path = "updateUser.do", method = RequestMethod.GET)
 	public String createFormToUpdate(HttpSession session) {
-		return"updateUser";
+		return "updateUser";
 	}
-	
-	@RequestMapping(path="updateUser.do", method = RequestMethod.POST)
-		public String update(HttpSession session, User currentUser, Location location) {
+
+	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
+	public String update(HttpSession session, User currentUser, Location location) {
 		currentUser.setLocation(location);
 		currentUser = userDao.update(currentUser);
 		session.setAttribute("user", currentUser);
 		return "redirect:updatedUser.do";
 	}
-	
-	@RequestMapping(path="updatedUser.do")
+
+	@RequestMapping(path = "updatedUser.do")
 	public String updated(HttpSession session) {
 		return "home";
 	}
-	
-	@RequestMapping(path="createdUser.do")
+
+	@RequestMapping(path = "createdUser.do")
 	public String userCreated(HttpSession session) {
 		return "home";
 	}
-	
-	@RequestMapping(path="deleteUser.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "deleteUser.do", method = RequestMethod.GET)
 	public String deleteUserConfirmation(HttpSession session) {
-		return"deleteUser";
+		return "deleteUser";
 	}
-	
-	@RequestMapping(path="deleteUser.do", method = RequestMethod.POST)
-		public String delete(HttpSession session, User currentUser) {
-		boolean deleted = userDao.removeUser(currentUser);
-		session.setAttribute("user", deleted);
-		return "home";
+
+	@RequestMapping(path = "deleteUserConfirmation.do")
+	public String delete(HttpSession session, User currentUser) {
+		boolean successful = userDao.removeUser(currentUser);
+		if (successful) {
+		return "redirect:deleteUser.do";
+		}
+		else {
+			return "home";
+		}
 	}
-	
-	@RequestMapping(path="deleteUser.do")
+
+	@RequestMapping(path = "deleteUser.do")
 	public String userDeleted(HttpSession session) {
 		return "home";
 	}
 }
-

@@ -18,6 +18,7 @@
 					<td><a href="login.do" class="btn">Login/Sign-up</a></td>
 				</c:otherwise>
 			</c:choose>
+			<td><a href="userReadingList.do" class="btn">ReadingList</a></td>
 		</tr>
 	</table>
 </nav>
