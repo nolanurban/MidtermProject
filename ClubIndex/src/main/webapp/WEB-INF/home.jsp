@@ -8,10 +8,41 @@
 	</head>
 	<body>
 		<jsp:include page="nav.jsp"/>
-		<h2>Welcome to club index!</h2>
 		<div class="container">
-		<h2>Book Clubs!</h2>
-
+			<div class="banner">
+				<h2>Welcome to Club Index</h2>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<h3>What our users are saying:</h3>
+					<table>
+						<tr>
+							<th>Book</th>
+							<th>Review</th>
+							<th>Rating</th>
+							<th>User</th>
+						</tr>
+						<c:forEach var="review" items="${reviews}">
+							<tr>
+								<td>${review.book.title}</td>
+								<c:choose>
+									<c:when test="${not empty review.review}">
+										<td>${review.review}</td>
+									</c:when>
+									<c:otherwise>
+										<td> ~~~ </td>
+									</c:otherwise>
+								</c:choose>
+								<td>${review.rating}</td>
+								<td>${review.user.username}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div class="col-8">
+					
+				</div>
+			</div>
 
 		</div>
 		<jsp:include page="footer.jsp"/>
