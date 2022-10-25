@@ -23,9 +23,19 @@
 			Find an Author by Genre: <input type="text" name="authorGenre" /> <br>
 			<input type="submit" value="Find Author" />
 		</form>
-
-		<div class="container">
-	
+		
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+  <button type="button" class="btn btn-outline-secondary">Find an Author</button>
+  <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a class="dropdown-item" href="#">Search By ISBN </a></li>
+    <li><a class="dropdown-item" href="#">Search By Author Last Name</a></li>
+    <li><a class="dropdown-item" href="#">Search By</a></li>
+   </ul>
+</div>
 
 					<table>
 						<c:if test="${! empty author }">
