@@ -15,7 +15,7 @@
 				type="password" name="password" required><br> <input
 				type="submit" value="Log In">
 		</form>
-		<a href="userCreation.do" class="btn">Create Account Now</a>
+		<a href="userCreation.do" class="btn btn-dark">Create Account Now</a>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

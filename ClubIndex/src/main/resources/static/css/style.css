@@ -1,0 +1,35 @@
+@charset "UTF-8";
+html {
+	height: 100%;
+}
+
+body{
+	background-color: powderblue;
+	height: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: black;
+	font-size: 20px;
+}
+
+nav{
+	background: linear-gradient(.25turn, rgb(84, 14, 9), maroon);
+	text-align: center;
+}
+
+label{
+	width: 150px;
+	display: inline-block;
+}
+
+.banner{
+	text-align: center;
+}
+
+.error-page{
+	background-color: transparent;
+	height: 100%;
+	background-image: url("../images/cat.png");
+	background-repeat: none;
+}
