@@ -102,7 +102,14 @@ public class BookClubDAOImpl implements BookClubDAO{
 	@Override
 	public BookClub updateBookClub(BookClub bcOld, BookClub bcNew) {
 		bcOld = em.find(BookClub.class, bcOld.getId());
-		bcOld = bcNew;
+		
+		bcOld.setName(bcNew.getName());
+		bcOld.setAboutClub(bcNew.getAboutClub());
+		bcOld.setMaxMembers(bcNew.getMaxMembers());
+		bcOld.setDigital(bcNew.getDigital());
+		bcOld.setProfileUrl(bcNew.getProfileUrl());
+		bcOld.setGenres(bcNew.getGenres());
+		
 		em.flush();
 		return bcOld;
 	}
