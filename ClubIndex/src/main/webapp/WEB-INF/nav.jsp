@@ -6,6 +6,7 @@
 		<tr>
 			<td><a href="home.do" class="btn">Home</a></td>
 					<td><a href="showBook.do" class="btn">Books</a></td>
+						<td><a href="getAuthor.do" class="btn">Authors</a></td>
 	
 					
 			<c:choose>

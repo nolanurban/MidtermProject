@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.data;
 
+import java.util.List;
+
 import com.skilldistillery.jpaclubindex.entities.Author;
 
 public interface AuthorDAO {
@@ -9,4 +11,8 @@ public interface AuthorDAO {
 	 * 
 	 */
 	Author findAuthorById(int id);
+	List<Author> findAuthorByIsbn(String isbn);
+	List<Author> findAuthorByLastName(String lastName);
+	List<Author> findAuthorByGenre(String genre);
+	
 }
