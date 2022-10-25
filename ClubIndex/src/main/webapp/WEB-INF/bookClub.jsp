@@ -52,6 +52,20 @@
 				</div>
 				<div class="col-4">
 					<img src="${bookClub.profileUrl}" alt="ImageNotFound"/>
+					<c:if test="${user == bookClub.owner}">
+						<table>
+							<tr>
+								<td><a href="updateBookClub.do" class="btn">Update the Club</a></td>
+								<td><a href="removeUsers.do" class="btn">Remove a User(s)</a></td>
+								<td><a href="inviteUser.do" class="btn">Invite a User</a></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><a href="deleteBookClub.do" class="btn btn-danger">DELETE THIS CLUB</a></td>
+								<td></td>
+							</tr>
+						</table>
+					</c:if>
 				</div>
 			</div>
 		</div>

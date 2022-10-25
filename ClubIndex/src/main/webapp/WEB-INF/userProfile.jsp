@@ -33,7 +33,7 @@
 						 		<c:forEach var="bookClub" items="${user.bookClubs}">
 						 			<tr>
 						 				<td>${bookClub.profileUrl}</td>
-						 				<td>${bookClub.name}</td>
+						 				<td><a href="showBookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 						 				<td>
 											<c:forEach var="genre" items="${bookClub.genres}">
 												${genre.name},  
