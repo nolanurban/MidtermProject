@@ -40,7 +40,12 @@
 					</table>
 				</div>
 				<div class="col-8">
-					
+					<h3>Random Book</h3>
+					<table>
+						<tr>
+							<td><img src="" alt="imageNotFound"></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 
