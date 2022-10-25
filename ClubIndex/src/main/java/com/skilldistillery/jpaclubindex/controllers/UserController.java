@@ -23,12 +23,6 @@ public class UserController {
 	@Autowired
 	private BookClubDAO bcDao;
 
-	@RequestMapping(path = { "/", "home.do" })
-	public String home(HttpSession session) {
-		session.setAttribute("SMOKETEST", userDao.findUserById(1));
-		return "home";
-	}
-
 	@RequestMapping(path = "login.do")
 	public String gotoLoginAccount(HttpSession session) {
 		return "login";

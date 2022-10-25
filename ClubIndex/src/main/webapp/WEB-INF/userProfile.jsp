@@ -49,6 +49,7 @@
 			 	<div class="col-4">
 			 		<img src="${user.profileUrl}" alt="ImageNotFound"/>
 			 		<p>${user.username}<p>
+			 		<p>${user.aboutMe}</p>
 			 	</div>
 			</div>
 			<div class="row">
@@ -56,18 +57,15 @@
 					<table>
 						<c:forEach var="readingList" items="${user.readingLists}">
 							<tr>
-								<td>${readingList.name}</td>
-								<c:forEach var="book" items="${readingList.books}">
-									<td>${book.title}</td>
-								</c:forEach>
+								<td><a href="showSingleUserRL.do?id=${readingList.id}">${readingList.name}</a></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
 			</div>
 		 </div>
-		 <a href="updateUser.do" class="btn">Update Account Now</a>
-		 <a href="deleteUser.do" class="btn">Delete Account Now</a>
+		 <a href="updateUser.do" class="btn">Update Account</a>
+		 <a href="deleteUser.do" class="btn">Delete Account</a>
 		<jsp:include page="footer.jsp"/>	
 	</body>
 </html>

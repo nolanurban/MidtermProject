@@ -1,20 +1,14 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
 
-
-
-
-@Service
+@Controller
 public class UserRLController {
 	
 	@Autowired
@@ -23,15 +17,14 @@ public class UserRLController {
 	
 	@RequestMapping(path="showUserRL.do")
 	public String showUserReadingList(HttpSession session) {
-	List<UserReadingList> userRlists = userRLDao.findlistofAllUserReadingList();
-		return "userReadingList";
+		List<UserReadingList> userRlists = userRLDao.findlistofAllUserReadingList();
+		session.setAttribute("readingLists", userRlists);
+		return "readingList";
+	}	
+	
+	@RequestMapping(path="showSingleUserRL.do")
+	public String showSingleReadingList(HttpSession session, int id) {
+		session.setAttribute("readingList", userRLDao.findReadingListByID(id));
+		return "singleReadingList";
 	}
-	
-	@RequestMapping(path="userReadingList.do")
-	public String userReadingListSearchOptions(HttpSession session) {
-		return "userReadingList";
-	}
-	
-	
-
 }

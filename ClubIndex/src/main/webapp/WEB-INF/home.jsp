@@ -11,7 +11,6 @@
 		<h2>Welcome to club index!</h2>
 		<div class="container">
 		<h2>Book Clubs!</h2>
-			${SMOKETEST}
 
 
 		</div>
