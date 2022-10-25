@@ -20,6 +20,7 @@
 				</c:otherwise>
 			</c:choose>
 			<td><a href="showUserRL.do" class="btn">ReadingList</a></td>
+			<td><a href="bookClubSearch.do" class="btn">Book Club Search</a></td>
 		</tr>
 	</table>
 </nav>
