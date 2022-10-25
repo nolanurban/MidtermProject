@@ -9,11 +9,11 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
-import com.skilldistillery.jpaclubindex.data.userRLDAO;
+import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 
 @Service
 @Transactional
-public class UserRLDaoImpl implements userRLDAO {
+public class UserRLDaoImpl implements UserRLDAO {
 		
 		@PersistenceContext
 		private EntityManager em;

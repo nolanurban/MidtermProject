@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
 
-public interface userRLDAO {
+public interface UserRLDAO {
 	
 	/**
 	 * Give an int, will find the list associated with that ID. 

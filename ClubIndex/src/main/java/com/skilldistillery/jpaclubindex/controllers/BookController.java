@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,34 @@ public class BookController {
 		
 	
 	@RequestMapping(path="showBook.do", params="bookSearch", method = RequestMethod.GET)
-	public String showBookDetails(String bookSearch, HttpSession session) {
-		if (bookSearch == null) return "book";
-		Book book = bookDao.findBookById(bookSearch);
+	public String getBookByISBN(String bookSearch, HttpSession session) {
+		List<Book> book = bookDao.findBookById(bookSearch);
 		session.setAttribute("book", book);
 		return "book";
 	}
+	@RequestMapping(path="showBook.do", params="bookSearchYear", method = RequestMethod.GET)
+	public String getBookByYear(int bookSearchYear, HttpSession session) {
+		List<Book> book = bookDao.findBookByYear(bookSearchYear);
+		session.setAttribute("book", book);
+		return "book";
+	}
+	@RequestMapping(path="showBook.do", params="bookSearchName", method = RequestMethod.GET)
+	public String getBookByName(String bookSearchName, HttpSession session) {
+		List<Book> book = bookDao.findBookByTitle(bookSearchName);
+		session.setAttribute("book", book);
+		return "book";
+	}
+	@RequestMapping(path="showBook.do", params="bookSearchKeyWord", method = RequestMethod.GET)
+	public String getBookByKeyWord(String bookSearchKeyWord, HttpSession session) {
+		List<Book> book = bookDao.findBookByKeyWord(bookSearchKeyWord);
+		session.setAttribute("book", book);
+		return "book";
+	}
+	@RequestMapping(path="showBook.do", params="bookSearchAuthorName", method = RequestMethod.GET)
+	public String getBookByAuthor(String bookSearchAuthorName, HttpSession session) {
+		List<Book> book = bookDao.findBookByAuthorLastName(bookSearchAuthorName);
+		session.setAttribute("book", book);
+		return "book";
+	}
+
 }
