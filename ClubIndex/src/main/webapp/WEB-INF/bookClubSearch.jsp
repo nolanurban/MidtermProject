@@ -18,12 +18,17 @@
 	<form action="bookClubSearchByLocation.do" method="GET">
 		<input type="text" name="zipCode"/> <input
 			type="submit" value="Find club" />
+	<br>		
+	
 	</form>
 	Find book club by genre:
 	<form action="bookClubSearchByGenre.do" method="GET">
 		<input type="text" name="genre"/> <input
 			type="submit" value="Find club" />
-
+			<!-- Trying to use bookClubLists.jsp as the go to for searches, encountering an error with genre -->
+	<br>
+	<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">Book Clubs By Digital Availability</a>
+	<br>			
 				<table>
 			<tr>
 				<th>Photo</th>
@@ -46,10 +51,6 @@
 			</tr>
 		</c:forEach>
 		</table>
-	<%-- 		<ul>
-				<li><a href="bookClub.do?id=${bookClub.id}">ID: ${bookClub.id}
-						Name: ${bookClub.name}</a></li>
-			</ul> --%>
 	</form>
 
 </body>

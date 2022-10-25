@@ -7,33 +7,17 @@
 <jsp:include page="header.jsp" />
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
-
-	Find a book club by ID:
-	<form action="bookClub.do" method="GET">
-		<input type="text" name="id"/> <input type="submit"
-			value="Find club" />
-	</form>
-	Find book club by location:
-	<form action="bookClubSearchByLocation.do" method="GET">
-		<input type="text" name="zipCode"/> <input
-			type="submit" value="Find club" />
-	</form>
-	Find book club by genre:
-	<form action="bookClubSearchByGenre.do" method="GET">
-		<input type="text" name="genre"/> <input
-			type="submit" value="Find club" />
-
-				<table>
-			<tr>
-				<th>Photo</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Owner</th>
-				<th>Max Members</th>
-				<th>Location</th>
-				<th>Digital</th>
-			</tr>
+	<jsp:include page="nav.jsp" />	
+	<table>
+		<tr>
+			<th>Photo</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Owner</th>
+			<th>Max Members</th>
+			<th>Location</th>
+			<th>Digital</th>
+		</tr>
 		<c:forEach var="bookClub" items="${bookClubs}">
 			<tr>
 				<td>${bookClub.profileUrl}</td>
@@ -45,7 +29,7 @@
 				<td>${bookClub.digital}</td>
 			</tr>
 		</c:forEach>
-		</table>
+	</table>
 	</form>
 
 </body>
