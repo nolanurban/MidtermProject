@@ -497,7 +497,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `clubindexdb`;
-INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, 'https://en.wikipedia.org/wiki/Winter#/media/File:Winter_forest_silver.jpg', 'Scifi nerds', 'Pestilential Winter');
+INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (1, 35, '2022-10-21 11:34:10', 1, 1, 1, 'https://modelsua.com/images/product/MB35103.jpg', 'Scifi nerds', 'Pestilential Winter');
 INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (2, 5, '2022-10-21 17:34:10', 1, 2, 2, 'https://media.tenor.com/exClB_w3ICMAAAAi/villans.gif', 'Fantasy', 'Gamerz$Lyfe');
 INSERT INTO `book_club` (`id`, `max_members`, `create_date`, `digital`, `owner_id`, `location_id`, `profile_url`, `about_club`, `name`) VALUES (3, 10, '2022-10-22 17:34:10', 1, 3, 3, 'https://carboncostume.com/wordpress/wp-content/uploads/2013/08/Mr.-T.jpg', 'Historical', 'BestTeach');
 
