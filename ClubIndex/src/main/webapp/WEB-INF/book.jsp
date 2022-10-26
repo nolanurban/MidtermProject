@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header.jsp" />
+<jsp:include page="includes/header.jsp" />
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+<jsp:include page="includes/nav.jsp"/>
 	<div class="container text-center">
 		<div class="row">
 			<div class="col">
@@ -111,6 +111,6 @@
 </c:if>	
 				
    			 		<p>${user.username}<p>
-		 		<jsp:include page="footer.jsp"/>	
+	<jsp:include page="includes/footer.jsp" />
 	</body>
 </html>
