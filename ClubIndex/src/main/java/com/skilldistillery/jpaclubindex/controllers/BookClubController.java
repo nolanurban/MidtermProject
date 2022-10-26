@@ -159,9 +159,9 @@ public class BookClubController {
 	}
 	
 	
-//	private String getBookClubsByLocation(HttpSession session, Location location) {
-//		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
-//		session.setAttribute("bookClubs", bookClubs);
+//	private String getBookClubsByLocation(HttpSession session, int locationZip) {
+//		Location location = locationDao.getLocationByZip(locationZip);
+//		session.setAttribute("bookClubs", bcDao.getBookClubsByLocation(location));
 //		return "bookclub/bookClubLists";
 //	}
 	

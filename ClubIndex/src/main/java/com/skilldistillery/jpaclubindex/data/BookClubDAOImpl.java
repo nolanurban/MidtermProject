@@ -82,8 +82,8 @@ public class BookClubDAOImpl implements BookClubDAO{
 
 	@Override
 	public List<BookClub> getBookClubsByLocation(Location location) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT bc FROM BookClub bc WHERE :location MEMBER OF bc.location";
+		return em.createQuery(query, BookClub.class).setParameter("location", location).getResultList();
 	}
 
 	@Override
