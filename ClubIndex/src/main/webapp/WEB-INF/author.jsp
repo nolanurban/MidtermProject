@@ -13,10 +13,17 @@
 		<div class="row">
 			<div class="col">
 				<div class="input-group mb-3">
-					<form action="getAuthor.do" method="GET">
-						<input type="text" name="authorName" class="form-control"
-							aria-describedby="basic-addon2"> <input type="submit"
-							value="Find Author by Last Name" />
+					<form action="getAuthor.do">
+						<input type="text" name="authorSearch" class="form-control"
+							aria-describedby="basic-addon2">  
+							<input type="radio" id="isbn" name="searchType" value="2" checked>
+							<label for="isbn">Search by an ISBN</label>
+							<input type="radio" id="name" name="searchType" value="3">
+							<label for="name">Search by a Last Name</label>
+							<input type="radio" id="genre" name="searchType" value="4">
+							<label for="genre">Search by genre</label>
+
+							<input type="submit" value="Search" />
 					</form>
 				</div>
 
@@ -39,6 +46,8 @@
 			</div>
 		</div>
 	</div>
+	
+
 
 	<c:if test="${! empty author }">
 	<c:forEach var="aList" items="${author}">
@@ -73,8 +82,7 @@
       </tr>
   </thead>
   <tbody>
-    <tr>
-	<td>${booklist.isbn}</td>
+<tr><td>${bookList.isbn}</td>
 	<td>${bookList.title}</td>
 	<td>${bookList.description }</td>
 	<c:forEach var="gList" items="${bookList.genres}">
