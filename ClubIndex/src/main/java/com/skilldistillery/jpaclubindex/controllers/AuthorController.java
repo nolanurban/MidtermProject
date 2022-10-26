@@ -23,7 +23,7 @@ public class AuthorController {
 		return "author/author";
 	}
 
-
+// these are now redundant, will hold off on deletion until code review.
 	@RequestMapping(path="getAuthor.do", params = "id")
 	public String getAuthorById(int id, HttpSession session) {
 		List<Author> author = authorDao.findAuthorById(id); 
@@ -51,4 +51,30 @@ public class AuthorController {
 		return "author/author";
 	}
 
+	@RequestMapping(path="getAuthor.do", params = {"authorSearch", "searchType" })
+	public String switchSearchMethods(String authorSearch, int searchType, HttpSession session) {
+		switch (searchType) {
+			case 1: // find author by actual id #
+				List<Author> author1 = authorDao.findAuthorById(Integer.parseInt(authorSearch)); 
+				session.setAttribute("author", author1);
+				return "author";
+			case 2: //find author by isbn
+				try {
+				List<Author> author2 = authorDao.findAuthorByIsbn(authorSearch); 
+				session.setAttribute("author", author2);
+				return "author";
+				} catch (NullPointerException e) { return "author"; }
+			case 3: // find author by last name
+				List<Author> author3 = authorDao.findAuthorByLastName(authorSearch);
+				session.setAttribute("author", author3);
+				return "author";
+			case 4: // find author by genre
+				List<Author> author4 = authorDao.findAuthorByGenre(authorSearch);
+				session.setAttribute("author", author4);
+				return "author";
+			default:
+				return "author";
+		}
+	}
+	
 }

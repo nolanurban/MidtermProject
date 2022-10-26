@@ -66,4 +66,40 @@ public class BookController {
 		session.setAttribute("book", book);
 		return "book/book";
 	}
+	@RequestMapping(path="showBook.do", params={ "bookSearchAll", "bsearchType" })
+	public String searchForBook(String bookSearchAll, int bsearchType, HttpSession session) {
+		switch (bsearchType) {
+			case 1:
+				List<Book> book1 = bookDao.findBookById(bookSearchAll);
+				session.setAttribute("book", book1);
+				return "book";
+			case 2:
+				List<Book> book2 = bookDao.findBookByAuthorLastName(bookSearchAll);
+				session.setAttribute("book", book2);
+				return "book";
+			case 3:
+				List<Book> book3 = bookDao.findBookByGenre(bookSearchAll);
+				session.setAttribute("book", book3);
+				return "book";
+			case 4:
+				List<Book> book4 = bookDao.findBookByKeyWord(bookSearchAll);
+				session.setAttribute("book", book4);
+				return "book";
+			case 5:
+				List<Book> book5 = bookDao.findBookByYear(Integer.parseInt(bookSearchAll));
+				session.setAttribute("book", book5);
+				return "book";
+			case 6:
+				List<Book> book6 = bookDao.findBookByTitle(bookSearchAll);
+				session.setAttribute("book", book6);
+				return "book";
+			case 7:
+				List<Book> book7 = bookDao.getAllBooks();
+				session.setAttribute("book", book7);
+				return "book";
+			default:
+				return "book";
+		}
+	}
+
 }
