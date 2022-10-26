@@ -152,7 +152,8 @@ public class BookClubController {
 		return "bookclub/bookClub";
 	}
 
-	private String showBookClub(HttpSession session, int id) {
+	@RequestMapping(path="showBookClub.do")
+	public String showBookClub(HttpSession session, int id) {
 		session.setAttribute("bookClub", bcDao.getBookClubById(id));
 		return "bookclub/bookClub";
 	}
