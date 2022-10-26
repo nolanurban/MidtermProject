@@ -58,7 +58,7 @@
 					</thead>
 					<tbody>
 					   <tr>
-					      <td><img src="${aList.headshotUrl}" alt="${aList.firstName} ${aList.lastName}" width="150" height="100">${aList.firstName} ${aList.lastName}</td>
+					      <td>${aList.firstName} ${aList.lastName}</td>
 					      <td>${aList.biography}</td>
 					   </tr>
 				   </tbody>

@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.Location;
+import com.skilldistillery.jpaclubindex.entities.User;
 
 @Controller
 public class BookClubController {
@@ -39,12 +41,12 @@ public class BookClubController {
 		return "bookclub/bookClubSearch";
 	}
 	
-	@RequestMapping(path="bookClubSearchByLocation.do")
-	public String bookClubById(HttpSession session, Location location) {
-		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
-		session.setAttribute("bookClubs", bookClubs);
-		return "bookclub/bookClubLists";
-	}
+//	@RequestMapping(path="bookClubSearchByLocation.do")
+//	public String getBookClubsByLocation(HttpSession session, Location location) {
+//		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
+//		session.setAttribute("bookClubs", bookClubs);
+//		return "bookclub/bookClubLists";
+//	}
 	
 	@RequestMapping(path="bookClubSearchByGenre.do")
 	public String bookClubByGenre(HttpSession session, String genreName) {
@@ -61,6 +63,30 @@ public class BookClubController {
 		return "bookclub/bookClubLists";
 	}
 	
+	@RequestMapping(path="getBookClubByOwner.do")
+	public String getBookClubsByOwner(HttpSession session, String ownerName) {
+		User owner = userDao.findUserByUsername(ownerName);
+		List<BookClub> bookClubs = bcDao.getBookClubsByOwner(owner);
+		session.setAttribute("bookClubs", bookClubs);
+		return "bookclub/bookClubLists";
+	}
+	
+	@RequestMapping(path="getBookClub.do", params = {"bookSearch", "searchType" })
+	public String switchSearchMethods(String bookSearch, int searchType, HttpSession session) {
+		switch (searchType) {
+		case 1: // find book club by id #
+			return showBookClub(session, Integer.parseInt(bookSearch));
+		case 2: //find book club
+			return getBookClubsByOwner(session, bookSearch);
+		case 3: // find book club by genre
+			return bookClubByGenre(session, bookSearch);
+//		case 4: // find book club by location
+//			return getBookClubsByLocation(session, bookSearch);
+		default:
+			return "bookClub/bookClub";
+		}
+	}
+			
 	@RequestMapping(path="updateBookClub.do")
 	public String updateBookClub(HttpSession session) {
 		session.setAttribute("genres", genreDao.getAllGenres());

@@ -30,4 +30,7 @@ public interface UserDAO {
 	 * @author Ashley Osburn
 	 */
 	boolean removeUser(int userId);
+	
+	
+	public User findUserByUsername(String username); 
 }
