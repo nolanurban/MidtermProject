@@ -9,6 +9,25 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp" />
+		
+		<div class="col">
+					<div class="input-group mb-4">
+						<form action="getAuthor.do">
+							<input type="text" name="authorSearch" class="form-control"
+								aria-describedby="basic-addon2">  
+								<input type="radio" id="id" name="searchType" value="2">
+								<label for="id">Search by Id</label>
+								<input type="radio" id="name" name="searchType" value="3">
+								<label for="name">Search by Book Club Name</label>
+								<input type="radio" id="genre" name="searchType" value="4">
+								<label for="genre">Search by Genre</label>
+								<input type="radio" id="location" name="searchType" value="5">
+								<label for="location">Search by Location</label>
+	
+								<input type="submit" value="Search" />
+						</form>
+					</div>
+				</div>
 	
 		Find a book club by ID:
 		<form action="bookClub.do" method="GET">

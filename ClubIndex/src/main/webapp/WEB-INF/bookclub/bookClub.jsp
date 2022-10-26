@@ -45,6 +45,10 @@
 							<td>${bookClub.owner.username}</td>
 						</tr>
 						<tr>
+							<th scope="row">Owner Email</th>
+							<td>${bookClub.owner.email}</td>
+						</tr>
+						<tr>
 							<th scope="row">Created On</th>
 							<td>${bookClub.createDate}</td>
 						</tr>
