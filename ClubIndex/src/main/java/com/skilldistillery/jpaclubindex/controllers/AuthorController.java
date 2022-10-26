@@ -23,58 +23,45 @@ public class AuthorController {
 		return "author/author";
 	}
 
-// these are now redundant, will hold off on deletion until code review.
-	@RequestMapping(path="getAuthor.do", params = "id")
-	public String getAuthorById(int id, HttpSession session) {
+	@RequestMapping(path="getAuthor.do", params = {"authorSearch", "searchType" })
+	public String switchSearchMethods(String authorSearch, int searchType, HttpSession session) {
+		switch (searchType) {
+		case 1: // find author by actual id #
+			return getAuthorById(Integer.parseInt(authorSearch), session);
+		case 2: //find author by isbn
+			return getAuthorByIsbn(authorSearch, session);
+		case 3: // find author by last name
+			return getAuthorByLastNameSearch(authorSearch, session);
+		case 4: // find author by genre
+			return getAuthorByGenre(authorSearch, session);
+		default:
+			return "author/author";
+		}
+	}
+
+	private String getAuthorById(int id, HttpSession session) {
 		List<Author> author = authorDao.findAuthorById(id); 
 		session.setAttribute("author", author);
 		return "author/author";
 	}
-	@RequestMapping(path="getAuthor.do", params = "isbn")
-	public String getAuthorByIsbn(String isbn, HttpSession session) {
+
+	private String getAuthorByIsbn(String isbn, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByIsbn(isbn); 
 		session.setAttribute("author", author);
 		return "author/author";
 	}
 	
-	@RequestMapping(path="getAuthor.do", params = "authorName") 
-	public String getAuthorByLastNameSearch(String authorName, HttpSession session) {
+	private String getAuthorByLastNameSearch(String authorName, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByLastName(authorName);
 		session.setAttribute("author", author);
 		return "author/author";
 	}
 	
-	@RequestMapping(path="getAuthor.do", params = "authorGenre") 
-	public String getAuthorByGenre(String authorGenre, HttpSession session) {
+	private String getAuthorByGenre(String authorGenre, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByGenre(authorGenre);
 		session.setAttribute("author", author);
 		return "author/author";
 	}
 
-	@RequestMapping(path="getAuthor.do", params = {"authorSearch", "searchType" })
-	public String switchSearchMethods(String authorSearch, int searchType, HttpSession session) {
-		switch (searchType) {
-			case 1: // find author by actual id #
-				List<Author> author1 = authorDao.findAuthorById(Integer.parseInt(authorSearch)); 
-				session.setAttribute("author", author1);
-				return "author/author";
-			case 2: //find author by isbn
-				try {
-				List<Author> author2 = authorDao.findAuthorByIsbn(authorSearch); 
-				session.setAttribute("author", author2);
-				return "author/author";
-				} catch (NullPointerException e) { return "author"; }
-			case 3: // find author by last name
-				List<Author> author3 = authorDao.findAuthorByLastName(authorSearch);
-				session.setAttribute("author", author3);
-				return "author/author";
-			case 4: // find author by genre
-				List<Author> author4 = authorDao.findAuthorByGenre(authorSearch);
-				session.setAttribute("author", author4);
-				return "author/author";
-			default:
-				return "author/author";
-		}
-	}
 	
 }

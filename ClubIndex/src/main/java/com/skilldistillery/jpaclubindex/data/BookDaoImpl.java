@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.Author;
 import com.skilldistillery.jpaclubindex.entities.Book;
+import com.skilldistillery.jpaclubindex.entities.Genre;
 
 @Service
 @Transactional
@@ -78,30 +79,39 @@ public class BookDaoImpl implements BookDAO {
 	@Override
 	public List<Book> findBookByAuthorLastName(String lastName) {
 		String query = "SELECT a FROM Author a WHERE a.lastName = :lastName";
-		try { Author a = em.createQuery(query, Author.class)
-				.setParameter("lastName", lastName).getSingleResult();
-			a.getBooks().size();
-			return a.getBooks();
+		List<Book> books = new ArrayList<>();
+		try { 
+			List<Author> authors = em.createQuery(query, Author.class)
+				.setParameter("lastName", lastName).getResultList();
+			
+			for(Author a : authors) {
+				a.getBooks().size();
+				books.addAll(a.getBooks());
+			}
 
-		} catch(NoResultException e) {
-			List<Book> noBook = null;
-			return noBook;
-		}
+		} catch(NullPointerException e) {/**/}
+		
+		return books;
 	}
+	
 	@Override
-	public List<Book> findBookByGenre(String genre) {
+	public List<Book> findBookByGenre(String genreName) {
+		String genreQuery = "SELECT g FROM Genre g WHERE g.name = :name";
+		Genre genre = em.createQuery(genreQuery, Genre.class).setParameter("name", genreName).getSingleResult();
+		
 		String query = "SELECT b from Book b";
 		List<Book> bList = em.createQuery(query, Book.class).getResultList();
 		List<Book> returnList = new ArrayList<>();
+		
 		for (Book b : bList) {
-			for (int j = 0 ; j < b.getGenres().size(); j++) {
-				if (b.getGenres().get(j).getName().equals(genre)) {
-					returnList.add(b);
-				}
+			if (b.getGenres().contains(genre)) {
+				returnList.add(b);
 			}
 		}
+		
 		return returnList;
 	}
+	
 	@Override
 	public List<Book> getAllBooks() {
 		String query = "SELECT b from Book b";
