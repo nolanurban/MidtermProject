@@ -48,17 +48,3 @@ label {
 	background-image: url("../images/cat.png");
 	background-repeat: no-repeat;
 }
-
-img{
-	alt: "imageNotFound";	
-}
-
-.thumbnail{
-	height: 50;
-	width: 50;
-}
-
-.full-photo{
-	height: 300;
-	width: 250;
-}

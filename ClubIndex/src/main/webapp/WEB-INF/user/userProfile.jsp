@@ -40,7 +40,7 @@
 			 			</table>
 			 	</div>
 			 	<div class="col-4">
-			 		<img src="${user.profileUrl}" class="full-picture"/>
+			 		<img src="${user.profileUrl}" height="300" width="250" alt="imageNotFound"/>
 			 		<p>${user.username}<p>
 			 		<p>${user.aboutMe}</p>
 			 	</div>

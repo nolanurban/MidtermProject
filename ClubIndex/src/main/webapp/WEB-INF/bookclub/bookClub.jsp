@@ -55,7 +55,7 @@
 					</table>
 				</div>
 				<div class="col-4">
-					<img src="${bookClub.profileUrl}" class="full-photo" alt="ImageNotFound"/>
+					<img src="${bookClub.profileUrl}" height="300" width="250" alt="${bookClub.name}"/>
 					<c:if test="${user == bookClub.owner}">
 						<table>
 							<tr>
