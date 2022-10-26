@@ -48,6 +48,9 @@
 			<div class="row">
 				<div>
 					<table>
+						<tr>
+							<th>Reading List</th>
+						</tr>
 						<c:forEach var="readingList" items="${user.readingLists}">
 							<tr>
 								<td><a href="showSingleUserRL.do?id=${readingList.id}">${readingList.name}</a></td>
