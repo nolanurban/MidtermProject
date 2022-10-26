@@ -51,7 +51,7 @@ public class AuthorDaoImpl implements AuthorDAO {
 	@Override
 	public List<Author> findAuthorByIsbn(String isbn) {
 		Book book = em.find(Book.class, isbn);
-		return book.getAuthors();
+		return book != null ? book.getAuthors() : null;
 	}
 
 	/*
@@ -68,7 +68,11 @@ public class AuthorDaoImpl implements AuthorDAO {
 		String query = "SELECT a FROM Author a WHERE a.lastName = :lastName";
 		List<Author> authorList = em.createQuery(query, Author.class).setParameter("lastName", lastName)
 				.getResultList();
-
+		for(Author a : authorList) {
+			for(Book b : a.getBooks()) {
+				b.getGenres().size();
+			}
+		}
 		return authorList;
 	}
 
@@ -87,12 +91,12 @@ public class AuthorDaoImpl implements AuthorDAO {
 		List<Book> bList = em.createQuery(query, Book.class).getResultList();
 		List<Author> aList = new ArrayList<>(); // find the books, find the genres, get the authors.
 		for (Book b : bList) {
-					for (int j = 0; j < b.getGenres().size(); j++) {
-						if (b.getGenres().get(j).getName().equals(genre)) {
-							if (!aList.containsAll(b.getAuthors()))
-									aList.addAll(b.getAuthors());
-							}
+			for (int j = 0; j < b.getGenres().size(); j++) {
+				if (b.getGenres().get(j).getName().equals(genre)) {
+					if (!aList.containsAll(b.getAuthors()))
+							aList.addAll(b.getAuthors());
 					}
+			}
 		}			
 		return aList;
 	}
