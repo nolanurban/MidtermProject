@@ -20,7 +20,7 @@ public class AuthorController {
 	@RequestMapping(path="getAuthor.do")
 	public String searchForBook(HttpSession session) {
 		session.removeAttribute("author");
-		return "author";
+		return "author/author";
 	}
 
 
@@ -28,27 +28,27 @@ public class AuthorController {
 	public String getAuthorById(int id, HttpSession session) {
 		List<Author> author = authorDao.findAuthorById(id); 
 		session.setAttribute("author", author);
-		return "author";
+		return "author/author";
 	}
 	@RequestMapping(path="getAuthor.do", params = "isbn")
 	public String getAuthorByIsbn(String isbn, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByIsbn(isbn); 
 		session.setAttribute("author", author);
-		return "author";
+		return "author/author";
 	}
 	
 	@RequestMapping(path="getAuthor.do", params = "authorName") 
 	public String getAuthorByLastNameSearch(String authorName, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByLastName(authorName);
 		session.setAttribute("author", author);
-		return "author";
+		return "author/author";
 	}
 	
 	@RequestMapping(path="getAuthor.do", params = "authorGenre") 
 	public String getAuthorByGenre(String authorGenre, HttpSession session) {
 		List<Author> author = authorDao.findAuthorByGenre(authorGenre);
 		session.setAttribute("author", author);
-		return "author";
+		return "author/author";
 	}
 
 }

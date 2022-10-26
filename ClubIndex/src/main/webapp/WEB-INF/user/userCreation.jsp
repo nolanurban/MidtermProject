@@ -3,17 +3,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="../includes/header.jsp"/>
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="../includes/nav.jsp"/>
 		<div class="container">
-			<h1>Update your account</h1>
+			<h1>Create your account</h1>
 			
-			<form action="updateUser.do" method="POST">
+			<form action="userCreation.do" method="POST">
 				<jsp:include page="userProfileForm.jsp"/>
 			</form>
 		</div>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>

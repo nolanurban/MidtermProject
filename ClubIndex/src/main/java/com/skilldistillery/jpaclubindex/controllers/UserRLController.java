@@ -19,12 +19,12 @@ public class UserRLController {
 	public String showUserReadingList(HttpSession session) {
 		List<UserReadingList> userRlists = userRLDao.findlistofAllUserReadingList();
 		session.setAttribute("readingLists", userRlists);
-		return "readingList";
+		return "readinglist/readingList";
 	}	
 	
 	@RequestMapping(path="showSingleUserRL.do")
 	public String showSingleReadingList(HttpSession session, int id) {
 		session.setAttribute("readingList", userRLDao.findReadingListByID(id));
-		return "singleReadingList";
+		return "readinglist/singleReadingList";
 	}
 }

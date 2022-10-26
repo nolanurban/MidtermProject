@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Club Index: A Way To Track Down a Book Club</title>
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="includes/header.jsp"/>
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="includes/nav.jsp"/>
 		<div class="container">
 			<div class="banner">
 				<h2>Welcome to Club Index</h2>
@@ -66,6 +65,6 @@
 			</div>
 
 		</div>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="includes/footer.jsp"/>
 	</body>
 </html>

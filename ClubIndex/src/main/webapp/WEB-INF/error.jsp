@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="includes/header.jsp"/>
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="includes/nav.jsp"/>
 		<div class="container error-page">
 			<h1>Uh-Oh! Something went wrong!</h1>
 			<a href="home.do">Return to home</a>
 		</div>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="includes/footer.jsp"/>
 	</body>
 </html>

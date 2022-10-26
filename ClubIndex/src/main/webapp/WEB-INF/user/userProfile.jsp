@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="header.jsp"/>	
+		<jsp:include page="../includes/header.jsp"/>	
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="../includes/nav.jsp"/>
 		<!-- DISPLAY 
 			user booklists
 			user profile picture
@@ -66,6 +66,6 @@
 		 </div>
 		 <a href="updateUser.do" class="btn">Update Account</a>
 		 <a href="deleteUser.do" class="btn">Delete Account</a>
-		<jsp:include page="footer.jsp"/>	
+		<jsp:include page="../includes/footer.jsp"/>	
 	</body>
 </html>

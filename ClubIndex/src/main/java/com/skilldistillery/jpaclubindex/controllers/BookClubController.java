@@ -27,43 +27,43 @@ public class BookClubController {
 	@Autowired
 	UserDAO userDao;
 	
-	@RequestMapping(path="showBookClub.do")
+	@RequestMapping(path="bookClub.do")
 	public String showBookClub(HttpSession session, int id) {
 		session.setAttribute("bookClub", bcDao.getBookClubById(id));
-		return "bookClub";
+		return "bookclub/bookClub";
 	}
 	
 	@RequestMapping(path="bookClubSearch.do")
 	public String bookClubSearchPage(HttpSession session) {
 		session.setAttribute("bookClubs", bcDao.getAllBookClubs());
-		return "bookClubSearch";
+		return "bookclub/bookClubSearch";
 	}
 	
 	@RequestMapping(path="bookClubSearchByLocation.do")
 	public String bookClubById(HttpSession session, Location location) {
 		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
 		session.setAttribute("bookClubs", bookClubs);
-		return "bookClubLists";
+		return "bookclub/bookClubLists";
 	}
 	
 	@RequestMapping(path="bookClubSearchByGenre.do")
 	public String bookClubByGenre(HttpSession session, Genre genre) {
 		List<BookClub> bookClubs = bcDao.getBookClubsByGenre(genre);
 		session.setAttribute("bookClubs", bookClubs);
-		return "bookClubLists";
+		return "bookclub/bookClubLists";
 	}
 	
 	@RequestMapping(path="bookClubsByDigitalAvailability.do")
 	public String bookClubSearchByDigital(HttpSession session) {
 		List<BookClub> bookClubs = bcDao.getBookClubsByDigital(true);
 		session.setAttribute("bookClubs", bookClubs);
-		return "bookClubLists";
+		return "bookclub/bookClubLists";
 	}
 	
 	@RequestMapping(path="updateBookClub.do")
 	public String updateBookClub(HttpSession session) {
 		session.setAttribute("genres", genreDao.getAllGenres());
-		return "updateBookClub";
+		return "bookclub/updateBookClub";
 	}
 	
 	@RequestMapping(path="updateBookClub.do", method = RequestMethod.POST)
@@ -83,13 +83,13 @@ public class BookClubController {
 	
 	@RequestMapping(path="updatedBookClub.do")
 	public String updatedBookClub(HttpSession session) {
-		return "bookClub";
+		return "bookclub/bookClub";
 	}
 	
 	@RequestMapping(path="createBookClub.do")
 	public String createBookClubForm(HttpSession session) {
 		session.setAttribute("genres", genreDao.getAllGenres());
-		return "createBookClub";
+		return "bookclub/createBookClub";
 	}
 	
 	@RequestMapping(path="createBookClub.do", method = RequestMethod.POST)
@@ -102,6 +102,6 @@ public class BookClubController {
 	
 	@RequestMapping(path="createdBookClub.do")
 	public String createdBookClub(HttpSession session) {
-		return "bookClub";
+		return "bookclub/bookClub";
 	}
 }

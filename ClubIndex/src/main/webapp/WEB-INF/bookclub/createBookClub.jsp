@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="header.jsp"/>	
+		<jsp:include page="../includes/header.jsp"/>	
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="../includes/nav.jsp"/>
 		<h1>Create your own!</h1>
 		<form action="createBookClub.do" method="POST">
 			<jsp:include page="bookClubForm.jsp"/>
 		</form>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>

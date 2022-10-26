@@ -25,7 +25,7 @@ public class UserController {
 
 	@RequestMapping(path = "login.do")
 	public String gotoLoginAccount(HttpSession session) {
-		return "login";
+		return "user/login";
 	}
 
 	@RequestMapping(path = "login.do", method = RequestMethod.POST)
@@ -35,7 +35,7 @@ public class UserController {
 			session.setAttribute("user", user);
 			return "home";
 		}
-		return "login";
+		return "user/login";
 	}
 
 	@RequestMapping(path = "account.do")
@@ -44,7 +44,7 @@ public class UserController {
 		user.setBookClubs(bcDao.getBookClubsByUser(user));
 
 		session.setAttribute("user", user);
-		return "userProfile";
+		return "user/userProfile";
 	}
 
 	@RequestMapping(path = "logout.do")
@@ -55,7 +55,7 @@ public class UserController {
 
 	@RequestMapping(path = "userCreation.do", method = RequestMethod.GET)
 	public String createForm(HttpSession session) {
-		return "userCreation";
+		return "user/userCreation";
 	}
 
 	@RequestMapping(path = "userCreation.do", method = RequestMethod.POST)
@@ -72,7 +72,7 @@ public class UserController {
 
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.GET)
 	public String createFormToUpdate(HttpSession session) {
-		return "updateUser";
+		return "user/updateUser";
 	}
 
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
@@ -91,7 +91,7 @@ public class UserController {
 
 	@RequestMapping(path = "deleteUser.do", method = RequestMethod.GET)
 	public String deleteUserConfirmation(HttpSession session) {
-		return "deleteUser";
+		return "user/deleteUser";
 	}
 
 	@RequestMapping(path = "deleteUserConfirmation.do")
@@ -102,7 +102,7 @@ public class UserController {
 		return "redirect:deleteUserHome.do";
 		}
 		else {
-			return "userProfile";
+			return "user/userProfile";
 		}
 	}
 

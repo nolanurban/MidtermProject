@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="../includes/header.jsp"/>
 	</head>
 	<body>
-		<jsp:include page="nav.jsp"/>
+		<jsp:include page="../includes/nav.jsp"/>
 		<div class="container">
 			<div class="banner">
 				<h1>${bookClub.name}</h1>
@@ -69,6 +69,6 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>

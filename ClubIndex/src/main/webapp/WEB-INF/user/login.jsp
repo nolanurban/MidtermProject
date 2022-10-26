@@ -5,10 +5,10 @@
 <html>
 <head>
 <title>Club Index Login Page</title>
-<jsp:include page="header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+	<jsp:include page="../includes/nav.jsp" />
 	<div class="container">
 		<form action="login.do" method="POST">
 			<input type="text" name="username" required><br> <input
@@ -17,7 +17,7 @@
 		</form>
 		<a href="userCreation.do" class="btn btn-dark">Create Account Now</a>
 	</div>
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>
 
