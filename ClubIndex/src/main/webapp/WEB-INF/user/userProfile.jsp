@@ -32,7 +32,7 @@
 			 				<tbody>
 						 		<c:forEach var="bookClub" items="${user.bookClubs}">
 						 			<tr>
-						 				<td>${bookClub.profileUrl}</td>
+						 				<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="${bookClub.name}"></td>
 						 				<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 						 				<td>
 											<c:forEach var="genre" items="${bookClub.genres}">
@@ -47,7 +47,7 @@
 			 			</table>
 			 	</div>
 			 	<div class="col-4">
-			 		<img src="${user.profileUrl}" alt="ImageNotFound"/>
+			 		<img src="${user.profileUrl}" height="300" width="250" alt="ImageNotFound"/>
 			 		<p>${user.username}<p>
 			 		<p>${user.aboutMe}</p>
 			 	</div>
@@ -55,17 +55,23 @@
 			<div class="row">
 				<div>
 					<table>
+						<tr>
+							<td>Reading List Name</td>
+							<td>Number of Books</td>
+						</tr>
 						<c:forEach var="readingList" items="${user.readingLists}">
 							<tr>
 								<td><a href="showSingleUserRL.do?id=${readingList.id}">${readingList.name}</a></td>
+								<td>${readingList.books.size()}</td>
 							</tr>
 						</c:forEach>
 					</table>
+					<a href="createReadingList.do" class="btn btn-primary">Create a new Reading List</a>
 				</div>
 			</div>
 		 </div>
-		 <a href="updateUser.do" class="btn">Update Account</a>
-		 <a href="deleteUser.do" class="btn">Delete Account</a>
+		 <a href="updateUser.do" class="btn btn-primary">Update Account</a>
+		 <a href="deleteUser.do" class="btn btn-danger">Delete Account</a>
 		<jsp:include page="../includes/footer.jsp"/>	
 	</body>
 </html>
