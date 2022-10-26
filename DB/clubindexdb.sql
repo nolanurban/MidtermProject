@@ -488,6 +488,7 @@ USE `clubindexdb`;
 INSERT INTO `user_reading_list` (`id`, `name`, `user_id`) VALUES (1, 'scifi', 1);
 INSERT INTO `user_reading_list` (`id`, `name`, `user_id`) VALUES (2, 'fantasy', 2);
 INSERT INTO `user_reading_list` (`id`, `name`, `user_id`) VALUES (3, 'history', 3);
+INSERT INTO `user_reading_list` (`id`, `name`, `user_id`) VALUES (4, 'page turners', 4);
 
 COMMIT;
 
@@ -578,10 +579,14 @@ COMMIT;
 START TRANSACTION;
 USE `clubindexdb`;
 INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (1, 'Great book. Socially did not age well.', 4, 1, '0312932081');
-INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (2, NULL, 5, 1, '9780008201487');
-INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (3, NULL, 4, 2, '9780394800011');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (2, 'LOVED THIS BOOK! Could not put it down.', 5, 1, '9780008201487');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (3, 'cool book', 4, 2, '9780394800011');
 INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (4, NULL, 3, 2, '0063081911');
 INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (5, NULL, 3, 2, '0062371053');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (6, 'captivating read', 5, 4, '9780394800011');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (7, 'well thought out content', 4, 6, '9780394800011');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (8, 'thumbs up', 4, 5, '0063081911');
+INSERT INTO `review` (`id`, `review`, `rating`, `user_id`, `book_isbn`) VALUES (9, 'My favorite author', 5, 7, '0451933028');
 
 COMMIT;
 
@@ -596,6 +601,7 @@ INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('006308191
 INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('7514346406', 2);
 INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('9780008201487', 1);
 INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('0375725601', 3);
+INSERT INTO `user_book_list` (`book_isbn`, `reading_list_id`) VALUES ('0451933028', 4);
 
 COMMIT;
 
@@ -608,6 +614,7 @@ USE `clubindexdb`;
 INSERT INTO `bookclub_reading_list` (`id`, `name`, `book_club_id`) VALUES (1, 'Scifi books', 1);
 INSERT INTO `bookclub_reading_list` (`id`, `name`, `book_club_id`) VALUES (2, 'fantasy books', 2);
 INSERT INTO `bookclub_reading_list` (`id`, `name`, `book_club_id`) VALUES (3, 'history books', 3);
+INSERT INTO `bookclub_reading_list` (`id`, `name`, `book_club_id`) VALUES (4, 'Our favorite not always scifi author', 1);
 
 COMMIT;
 
@@ -622,6 +629,8 @@ INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUE
 INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('0062371053', 2);
 INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('0375725601', 3);
 INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('9780375708275', 3);
+INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('0451933028', 4);
+INSERT INTO `bookclub_book_list` (`book_isbn`, `bookclub_reading_list_id`) VALUES ('1501142976', 4);
 
 COMMIT;
 
