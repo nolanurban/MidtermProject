@@ -28,6 +28,12 @@ public class GenreDAOImpl implements GenreDAO{
 	public Genre getGenreById(int id) {
 		return em.find(Genre.class, id);
 	}
+
+	@Override
+	public Genre getGenreByName(String genreName) {
+		String query = "SELECT g FROM Genre g WHERE g.name = :name";
+		return em.createQuery(query, Genre.class).setParameter("name", genreName).getSingleResult();
+	}
 	
 
 	

@@ -20,4 +20,12 @@ public interface GenreDAO {
 	 * @author tylertanner
 	 */
 	Genre getGenreById(int id);
+	
+	/**
+	 * Given a genreName, will find the associated Genre
+	 * @param genreName - the name of the Genre you're looking for
+	 * @return Genre - the associated Genre
+	 * @author tylertanner
+	 */
+	Genre getGenreByName(String genreName);
 }
