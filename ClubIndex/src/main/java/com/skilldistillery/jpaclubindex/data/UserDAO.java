@@ -30,4 +30,12 @@ public interface UserDAO {
 	 * @author Ashley Osburn
 	 */
 	boolean removeUser(int userId);
+	
+	/**
+	 * Given a String username, will find the associated User
+	 * @param username - the username associated with the User
+	 * @return User - the associated User
+	 * @author tylertanner
+	 */
+	User findUserByUsername(String username);
 }

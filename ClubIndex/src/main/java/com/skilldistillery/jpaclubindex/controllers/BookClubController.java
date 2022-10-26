@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.Location;
+import com.skilldistillery.jpaclubindex.entities.User;
 
 @Controller
 public class BookClubController {
@@ -68,7 +70,7 @@ public class BookClubController {
 	}
 	
 	@RequestMapping(path="updateBookClub.do", method = RequestMethod.POST)
-	public String updateBookClubSubmit(HttpSession session, BookClub newBookClub, int[] genreIds) {
+	public String updateBookClubSubmit(HttpSession session, BookClub newBookClub, int[] genreIds, Location location) {
 		BookClub oldBookClub = (BookClub) (session.getAttribute("bookClub"));
 		
 		List<Genre> newGenres = new ArrayList<>(); 
@@ -76,6 +78,7 @@ public class BookClubController {
 			newGenres.add(genreDao.getGenreById(i));
 		}
 		newBookClub.setGenres(newGenres);
+		newBookClub.setLocation(location);
 		
 		session.setAttribute("bookClub", bcDao.updateBookClub(oldBookClub, newBookClub));
 		
@@ -94,8 +97,16 @@ public class BookClubController {
 	}
 	
 	@RequestMapping(path="createBookClub.do", method = RequestMethod.POST)
-	public String createBookClub(HttpSession session, BookClub bc, int ownerId) {
+	public String createBookClub(HttpSession session, BookClub bc, int ownerId, int[] genreIds, Location location) {
+		List<Genre> newGenres = new ArrayList<>(); 
+		for(int i : genreIds) {
+			newGenres.add(genreDao.getGenreById(i));
+		}
+		bc.setGenres(newGenres);
 		bc.setOwner(userDao.findUserById(ownerId));
+		bc.setLocation(location);
+		bc.setCreateDate(LocalDateTime.now());
+		bc.addUser(userDao.findUserById(ownerId));
 		
 		session.setAttribute("bookClub", bcDao.createBookClub(bc));
 		return "redirect:createdBookClub.do";
@@ -103,6 +114,43 @@ public class BookClubController {
 	
 	@RequestMapping(path="createdBookClub.do")
 	public String createdBookClub(HttpSession session) {
+		return "bookclub/bookClub";
+	}
+	
+	@RequestMapping(path="removeUsers.do")
+	public String removeUsersRedirect(HttpSession session) {
+		return "bookclub/bookClubMembers";
+	}
+	
+	@RequestMapping(path="removeUsers.do", method = RequestMethod.POST)
+	public String removeUsers(HttpSession session, int[] userIds) {
+		BookClub bc = (BookClub)(session.getAttribute("bookClub"));
+		
+		for(int i : userIds) {
+			bcDao.removeUserFromBookClub(bc, userDao.findUserById(i));
+		}
+		session.setAttribute("bookClub", bcDao.getBookClubById(bc.getId()));
+		return "redirect:removedUsers.do";
+	}
+	
+	@RequestMapping(path="removedUsers.do")
+	public String removedUsers(HttpSession session) {
+		return "bookclub/bookClub";
+	}
+	
+	@RequestMapping(path="addUser.do", method = RequestMethod.POST)
+	public String addUser(HttpSession session, String username) {
+		User addUser = userDao.findUserByUsername(username);
+		BookClub bc = (BookClub)(session.getAttribute("bookClub"));
+		if(addUser != null) {
+			bc = bcDao.addUserToBookClub(bc, addUser);
+			session.setAttribute("bookClub", bc);
+		}
+		return "redirect:addedUser.do";
+	}
+	
+	@RequestMapping(path="addedUser.do")
+	public String addedUser(HttpSession session) {
 		return "bookclub/bookClub";
 	}
 }

@@ -5,6 +5,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.hibernate.property.access.spi.EnhancedGetterMethodImpl;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.BookClub;
@@ -70,5 +71,15 @@ public class UserDaoImpl implements UserDAO {
 		return !em.contains(currentUser);
 	}
 	
-
+	@Override
+	public User findUserByUsername(String username) {
+		String query = "SELECT u FROM User u WHERE u.username = :username";
+		
+		try {
+			return em.createQuery(query, User.class).setParameter("username", username).getSingleResult();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

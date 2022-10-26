@@ -9,6 +9,7 @@
 		<jsp:include page="../includes/nav.jsp"/>
 		<h1>Create your own!</h1>
 		<form action="createBookClub.do" method="POST">
+			<jsp:include page="../location/locationForm.jsp"/>
 			<jsp:include page="bookClubForm.jsp"/>
 		</form>
 		<jsp:include page="../includes/footer.jsp"/>

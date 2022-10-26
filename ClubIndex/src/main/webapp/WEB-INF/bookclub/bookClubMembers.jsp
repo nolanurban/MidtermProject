@@ -7,12 +7,9 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
-		
-		<form action="updateBookClub.do" method="post">
-			<jsp:include page="../location/locationForm.jsp"/>
-			<jsp:include page="bookClubForm.jsp"/>
+		<form action="removeUsers.do" method="POST">
+			<jsp:include page="bookClubMembersUpdate.jsp"/>
 		</form>
-		
 		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>

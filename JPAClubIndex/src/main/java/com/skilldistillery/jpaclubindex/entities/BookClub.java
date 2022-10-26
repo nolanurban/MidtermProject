@@ -68,7 +68,7 @@ public class BookClub {
 	@OneToMany(mappedBy = "bookClub")
 	private List<BookClubReadingList> readingLists;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="location_id")
 	private Location location;
 	
