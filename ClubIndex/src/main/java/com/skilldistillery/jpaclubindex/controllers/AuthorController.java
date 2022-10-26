@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.jpaclubindex.data.AuthorDAO;
+import com.skilldistillery.jpaclubindex.data.GenreDAO;
 import com.skilldistillery.jpaclubindex.entities.Author;
 
 @Controller
@@ -16,15 +17,19 @@ public class AuthorController {
 
 	@Autowired
 	private AuthorDAO authorDao;
+	@Autowired
+	private GenreDAO genreDao;
 	
 	@RequestMapping(path="getAuthor.do")
 	public String searchForBook(HttpSession session) {
 		session.removeAttribute("author");
+		session.setAttribute("genre", genreDao.getAllGenres());
 		return "author/author";
 	}
 
 	@RequestMapping(path="getAuthor.do", params = {"authorSearch", "searchType" })
 	public String switchSearchMethods(String authorSearch, int searchType, HttpSession session) {
+		session.setAttribute("genre", genreDao.getAllGenres());
 		switch (searchType) {
 		case 1: // find author by actual id #
 			return getAuthorById(Integer.parseInt(authorSearch), session);
