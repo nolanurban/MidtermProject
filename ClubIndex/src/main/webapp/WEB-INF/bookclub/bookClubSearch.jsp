@@ -27,9 +27,11 @@
 			<input type="text" name="genreName"/> <input
 				type="submit" value="Find club" />
 				<!-- Trying to use bookClubLists.jsp as the go to for searches, encountering an error with genre -->
+				</form>
 		<br>
-		<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">Book Clubs By Digital Availability</a>
+		<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">See Digital Book Clubs</a>
 		<br>			
+		<form>
 					<table>
 				<tr>
 					<th>Photo</th>
