@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDAO {
 		em.remove(currentUser);
 		return !em.contains(currentUser);
 	}
-	
+
 	@Override
 	public User findUserByUsername(String username) {
 		String query = "SELECT u FROM User u WHERE u.username = :username";

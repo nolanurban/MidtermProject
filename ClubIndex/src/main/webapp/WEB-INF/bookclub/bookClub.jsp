@@ -45,13 +45,17 @@
 							<td>${bookClub.owner.username}</td>
 						</tr>
 						<tr>
+							<th scope="row">Owner Email</th>
+							<td>${bookClub.owner.email}</td>
+						</tr>
+						<tr>
 							<th scope="row">Created On</th>
 							<td>${bookClub.createDate}</td>
 						</tr>
 					</table>
 				</div>
 				<div class="col-4">
-					<img src="${bookClub.profileUrl}" height="250" width="250" alt="ImageNotFound"/>
+					<img src="${bookClub.profileUrl}" height="300" width="250" alt="${bookClub.name}"/>
 					<c:if test="${user == bookClub.owner}">
 						<table>
 							<tr>

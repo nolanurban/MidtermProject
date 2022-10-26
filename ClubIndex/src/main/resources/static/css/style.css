@@ -1,45 +1,54 @@
 @charset "UTF-8";
+
 html {
 	height: 100%;
 }
 
-body{
-	background-color: powderblue;
-	height: 100%;
-	margin: 0;
-	/* background-image: url("https://dhjhkxawhe8q4.cloudfront.net/purdue-university-press/wp-content/uploads/2022/08/14001042/books-on-end.jpg"); */
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+body {
+	background-color: white;
 	color: black;
 	font-size: 20px;
+	background-image:
+		url("../images/books.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: contain;
+	background-position: center;
+	height: 100%;
 }
+
 table, th, td {
 	font-family: Daubenton;
-	 border: 1px solid black;
-  border-collapse: collapse;
+	color: black;
+	border: 2px solid black;
+	border-collapse: collapse;
 }
-th{
+
+th {
 	text-align: center;
 }
 
-nav{
+nav {
 	background: linear-gradient(.25turn, rgb(84, 14, 9), maroon);
 	text-align: center;
 	border: 0px;
+	width: 100%;
 }
 
-label{
+label {
 	width: 150px;
 	display: inline-block;
 }
 
-.banner{
+.banner {
 	text-align: center;
 }
 
-.error-page{
+.error-page {
 	background-color: transparent;
-	height: 100%;
-	background-image: url("../images/cat.png");
+	height: 90%;
+	background-image: url("../images/cat.png") ;
 	background-repeat: no-repeat;
+	background-size: cover;
+	overflow:hidden;
 }

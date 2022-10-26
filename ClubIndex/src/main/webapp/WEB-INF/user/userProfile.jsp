@@ -8,13 +8,6 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
-		<!-- DISPLAY 
-			user booklists
-			user profile picture
-			bookclubs
-			
-		
-		 -->
 		 <div class="container">
 		 	<div class="row">
 			 	<div class="col-6">
@@ -48,6 +41,7 @@
 			 	</div>
 			 	<div class="col-4">
 			 		<img src="${user.profileUrl}" height="300" width="250" alt="ImageNotFound"/>
+
 			 		<p>${user.username}<p>
 			 		<p>${user.aboutMe}</p>
 			 	</div>

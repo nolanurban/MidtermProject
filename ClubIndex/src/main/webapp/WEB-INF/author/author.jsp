@@ -19,28 +19,19 @@
 								<input type="radio" id="isbn" name="searchType" value="2" checked>
 								<label for="isbn">Search by an ISBN</label>
 								<input type="radio" id="name" name="searchType" value="3">
-								<label for="name">Search by a Last Name</label>
-								<input type="radio" id="genre" name="searchType" value="4">
-								<label for="genre">Search by genre</label>
-	
+								<label for="name">Search by a Last Name</label>	
 								<input type="submit" value="Search" />
 						</form>
 					</div>
 				</div>
-				
 				<div class="col">
 					<form action="getAuthor.do" method="GET">
-						<select name="authorGenre">
-							<option value="Horror">Horror</option>
-							<option value="Fantasy">Fantasy</option>
-							<option value="Childrens Literature">Children's Literature</option>
-							<option value="Historical Fiction">Historical Fiction</option>
-							<option value="Romance">Romance</option>
-							<option value="Narrative">Narrative</option>
-							<option value="Mystery">Mystery</option>
-							<option value="Science-Fiction">Science Fiction</option>
-							<option value="Biography">Biography</option>
-						</select><input type="submit" value="Authors By Genre" />
+						<select name="authorSearch">
+						<c:forEach var="g" items="${genre}">
+						<option value="${g.name}">${g.name}</option>
+						</c:forEach>
+						</select><input type="hidden" name="searchType" value="4">
+						<input type="submit" value="Find Author By Genre" />
 					</form>
 				</div>
 				
@@ -52,14 +43,26 @@
 				<table class="table">
 				 	<thead>
 					    <tr>
+	 					   <c:if test="${! empty aList.headshotUrl}">
+						<th scope="col">Image</th></c:if>				   
 					      <th scope="col">Name</th>
-					      <th scope="col">Biography</th>      
+					      <th scope="col">Biography</th>
+					      <c:if test="${! empty aList.websiteUrl}">
+				 		  <th scope="col">Website</th></c:if>
+					            
 					    </tr>
 					</thead>
 					<tbody>
 					   <tr>
+					   		<c:if test="${! empty aList.headshotUrl}">
+					   		<td><img src="${aList.headshotUrl}" alt="${aList.firstName} ${aList.lastName}" height="300" width="250"></td>
+					   		</c:if>
 					      <td>${aList.firstName} ${aList.lastName}</td>
 					      <td>${aList.biography}</td>
+					      <c:if test="${! empty aList.websiteUrl}">
+				 		  <td><a href="${aList.websiteUrl}">Visit ${aList.firstName} ${aList.lastName}'s Website</a></td>
+				 		  </c:if>
+					      
 					   </tr>
 				   </tbody>
 				</table>
@@ -96,3 +99,15 @@
 		<jsp:include page="../includes/footer.jsp" />
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

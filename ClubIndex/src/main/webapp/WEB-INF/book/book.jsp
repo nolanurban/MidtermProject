@@ -42,6 +42,9 @@
 							<th scope="col">ISBN</th>
 							<th scope="col">Author</th>
 							<th scope="col">Title</th>
+							<c:if test="${! empty bookList.coverUrl}">
+							<th scope="col">Book Cover</th>
+							</c:if>
 							<th scope="col">Description</th>
 							<th scope="col">Genre</th>
 							<th scope="col">Pages</th>
@@ -57,6 +60,9 @@
 								</c:forEach>
 							</td>
 							<td>${bookList.title}</td>
+							<c:if test="${! empty bookList.coverUrl}">
+					   		<td><img src="${bookList.coverUrl}" height="300" width="250" alt="${bookList.title}"></td>
+					   		</c:if>
 							<td>${bookList.description }</td>
 							<td>
 								<c:forEach var="gList" items="${bookList.genres}">
