@@ -8,13 +8,6 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
-		<!-- DISPLAY 
-			user booklists
-			user profile picture
-			bookclubs
-			
-		
-		 -->
 		 <div class="container">
 		 	<div class="row">
 			 	<div class="col-6">
@@ -32,7 +25,7 @@
 			 				<tbody>
 						 		<c:forEach var="bookClub" items="${user.bookClubs}">
 						 			<tr>
-						 				<td>${bookClub.profileUrl}</td>
+						 				<td><img src="${bookClub.profileUrl}" class="thumbnail"/></td>
 						 				<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 						 				<td>
 											<c:forEach var="genre" items="${bookClub.genres}">
@@ -47,7 +40,7 @@
 			 			</table>
 			 	</div>
 			 	<div class="col-4">
-			 		<img src="${user.profileUrl}" alt="ImageNotFound"/>
+			 		<img src="${user.profileUrl}" class="full-picture"/>
 			 		<p>${user.username}<p>
 			 		<p>${user.aboutMe}</p>
 			 	</div>

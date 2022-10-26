@@ -61,7 +61,7 @@
 							</td>
 							<td>${bookList.title}</td>
 							<c:if test="${! empty bookList.coverUrl}">
-					   		<td><img src="${bookList.coverUrl}" alt="Image Not Found" width="250" height="300"></td>
+					   		<td><img src="${bookList.coverUrl}" class="full-photo"></td>
 					   		</c:if>
 							<td>${bookList.description }</td>
 							<td>
