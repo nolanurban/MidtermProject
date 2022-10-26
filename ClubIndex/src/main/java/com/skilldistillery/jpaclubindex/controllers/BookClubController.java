@@ -46,13 +46,13 @@ public class BookClubController {
 		return "bookclub/bookClubLists";
 	}
 	
-//	@RequestMapping(path="bookClubSearchByGenre.do")
-//	public String bookClubByGenre(HttpSession session, String genreName) {
-//		Genre genre = genreDao.getGenreByName();
-//		List<BookClub> bookClubs = bcDao.getBookClubsByGenre(genre);
-//		session.setAttribute("bookClubs", bookClubs);
-//		return "bookclub/bookClubLists";
-//	}
+	@RequestMapping(path="bookClubSearchByGenre.do")
+	public String bookClubByGenre(HttpSession session, String genreName) {
+		Genre genre = genreDao.getGenreByName(genreName);
+		List<BookClub> bookClubs = bcDao.getBookClubsByGenre(genre);
+		session.setAttribute("bookClubs", bookClubs);
+		return "bookclub/bookClubLists";
+	}
 	
 	@RequestMapping(path="bookClubsByDigitalAvailability.do")
 	public String bookClubSearchByDigital(HttpSession session) {
