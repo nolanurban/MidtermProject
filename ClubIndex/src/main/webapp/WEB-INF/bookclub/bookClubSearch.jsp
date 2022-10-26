@@ -24,7 +24,7 @@
 		</form>
 		Find book club by genre:
 		<form action="bookClubSearchByGenre.do" method="GET">
-			<input type="text" name="genre"/> <input
+			<input type="text" name="genreName"/> <input
 				type="submit" value="Find club" />
 				<!-- Trying to use bookClubLists.jsp as the go to for searches, encountering an error with genre -->
 		<br>

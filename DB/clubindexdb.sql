@@ -121,7 +121,8 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(300) NOT NULL,
   `description` TEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -517,7 +518,7 @@ INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (4, '0062371053');
 INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (4, '0063081911');
 INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (6, '1501142976');
 INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (5, '7514346406');
-INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (6, '0451933028 ');
+INSERT INTO `author_book` (`author_id`, `book_isbn`) VALUES (6, '0451933028');
 
 COMMIT;
 

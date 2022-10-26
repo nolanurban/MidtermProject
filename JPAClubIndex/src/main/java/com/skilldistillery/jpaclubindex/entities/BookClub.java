@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +48,7 @@ public class BookClub {
 	private String name;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="book_club_genre",
 	joinColumns=@JoinColumn(name="book_club_id"),
 	inverseJoinColumns=@JoinColumn(name="genre_id"))
