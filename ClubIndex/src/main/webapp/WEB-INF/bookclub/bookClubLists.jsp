@@ -20,7 +20,7 @@
 			</tr>
 			<c:forEach var="bookClub" items="${bookClubs}">
 				<tr>
-					<td>${bookClub.profileUrl}</td>
+					<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="${bookClub.name}"></td>
 					<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 					<td>${bookClub.aboutClub}</td>
 					<td>${bookClub.owner.username}</td>
@@ -30,6 +30,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<a href="bookClubSearch.do" class="btn btn-primary">Not what you're looking for?</a>
 		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>

@@ -30,32 +30,28 @@ public class BookClubController {
 	@Autowired
 	UserDAO userDao;
 	
-	@RequestMapping(path="bookClub.do")
-	public String showBookClub(HttpSession session, int id) {
-		session.setAttribute("bookClub", bcDao.getBookClubById(id));
-		return "bookclub/bookClub";
-	}
-	
 	@RequestMapping(path="bookClubSearch.do")
 	public String bookClubSearchPage(HttpSession session) {
 		session.setAttribute("bookClubs", bcDao.getAllBookClubs());
 		return "bookclub/bookClubSearch";
 	}
-	
-//	@RequestMapping(path="bookClubSearchByLocation.do")
-//	public String getBookClubsByLocation(HttpSession session, Location location) {
-//		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
-//		session.setAttribute("bookClubs", bookClubs);
-//		return "bookclub/bookClubLists";
-//	}
-	
-	@RequestMapping(path="bookClubSearchByGenre.do")
-	public String bookClubByGenre(HttpSession session, String genreName) {
-		Genre genre = genreDao.getGenreByName(genreName);
-		List<BookClub> bookClubs = bcDao.getBookClubsByGenre(genre);
-		session.setAttribute("bookClubs", bookClubs);
-		return "bookclub/bookClubLists";
+
+	@RequestMapping(path="getBookClub.do", params = {"bookSearch", "searchType" })
+	public String switchSearchMethods(String bookSearch, int searchType, HttpSession session) {
+		switch (searchType) {
+			case 1: // find book club by id #
+				return showBookClub(session, Integer.parseInt(bookSearch));
+			case 2: //find book club
+				return getBookClubsByOwner(session, bookSearch);
+			case 3: // find book club by genre
+				return bookClubByGenre(session, bookSearch);
+	//		case 4: // find book club by location
+	//			return getBookClubsByLocation(session, bookSearch);
+			default:
+				return bookClubSearchPage(session);
+		}
 	}
+	
 	
 	@RequestMapping(path="bookClubsByDigitalAvailability.do")
 	public String bookClubSearchByDigital(HttpSession session) {
@@ -64,30 +60,7 @@ public class BookClubController {
 		return "bookclub/bookClubLists";
 	}
 	
-	@RequestMapping(path="getBookClubByOwner.do")
-	public String getBookClubsByOwner(HttpSession session, String ownerName) {
-		User owner = userDao.findUserByUsername(ownerName);
-		List<BookClub> bookClubs = bcDao.getBookClubsByOwner(owner);
-		session.setAttribute("bookClubs", bookClubs);
-		return "bookclub/bookClubLists";
-	}
 	
-	@RequestMapping(path="getBookClub.do", params = {"bookSearch", "searchType" })
-	public String switchSearchMethods(String bookSearch, int searchType, HttpSession session) {
-		switch (searchType) {
-		case 1: // find book club by id #
-			return showBookClub(session, Integer.parseInt(bookSearch));
-		case 2: //find book club
-			return getBookClubsByOwner(session, bookSearch);
-		case 3: // find book club by genre
-			return bookClubByGenre(session, bookSearch);
-//		case 4: // find book club by location
-//			return getBookClubsByLocation(session, bookSearch);
-		default:
-			return "bookClub/bookClub";
-		}
-	}
-			
 	@RequestMapping(path="updateBookClub.do")
 	public String updateBookClub(HttpSession session) {
 		session.setAttribute("genres", genreDao.getAllGenres());
@@ -177,5 +150,29 @@ public class BookClubController {
 	@RequestMapping(path="addedUser.do")
 	public String addedUser(HttpSession session) {
 		return "bookclub/bookClub";
+	}
+
+	private String showBookClub(HttpSession session, int id) {
+		session.setAttribute("bookClub", bcDao.getBookClubById(id));
+		return "bookclub/bookClub";
+	}
+	
+	
+//	private String getBookClubsByLocation(HttpSession session, Location location) {
+//		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
+//		session.setAttribute("bookClubs", bookClubs);
+//		return "bookclub/bookClubLists";
+//	}
+	
+	private String bookClubByGenre(HttpSession session, String genreName) {
+		Genre genre = genreDao.getGenreByName(genreName);
+		session.setAttribute("bookClubs", bcDao.getBookClubsByGenre(genre));
+		return "bookclub/bookClubLists";
+	}
+	
+	private String getBookClubsByOwner(HttpSession session, String ownerName) {
+		User owner = userDao.findUserByUsername(ownerName);
+		session.setAttribute("bookClubs", bcDao.getBookClubsByOwner(owner));
+		return "bookclub/bookClubLists";
 	}
 }

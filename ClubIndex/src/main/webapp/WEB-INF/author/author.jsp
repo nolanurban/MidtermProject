@@ -55,7 +55,7 @@
 					<tbody>
 					   <tr>
 					   		<c:if test="${! empty aList.headshotUrl}">
-					   		<td><img src="${aList.headshotUrl}" alt="${aList.firstName} ${aList.lastName}" width="250" height="300"></td>
+					   		<td><img src="${aList.headshotUrl}" alt="${aList.firstName} ${aList.lastName}" height="300" width="250"></td>
 					   		</c:if>
 					      <td>${aList.firstName} ${aList.lastName}</td>
 					      <td>${aList.biography}</td>

@@ -47,7 +47,7 @@
 					<h3>Random Book</h3>
 					<table class="table table-borderless">
 						<tr>
-							<td><img src="${book.coverUrl}" alt="imageNotFound"></td>
+							<td><img src="${book.coverUrl}" height="300" width="250" alt="${book.title}"></td>
 						</tr>
 						<tr>
 							<td>${book.title}</td>

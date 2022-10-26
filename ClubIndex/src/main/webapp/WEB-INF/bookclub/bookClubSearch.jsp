@@ -9,31 +9,29 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp" />
-		
-		<div class="col">
-					<div class="input-group mb-4">
-						<form action="getBookClub.do">
-							<input type="text" name="bookSearch" class="form-control"
-								aria-describedby="basic-addon2">  
-								<input type="radio" id="id" name="searchType" value="1">
-								<label for="id">Search by Id</label>
-								<input type="radio" id="owner" name="searchType" value="2">
-								<label for="owner">Search by Book Club Owner</label>
-								<input type="radio" id="genre" name="searchType" value="3">
-								<label for="genre">Search by Genre</label>
-								<input type="radio" id="location" name="searchType" value="4">
-								<label for="location">Search by Location</label>
-	
-								<input type="submit" value="Search" />
-						</form>
-					</div>
-				</div>
+		<div class="container">
+			<div class="col">
+				<div class="input-group mb-4">
+					<form action="getBookClub.do">
+						<input type="text" name="bookSearch" class="form-control"
+							aria-describedby="basic-addon2">  
+							<input type="radio" id="id" name="searchType" value="1">
+							<label for="id">Search by Id</label>
+							<input type="radio" id="owner" name="searchType" value="2">
+							<label for="owner">Search by Book Club Owner</label>
+							<input type="radio" id="genre" name="searchType" value="3">
+							<label for="genre">Search by Genre</label>
+							<input type="radio" id="location" name="searchType" value="4">
+							<label for="location">Search by Location</label>
 
-		<br>
-		<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">See Digital Book Clubs</a>
-		<br>			
-		<form>
-					<table>
+							<input type="submit" value="Search" />
+					</form>
+				</div>
+			</div>
+			<br>
+			<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">See Digital Book Clubs</a>
+			<br>
+			<table>
 				<tr>
 					<th>Photo</th>
 					<th>Name</th>
@@ -43,19 +41,19 @@
 					<th>Location</th>
 					<th>Digital</th>
 				</tr>
-			<c:forEach var="bookClub" items="${bookClubs}">
-				<tr>
-					<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="ImageNotFound"/></td>
-					<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
-					<td>${bookClub.aboutClub}</td>
-					<td>${bookClub.owner.username}</td>
-					<td>${bookClub.maxMembers}</td>
-					<td>${bookClub.location.zipCode}</td>
-					<td>${bookClub.digital}</td>
-				</tr>
-			</c:forEach>
+				<c:forEach var="bookClub" items="${bookClubs}">
+					<tr>
+						<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="ImageNotFound"/></td>
+						<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
+						<td>${bookClub.aboutClub}</td>
+						<td>${bookClub.owner.username}</td>
+						<td>${bookClub.maxMembers}</td>
+						<td>${bookClub.location.zipCode}</td>
+						<td>${bookClub.digital}</td>
+					</tr>
+				</c:forEach>
 			</table>
-		</form>
+		</div>
 		<jsp:include page="../includes/footer.jsp"/>
 	</body>
 </html>
