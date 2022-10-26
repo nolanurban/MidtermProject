@@ -55,13 +55,19 @@
 					</table>
 				</div>
 				<div class="col-4">
-					<img src="${bookClub.profileUrl}" alt="ImageNotFound"/>
+					<img src="${bookClub.profileUrl}" height="250" width="250" alt="ImageNotFound"/>
 					<c:if test="${user == bookClub.owner}">
 						<table>
 							<tr>
-								<td><a href="updateBookClub.do" class="btn">Update the Club</a></td>
-								<td><a href="removeUsers.do" class="btn">Remove a User(s)</a></td>
-								<td><a href="inviteUser.do" class="btn">Invite a User</a></td>
+								<td><a href="updateBookClub.do" class="btn btn-primary">Update the Club</a></td>
+								<td><a href="removeUsers.do" class="btn btn-danger">Remove a User(s)</a></td>
+								<td>
+									<form action="addUser.do" method="POST">
+										<label for="username">Add user:</label><br>
+										<input type="text" name="username"/><br>
+										<input type="submit" value="Add User"/>	
+									</form>
+								</td>
 							</tr>
 							<tr>
 								<td></td>
