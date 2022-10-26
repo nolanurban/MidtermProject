@@ -50,7 +50,7 @@ public class UserController {
 	@RequestMapping(path = "logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "home";
+		return "redirect:home.do";
 	}
 
 	@RequestMapping(path = "userCreation.do", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class UserController {
 		newUser.setLocation(location);
 		newUser = userDao.create(newUser);
 		session.setAttribute("user", newUser);
-		return "home";
+		return "redirect:home.do";
 	}
 	@RequestMapping(path = "createdUser.do")
 	public String userCreated(HttpSession session) {
@@ -85,7 +85,7 @@ public class UserController {
 
 	@RequestMapping(path = "updatedUser.do")
 	public String updated(HttpSession session) {
-		return "home";
+		return "redirect:home.do";
 	}
 
 
@@ -108,6 +108,7 @@ public class UserController {
 
 	@RequestMapping(path = "deleteUserHome.do")
 	public String userDeleted(HttpSession session) {
-		return "home";
+		session.invalidate();
+		return "redirect:home.do";
 	}
 }
