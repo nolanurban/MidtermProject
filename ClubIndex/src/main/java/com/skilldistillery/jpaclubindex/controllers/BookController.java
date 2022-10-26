@@ -72,33 +72,33 @@ public class BookController {
 			case 1:
 				List<Book> book1 = bookDao.findBookById(bookSearchAll);
 				session.setAttribute("book", book1);
-				return "book";
+				return "book/book";
 			case 2:
 				List<Book> book2 = bookDao.findBookByAuthorLastName(bookSearchAll);
 				session.setAttribute("book", book2);
-				return "book";
+				return "book/book";
 			case 3:
 				List<Book> book3 = bookDao.findBookByGenre(bookSearchAll);
 				session.setAttribute("book", book3);
-				return "book";
+				return "book/book";
 			case 4:
 				List<Book> book4 = bookDao.findBookByKeyWord(bookSearchAll);
 				session.setAttribute("book", book4);
-				return "book";
+				return "book/book";
 			case 5:
 				List<Book> book5 = bookDao.findBookByYear(Integer.parseInt(bookSearchAll));
 				session.setAttribute("book", book5);
-				return "book";
+				return "book/book";
 			case 6:
 				List<Book> book6 = bookDao.findBookByTitle(bookSearchAll);
 				session.setAttribute("book", book6);
-				return "book";
+				return "book/book";
 			case 7:
 				List<Book> book7 = bookDao.getAllBooks();
 				session.setAttribute("book", book7);
-				return "book";
+				return "book/book";
 			default:
-				return "book";
+				return "book/book";
 		}
 	}
 

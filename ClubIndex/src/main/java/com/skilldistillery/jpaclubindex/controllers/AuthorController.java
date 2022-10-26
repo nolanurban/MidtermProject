@@ -57,23 +57,23 @@ public class AuthorController {
 			case 1: // find author by actual id #
 				List<Author> author1 = authorDao.findAuthorById(Integer.parseInt(authorSearch)); 
 				session.setAttribute("author", author1);
-				return "author";
+				return "author/author";
 			case 2: //find author by isbn
 				try {
 				List<Author> author2 = authorDao.findAuthorByIsbn(authorSearch); 
 				session.setAttribute("author", author2);
-				return "author";
+				return "author/author";
 				} catch (NullPointerException e) { return "author"; }
 			case 3: // find author by last name
 				List<Author> author3 = authorDao.findAuthorByLastName(authorSearch);
 				session.setAttribute("author", author3);
-				return "author";
+				return "author/author";
 			case 4: // find author by genre
 				List<Author> author4 = authorDao.findAuthorByGenre(authorSearch);
 				session.setAttribute("author", author4);
-				return "author";
+				return "author/author";
 			default:
-				return "author";
+				return "author/author";
 		}
 	}
 	
