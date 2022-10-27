@@ -23,6 +23,9 @@ public class IndexController {
 	public String home(HttpSession session) {
 		List<Book> allBooks = bookDao.getAllBooks();
 		List<Review> allReviews = reviewDao.getAllReviews();
+		List<Book> highlyRatedBooks = bookDao.getBestRatedBooks();
+		List<Book> randomTop3Books = new ArrayList<>();
+		
 		
 		allReviews.sort((r1, r2) -> {
 			if(r1.getId() > r2.getId()) {
@@ -33,6 +36,16 @@ public class IndexController {
 				return 0;
 			}
 		});
+		 
+		if (highlyRatedBooks.size() <= 3) { 
+			randomTop3Books.addAll(highlyRatedBooks);
+		}
+		else {
+			for (int i = 0; i < 3 ; i++) {
+				randomTop3Books.add(i, highlyRatedBooks.get((int)(Math.random() * highlyRatedBooks.size())));
+			}
+		}
+		
 		
 		List<Review> recentReviews = new ArrayList<>();
 		for(int i = 0; i < 5; i++) {
@@ -42,6 +55,7 @@ public class IndexController {
 		int randNum = (int)(Math.random() * allBooks.size());
 		session.setAttribute("book", allBooks.get(randNum));
 		session.setAttribute("reviews", recentReviews);
+		session.setAttribute("toprated", randomTop3Books);
 		return "home";
 	}
 

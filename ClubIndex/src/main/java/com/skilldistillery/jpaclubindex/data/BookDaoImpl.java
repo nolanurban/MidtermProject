@@ -2,13 +2,17 @@ package com.skilldistillery.jpaclubindex.data;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+
 import com.skilldistillery.jpaclubindex.entities.Author;
 import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Genre;
+import com.skilldistillery.jpaclubindex.entities.Review;
 
 @Service
 @Transactional
@@ -109,10 +113,24 @@ public class BookDaoImpl implements BookDAO {
 	}
 	
 	@Override
+	public List<Book> getBestRatedBooks() {
+		List<Book> bList = getAllBooks();
+		List<Book> returnList = new ArrayList<>();
+		for (Book b : bList) {
+			for (Review r : b.getReviews()) {
+				if (r.getRating() > 5) {
+					returnList.add(b);
+				}
+			}
+		}
+		
+		return returnList;
+	}
+
+	@Override
 	public List<Book> getAllBooks() {
 		String query = "SELECT b from Book b";
 		return em.createQuery(query, Book.class).getResultList();
 	}
-
 
 }
