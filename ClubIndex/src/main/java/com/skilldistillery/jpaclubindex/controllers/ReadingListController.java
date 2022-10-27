@@ -3,9 +3,11 @@ package com.skilldistillery.jpaclubindex.controllers;
 import java.util.List;
 import java.util.function.IntPredicate;
 
+import javax.activation.URLDataSource;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.context.spi.AbstractCurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -198,6 +200,23 @@ public class ReadingListController {
 	
 	@RequestMapping(path="addedBookToBCRL.do")
 	public String addedBookToBCRL(HttpSession session) {
+		return "readinglist/singleReadingList";
+	}
+	
+	@RequestMapping(path="addBookToRL.do", params="urlId", method=RequestMethod.POST)
+	public String addBookToURL(HttpSession session, int urlId, String bookTitle) {
+		UserReadingList url = userRLDao.findReadingListByID(urlId);
+		Book toAdd = bookDao.findBookByTitle(bookTitle).get(0);
+		userRLDao.addBookToUserRL(toAdd, url);
+		
+		session.setAttribute("readingList", userRLDao.findReadingListByID(urlId));
+		session.setAttribute("user", userDao.findUserById(url.getUser().getId()));
+		
+		return "redirect:addedBookToURL.do";
+	}
+	
+	@RequestMapping(path="addedBookToURL.do")
+	public String addedBookToURL(HttpSession session) {
 		return "readinglist/singleReadingList";
 	}
 }

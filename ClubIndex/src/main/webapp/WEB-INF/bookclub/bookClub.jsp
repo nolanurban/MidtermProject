@@ -53,9 +53,6 @@
 							<td>${bookClub.createDate}</td>
 						</tr>
 					</table>
-				</div>
-				<div class="col-4">
-					<img src="${bookClub.profileUrl}" height="300" width="250" alt="${bookClub.name}"/>
 					<c:if test="${user == bookClub.owner}">
 						<table>
 							<tr>
@@ -64,7 +61,7 @@
 								<td>
 									<form action="addUser.do" method="POST">
 										<label for="username">Add user:</label><br>
-										<input type="text" name="username"/><br>
+										<input type="text" name="username" required/><br>
 										<input type="submit" value="Add User"/>	
 									</form>
 								</td>
@@ -76,6 +73,10 @@
 							</tr>
 						</table>
 					</c:if>
+				</div>
+				<div class="col-4">
+					<img src="${bookClub.profileUrl}" style="height:300px;width:250px;height:100%;width:100%;img-fit:contain;border:4px solid black;padding:12px" alt="${bookClub.name}"/>
+					
 				</div>
 			</div>
 			<div class="row">

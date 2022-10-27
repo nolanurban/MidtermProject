@@ -6,12 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.eclipse.jdt.internal.compiler.problem.DefaultProblemFactory;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.User;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
+import com.mchange.v1.db.sql.DriverManagerDataSource.DmdsObjectFactory;
 import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 
 @Service
@@ -72,6 +74,14 @@ public class UserRLDaoImpl implements UserRLDAO {
 		public UserReadingList removeBookFromUserRL(Book book, UserReadingList url) {
 			url = em.find(UserReadingList.class, url.getId());
 			url.removeBook(book);
+			em.flush();
+			return url;
+		}
+		
+		@Override
+		public UserReadingList addBookToUserRL(Book book, UserReadingList url) {
+			url = em.find(UserReadingList.class, url.getId());
+			url.addBook(book);
 			em.flush();
 			return url;
 		}

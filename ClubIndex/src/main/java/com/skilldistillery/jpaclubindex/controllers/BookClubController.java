@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 import com.skilldistillery.jpaclubindex.data.GenreDAO;
+import com.skilldistillery.jpaclubindex.data.LocationDAO;
 import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Genre;
@@ -29,6 +30,8 @@ public class BookClubController {
 	GenreDAO genreDao;
 	@Autowired
 	UserDAO userDao;
+	@Autowired
+	LocationDAO locationDao;
 	
 	@RequestMapping(path="bookClubSearch.do")
 	public String bookClubSearchPage(HttpSession session) {
@@ -45,8 +48,8 @@ public class BookClubController {
 				return getBookClubsByOwner(session, bookSearch);
 			case 3: // find book club by genre
 				return bookClubByGenre(session, bookSearch);
-	//		case 4: // find book club by location
-	//			return getBookClubsByLocation(session, bookSearch);
+			case 4: // find book club by location
+				return getBookClubsByLocationZip(session, bookSearch);
 			default:
 				return bookClubSearchPage(session);
 		}
@@ -124,9 +127,12 @@ public class BookClubController {
 	public String removeUsers(HttpSession session, int[] userIds) {
 		BookClub bc = (BookClub)(session.getAttribute("bookClub"));
 		
-		for(int i : userIds) {
-			bcDao.removeUserFromBookClub(bc, userDao.findUserById(i));
+		if(userIds != null) {
+			for(int i : userIds) {
+				bcDao.removeUserFromBookClub(bc, userDao.findUserById(i));
+			}
 		}
+		
 		session.setAttribute("bookClub", bcDao.getBookClubById(bc.getId()));
 		return "redirect:removedUsers.do";
 	}
@@ -177,11 +183,10 @@ public class BookClubController {
 		return "redirect:home.do";
 	}
 	
-//	private String getBookClubsByLocation(HttpSession session, Location location) {
-//		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);
-//		session.setAttribute("bookClubs", bookClubs);
-//		return "bookclub/bookClubLists";
-//	}
+	private String getBookClubsByLocationZip(HttpSession session, String locationString) {
+		session.setAttribute("bookClubs", bcDao.getBookClubsByLocationZip(locationString));
+		return "bookclub/bookClubLists";
+	}
 	
 	private String bookClubByGenre(HttpSession session, String genreName) {
 		Genre genre = genreDao.getGenreByName(genreName);

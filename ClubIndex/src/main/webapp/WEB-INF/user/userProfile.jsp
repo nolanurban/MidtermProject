@@ -39,8 +39,8 @@
 		 			</table>
 			 	</div>
 			 	<div class="col-4">
-			 		<img src="${user.profileUrl}" height="300" width="250" alt="ImageNotFound"/>
-
+			 		<img src="${user.profileUrl}" style="height:300px;width:250px;height:100%;width:100%;img-fit:contain;border:4px solid black;padding:12px" alt="ImageNotFound"/>
+				</div>
 			 		<p>${user.username}<p>
 			 		<p>${user.aboutMe}</p>
 			 	</div>

@@ -61,7 +61,8 @@ public class ReviewDAOImpl implements ReviewDAO{
 	@Override
 	public Review updateReview(Review oldReview, Review newReview) {
 		oldReview = em.find(Review.class, oldReview.getId());
-		oldReview = newReview;
+		oldReview.setReview(newReview.getReview());
+		oldReview.setRating(newReview.getRating());
 		em.flush();
 		return oldReview;
 	}
