@@ -127,9 +127,12 @@ public class BookClubController {
 	public String removeUsers(HttpSession session, int[] userIds) {
 		BookClub bc = (BookClub)(session.getAttribute("bookClub"));
 		
-		for(int i : userIds) {
-			bcDao.removeUserFromBookClub(bc, userDao.findUserById(i));
+		if(userIds != null) {
+			for(int i : userIds) {
+				bcDao.removeUserFromBookClub(bc, userDao.findUserById(i));
+			}
 		}
+		
 		session.setAttribute("bookClub", bcDao.getBookClubById(bc.getId()));
 		return "redirect:removedUsers.do";
 	}
