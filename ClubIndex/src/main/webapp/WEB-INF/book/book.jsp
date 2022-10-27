@@ -80,7 +80,7 @@
 		  <input type="hidden" name="isbnVal" value="${bL.isbn}"></c:forEach>
 		  <label for="newReviewForm" class="form-label">Leave a review </label>
 		  <textarea name="review" class="form-control" id="newReviewForm" rows="2"></textarea><br>
-		  <label for="rating">Rate this book 1-9</label><br>
+		  <label for="rating">Rate this book </label><br>
 		  <select name="rating">
 						<option value="1">1 - Worst Book I've Ever Read!</option>
 						<option value="2">2 - It was bad</option>
@@ -118,21 +118,32 @@
 		  </form>
 		</div>
 		</c:if>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col"></div>
+					<div class="col">
 		<c:if test="${! empty review && empty userReview}">
-			<c:forEach var="rList" items="${review}">
-				<div class="mb-3 container text-center">
 					<table>
-					<tr><th colspan="2">Some User Reviews & Ratings:</th></tr>
-					<tr><th>Review</th><th>Rating</th></tr>
+					<c:forEach var="r" items="${review}">
 					<tr>
-				    <td>${rList.review}</td>
-				    <td>${rList.rating}</td>
+						<td><img src="${r.user.profileUrl}" width=100 height=175></td>
+							<c:choose>	
+								<c:when test="${! empty r.review }">	
+								    <td>"${r.review}"</td>
+								</c:when>
+				   				 <c:otherwise>
+								    <td>${r.user.username} did not leave a detailed review.</td>
+							    </c:otherwise>
+						    </c:choose>
+				    <td><button type="button" class="btn btn-warning">${r.rating}</button></td>
 				    </tr>
-				    </table>
-				</div>
-				    
-			</c:forEach>	
+					</c:forEach>	
+				    </table>				    
 		</c:if>
+					</div>
+				<div class="col"></div>
+			</div>
+		</div>
 
 		<jsp:include page="../includes/footer.jsp" />
 	</body>
