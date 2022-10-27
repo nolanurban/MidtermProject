@@ -69,4 +69,14 @@ public interface UserRLDAO {
 	 * @author tylertanner
 	 */
 	UserReadingList removeBookFromUserRL(Book book, UserReadingList url);
+	
+	/**
+	 * Given a Book and a UserReadingList will add the Book to the URL and
+	 * return the updated URL
+	 * @param book - the Book to add
+	 * @param url - the UserReadingList to update
+	 * @return UserReadingList - the updated URL
+	 * @author tylertanner
+	 */
+	UserReadingList addBookToUserRL(Book book, UserReadingList url);
 }
