@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<table>
+<table class="table">
 	<thead>
 		<tr>
 			<th>Profile Picture</th>

@@ -14,7 +14,7 @@
 			<div class="row">
 				<div class="col-4">
 					<h3>What our users are saying:</h3>
-					<table class="table">
+					<table class="table table-bordered">
 						<tr>
 							<th>Book</th>
 							<th>Review</th>

@@ -14,7 +14,7 @@
 			</div>
 			<div class="row">
 				<div class="col-8">
-					<table>
+					<table class="table">
 						<tr>
 							<th scope="row">Users</th>
 							<td>${bookClub.users.size()} / ${bookClub.maxMembers}</td>

@@ -31,7 +31,7 @@
 			<br>
 			<a href="bookClubsByDigitalAvailability.do?digital=${bookClub.digital}">See Digital Book Clubs</a>
 			<br>
-			<table>
+			<table class="table">
 				<tr>
 					<th>Photo</th>
 					<th>Name</th>

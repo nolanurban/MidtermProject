@@ -19,24 +19,30 @@ body {
 	
 }
 
-table, th, td {
+.table, .table th, .table td {
 	font-family: Daubenton;
 	color: black;
-	border: 2px solid black;
-	border-collapse: collapse;
+	border: 2px solid black !important;
+/* 	border-collapse: collapse; */
 }
-
+#nav, #nav th, #nav td {
+	font-family: Daubenton;
+	color: black;
+	border: 0px solid black !important;
+/* 	border-collapse: collapse; */
+}
 th {
 	text-align: center;
 }
 
-nav {
+#nav {
 	background: linear-gradient(.25turn, rgb(84, 14, 9), maroon);
 	text-align: center;
-	border: 0px;
+	border: 0px !important;
 	width: 100%;
+	-webkit-box-shadow: none;
+    box-shadow: none;
 }
-
 label {
 	width: 150px;
 	display: inline-block;

@@ -11,7 +11,7 @@
 		 <div class="container">
 		 	<div class="row">
 			 	<div class="col-6">
-		 			<table>
+		 			<table class="table">
 		 				<thead>
 		 					<tr>
 		 						<th>Thumbnail</th>
@@ -47,7 +47,7 @@
 			</div>
 			<div class="row">
 				<div>
-					<table>
+					<table class="table">
 						<tr>
 							<td>Reading List Name</td>
 							<td>Number of Books</td>

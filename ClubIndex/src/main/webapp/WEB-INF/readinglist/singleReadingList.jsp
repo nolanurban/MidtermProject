@@ -9,7 +9,7 @@
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
 		<div class="container">
-			<table>
+			<table class="table">
 				<tr>
 					<th scope="row">Reading List Name:</th>
 					<td>${readingList.name}</td>
