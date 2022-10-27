@@ -42,6 +42,7 @@
 					<c:if test="${not empty user}">
 						<a href="createBookClub.do" class="btn btn-primary">Create your own BookClub</a>
 					</c:if>
+					<img src="images/mascot2.png"/>
 				</div>
 				<div class="col-4">
 					<h3>Random Book</h3>
