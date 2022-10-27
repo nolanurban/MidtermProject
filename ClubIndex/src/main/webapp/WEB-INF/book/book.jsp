@@ -59,7 +59,7 @@
 									${aList.firstName} ${aList.lastName } 
 								</c:forEach>
 							</td>
-							<td>${bookList.title}</td>
+							<td><a href="showBook.do?bookSearchAll=${bookList.title}&bsearchType=6">${bookList.title}</a></td>
 							<c:if test="${! empty bookList.coverUrl}">
 					   		<td><img src="${bookList.coverUrl}" height="300" width="250" alt="${bookList.title}"></td>
 					   		</c:if>
@@ -76,6 +76,66 @@
 				</table>
 			</c:forEach>
 		</c:if>
+		<c:if test="${not empty user && empty userReview && not empty book}">
+		<div class="mb-2 container text-center">
+		  <form action="newBookReview.do"><c:forEach var="bL" items="${book}">
+		  <input type="hidden" name="isbnVal" value="${bL.isbn}"></c:forEach>
+		  <label for="newReviewForm" class="form-label">Leave a review </label>
+		  <textarea name="review" class="form-control" id="newReviewForm" rows="2"></textarea><br>
+		  <label for="rating">Rate this book 1-9</label><br>
+		  <select name="rating">
+						<option value="1">1 - Worst Book I've Ever Read!</option>
+						<option value="2">2 - It was bad</option>
+						<option value="3">3 - I survived</option>
+						<option value="4">4 - Meh</option>
+						<option value="5">5 - Pretty Okay</option>
+						<option value="6">6 - Good</option>
+						<option value="7">7 - Darn Good!</option>
+						<option value="8">8 - Impressive</option>
+						<option value="9">9 - Wow, amazing!</option>
+			</select>
+			<input type="submit" value="Submit Review" />
+		  </form>
+		</div>
+		</c:if>
+		<c:if test="${! empty userReview }">
+		<div class="mb-2 container text-center">
+		  <form action="updateExistingBookReview.do" class="form-floating"><c:forEach var="bL" items="${book}">
+		  <input type="hidden" name="isbnVal" value="${bL.isbn}"></c:forEach>
+		  <input type="text" class="form-control" name="review" id="floatingInputValue" placeholder="Your Review" value="${userReview.review } + Number Rating: ${userReview.rating}">
+		  <label for="floatingInputValue">Your Review</label>
+		  <select name="rating">
+						<option value="1">1 - Worst Book I've Ever Read!</option>
+						<option value="2">2 - It was bad</option>
+						<option value="3">3 - I survived</option>
+						<option value="4">4 - Meh</option>
+						<option value="5">5 - Pretty Okay</option>
+						<option value="6">6 - Good</option>
+						<option value="7">7 - Darn Good!</option>
+						<option value="8">8 - Impressive</option>
+						<option value="9">9 - Wow, amazing!</option>
+			</select>
+			<input type="hidden" name="reviewId" value="${userReview.id}">
+			<input type="submit" value="Update Review" />
+		  </form>
+		</div>
+		</c:if>
+		<c:if test="${! empty review && empty userReview}">
+			<c:forEach var="rList" items="${review}">
+				<div class="mb-3 container text-center">
+					<table>
+					<tr><th colspan="2">Some User Reviews & Ratings:</th></tr>
+					<tr><th>Review</th><th>Rating</th></tr>
+					<tr>
+				    <td>${rList.review}</td>
+				    <td>${rList.rating}</td>
+				    </tr>
+				    </table>
+				</div>
+				    
+			</c:forEach>	
+		</c:if>
+
 		<jsp:include page="../includes/footer.jsp" />
 	</body>
 </html>
