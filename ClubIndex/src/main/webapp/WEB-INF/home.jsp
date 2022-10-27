@@ -23,7 +23,7 @@
 						</tr>
 						<c:forEach var="review" items="${reviews}">
 							<tr>
-								<td>${review.book.title}</td>
+								<td><a href="showBook.do?bookSearchAll=${review.book.title}&bsearchType=6">${review.book.title}</a></td>
 								<c:choose>
 									<c:when test="${not empty review.review}">
 										<td>${review.review}</td>
@@ -33,7 +33,8 @@
 									</c:otherwise>
 								</c:choose>
 								<td>${review.rating}</td>
-								<td>${review.user.username}</td>
+								<td><img src="${review.user.profileUrl}" alt="No Image Found" width="100" height="175">
+								${review.user.username}</td>
 							</tr>
 						</c:forEach>
 					</table>
