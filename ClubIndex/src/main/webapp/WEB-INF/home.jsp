@@ -37,6 +37,30 @@
 							</tr>
 						</c:forEach>
 					</table>
+										<c:if test="${not empty toprated }">
+					<h3>Top Rated Books</h3>
+					<table class="table">
+						<tr>
+							<th>Cover</th>
+							<th>Title</th>
+							<th>Author</th>
+							<th>Rating</th>
+						</tr>
+						<c:forEach var="tr" items="${toprated}">
+							<tr>
+								<td><img src="${tr.coverUrl}" alt="No Image Available" width="100" height="200"></td>
+								<td><a href="showBook.do?bookSearchAll=${tr.title}&bsearchType=6">${tr.title}</a></td>
+									<c:forEach var="a" items="${tr.authors}">
+									<td>${a.firstName} ${a.lastName}</td>
+									</c:forEach>
+									<c:forEach var="r" items="${tr.reviews}">
+									<td>${r.rating}</td>
+									</c:forEach>
+							</tr>
+						</c:forEach>
+					</table>
+					</c:if>
+					
 				</div>
 				<div class="col-4">
 					<c:if test="${not empty user}">

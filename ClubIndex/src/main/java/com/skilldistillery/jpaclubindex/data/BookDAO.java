@@ -13,5 +13,6 @@ public interface BookDAO {
 	List<Book> findBookByTitle(String title);
 	List<Book> findBookByAuthorLastName(String lastName);
 	List<Book> findBookByGenre(String genre);
+	List<Book> getBestRatedBooks();
 	List<Book> getAllBooks();
 }
