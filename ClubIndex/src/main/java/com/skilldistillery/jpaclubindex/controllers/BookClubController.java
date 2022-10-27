@@ -158,6 +158,24 @@ public class BookClubController {
 		return "bookclub/bookClub";
 	}
 	
+	@RequestMapping(path="deleteBookClub.do")
+	public String deleteBookClub(HttpSession session, int bcId) {
+		BookClub bc = bcDao.getBookClubById(bcId);
+		boolean successful = bcDao.removeBookClub(bc);
+		
+		if(successful) {
+			session.removeAttribute("bookClub");
+			session.setAttribute("user", userDao.findUserById(bc.getOwner().getId()));
+			return "redirect:deletedBookClub.do";
+		} else {
+			return "bookclub/bookClub";
+		}
+	}
+
+	@RequestMapping(path="deletedBookClub.do")
+	public String deletedBookClub(HttpSession session) {
+		return "redirect:home.do";
+	}
 	
 //	private String getBookClubsByLocation(HttpSession session, Location location) {
 //		List<BookClub> bookClubs = bcDao.getBookClubsByLocation(location);

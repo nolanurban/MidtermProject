@@ -80,4 +80,4 @@
 	</c:otherwise>
 </c:choose>
 
-<input type="submit" value="Create Reading List"/>
+<input type="submit" value="Submit"/>
