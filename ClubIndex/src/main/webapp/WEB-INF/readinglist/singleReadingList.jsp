@@ -30,7 +30,23 @@
 						<td>${book.description}</td>
 					</tr>
 				</c:forEach>
-			</table>		
+			</table>
+			<c:choose>
+				<c:when test="${not empty bookClub}">
+					<c:if test="${not empty user }">
+						<c:if test="${user.username == readingList.bookClub.owner.username}">
+							<a href="updateRL.do" class="btn btn-primary">Update this Reading List</a>
+							<a href="deleteRL.do" class="btn btn-danger">Delete this Reading List</a>
+						</c:if>
+					</c:if>
+				</c:when>
+				<c:when test="${not empty user}">
+					<c:if test="${user.username == readingList.user.username}">
+						<a href="updateRL.do" class="btn btn-primary">Update this Reading List</a>
+						<a href="deleteRL.do" class="btn btn-danger">Delete this Reading List</a>
+					</c:if>
+				</c:when>
+			</c:choose>		
 		</div>		
 		<jsp:include page="../includes/footer.jsp"/>
 	</body>

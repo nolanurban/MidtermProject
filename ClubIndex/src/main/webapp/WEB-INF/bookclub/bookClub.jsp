@@ -78,6 +78,23 @@
 					</c:if>
 				</div>
 			</div>
+			<div class="row">
+				<div>
+					<table>
+						<tr>
+							<td>Reading List Name</td>
+							<td>Number of Books</td>
+						</tr>
+						<c:forEach var="readingList" items="${bookClub.readingLists}">
+							<tr>
+								<td><a href="showSingleRL.do?id=${readingList.id}">${readingList.name}</a></td>
+								<td>${readingList.books.size()}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<a href="createReadingList.do" class="btn btn-primary">Create a new Reading List</a>
+				</div>
+			</div>
 		</div>
 		<jsp:include page="../includes/footer.jsp"/>
 	</body>

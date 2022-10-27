@@ -11,33 +11,32 @@
 		 <div class="container">
 		 	<div class="row">
 			 	<div class="col-6">
-	
-			 			<table>
-			 				<thead>
-			 					<tr>
-			 						<th>Thumbnail</th>
-			 						<th>Name</th>
-			 						<th>Genre</th>
-			 						<th>Owner</th>
-									<th>Members</th>
-			 					</tr>
-			 				</thead>
-			 				<tbody>
-						 		<c:forEach var="bookClub" items="${user.bookClubs}">
-						 			<tr>
-						 				<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="${bookClub.name}"></td>
-						 				<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
-						 				<td>
-											<c:forEach var="genre" items="${bookClub.genres}">
-												${genre.name},  
-											</c:forEach>
-										</td>
-						 				<td>${bookClub.owner.username}</td>
-						 				<td>${bookClub.users.size()} / ${bookClub.maxMembers}</td>
-						 			</tr>
-						 		</c:forEach>
-			 				</tbody>
-			 			</table>
+		 			<table>
+		 				<thead>
+		 					<tr>
+		 						<th>Thumbnail</th>
+		 						<th>Name</th>
+		 						<th>Genre</th>
+		 						<th>Owner</th>
+								<th>Members</th>
+		 					</tr>
+		 				</thead>
+		 				<tbody>
+					 		<c:forEach var="bookClub" items="${user.bookClubs}">
+					 			<tr>
+					 				<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="${bookClub.name}"></td>
+					 				<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
+					 				<td>
+										<c:forEach var="genre" items="${bookClub.genres}">
+											${genre.name},  
+										</c:forEach>
+									</td>
+					 				<td>${bookClub.owner.username}</td>
+					 				<td>${bookClub.users.size()} / ${bookClub.maxMembers}</td>
+					 			</tr>
+					 		</c:forEach>
+		 				</tbody>
+		 			</table>
 			 	</div>
 			 	<div class="col-4">
 			 		<img src="${user.profileUrl}" height="300" width="250" alt="ImageNotFound"/>

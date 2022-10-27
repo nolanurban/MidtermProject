@@ -2,6 +2,7 @@ package com.skilldistillery.jpaclubindex.data;
 
 import java.util.List;
 
+import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.User;
 
@@ -58,4 +59,14 @@ public interface UserRLDAO {
 	 * @author tylertanner
 	 */
 	UserReadingList updateUserRL(UserReadingList oldURL, UserReadingList newURL);
+	
+	/**
+	 * Given a Book and a UserReadingList will remove the Book from the URL and
+	 * return the updated URL
+	 * @param book - The Book to remove
+	 * @param url - The UserReadingList to remove
+	 * @return UserReadingList - the updated URL
+	 * @author tylertanner
+	 */
+	UserReadingList removeBookFromUserRL(Book book, UserReadingList url);
 }
