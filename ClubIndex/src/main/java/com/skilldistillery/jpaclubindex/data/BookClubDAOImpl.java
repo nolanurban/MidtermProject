@@ -28,7 +28,9 @@ public class BookClubDAOImpl implements BookClubDAO{
 
 	@Override
 	public BookClub getBookClubById(int id) {
-		return em.find(BookClub.class, id);
+		BookClub bc = em.find(BookClub.class, id);
+		bc.getReadingLists().size();
+		return bc;
 	}
 
 	@Override
@@ -80,11 +82,13 @@ public class BookClubDAOImpl implements BookClubDAO{
 		return em.createQuery(query, BookClub.class).setParameter("genre", genre).getResultList();
 	}
 
-	@Override
-	public List<BookClub> getBookClubsByLocation(Location location) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<BookClub> getBookClubsByLocation(List<Location> location) {
+//		
+//		String query = "SELECT bc FROM BookClub bc WHERE :location MEMBER OF bc.location";
+//		
+//		return em.createQuery(query, BookClub.class).setParameter("location", location).getResultList();	
+//	}
 
 	@Override
 	public BookClub createBookClub(BookClub bc) {
@@ -128,6 +132,12 @@ public class BookClubDAOImpl implements BookClubDAO{
 		bc.removeUser(user);
 		em.flush();
 		return bc;
+	}
+
+	@Override
+	public List<BookClub> getBookClubsByLocationZip(String locationZip) {
+		String query = "SELECT bc FROM BookClub bc WHERE bc.location.zipCode = :locationZip";
+		return em.createQuery(query, BookClub.class).setParameter("locationZip", locationZip).getResultList();
 	}
 
 }

@@ -13,7 +13,7 @@
 					<c:when test="${not empty bookClub}">
 						<c:forEach var="readingList" items="${bookClub.readingLists }">
 							<tr>
-								<td>${readingList.name}</td>
+								<td><a href="showSingleRL.do?id=${readingList.id}">${readingList.name}</a></td>
 							</tr>
 							<tr>
 								<th>Title</th>
@@ -37,7 +37,7 @@
 						<c:forEach var="readingList" items="${readingLists}">
 							<tr>
 								<th scope="row">Reading List Name:</th>
-								<td>${readingList.name}</td>
+								<td><a href="showSingleUserRL.do?id=${readingList.id}">${readingList.name}</a></td>
 							</tr>
 							<tr>
 								<th>Title</th>

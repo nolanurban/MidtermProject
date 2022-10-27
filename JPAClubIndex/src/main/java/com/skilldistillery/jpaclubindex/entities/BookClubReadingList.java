@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,14 +22,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="bookclub_reading_list")
-public class BookClubReadingList {
+public class BookClubReadingList{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="book_club_id")
 	private BookClub bookClub;
 	
@@ -102,7 +103,7 @@ public class BookClubReadingList {
 	}
 	
 	public void removeBook(Book book) {
-		if(books != null && books.contains(books)) {
+		if(books != null && books.contains(book)) {
 			books.remove(book);
 			book.removeReadingList(this);
 		}

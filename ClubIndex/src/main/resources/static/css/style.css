@@ -14,6 +14,7 @@ body {
 	background-attachment: fixed;
 	background-size: contain;
 	background-position: center;
+	height: 100%;
 }
 
 table, th, td {
@@ -31,6 +32,7 @@ nav {
 	background: linear-gradient(.25turn, rgb(84, 14, 9), maroon);
 	text-align: center;
 	border: 0px;
+	width: 100%;
 }
 
 label {
@@ -44,7 +46,9 @@ label {
 
 .error-page {
 	background-color: transparent;
-	height: 100%;
-	background-image: url("../images/cat.png");
+	height: 90%;
+	background-image: url("../images/cat.png") ;
 	background-repeat: no-repeat;
+	background-size: cover;
+	overflow:hidden;
 }

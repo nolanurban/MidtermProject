@@ -16,13 +16,13 @@
 						<input type="text" name="bookSearch" class="form-control"
 							aria-describedby="basic-addon2">  
 							<input type="radio" id="id" name="searchType" value="1">
-							<label for="id">Search by Id</label>
+							<label for="id">Clubs by Id</label>
 							<input type="radio" id="owner" name="searchType" value="2">
-							<label for="owner">Search by Book Club Owner</label>
+							<label for="owner">Clubs by Book Club Owner</label>
 							<input type="radio" id="genre" name="searchType" value="3">
-							<label for="genre">Search by Genre</label>
+							<label for="genre">Clubs by Genre</label>
 							<input type="radio" id="location" name="searchType" value="4">
-							<label for="location">Search by Location</label>
+							<label for="location">Clubs By Zip Code</label>
 
 							<input type="submit" value="Search" />
 					</form>
@@ -44,7 +44,7 @@
 				<c:forEach var="bookClub" items="${bookClubs}">
 					<tr>
 						<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="ImageNotFound"/></td>
-						<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
+						<td><a href="showBookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 						<td>${bookClub.aboutClub}</td>
 						<td>${bookClub.owner.username}</td>
 						<td>${bookClub.maxMembers}</td>

@@ -71,10 +71,31 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><a href="deleteBookClub.do" class="btn btn-danger">DELETE THIS CLUB</a></td>
+								<td><a href="deleteBookClub.do?bcId=${bookClub.id}" class="btn btn-danger">DELETE THIS CLUB</a></td>
 								<td></td>
 							</tr>
 						</table>
+					</c:if>
+				</div>
+			</div>
+			<div class="row">
+				<div>
+					<table>
+						<tr>
+							<td>Reading List Name</td>
+							<td>Number of Books</td>
+						</tr>
+						<c:forEach var="readingList" items="${bookClub.readingLists}">
+							<tr>
+								<td><a href="showSingleRL.do?id=${readingList.id}">${readingList.name}</a></td>
+								<td>${readingList.books.size()}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<c:if test="${not empty user}">
+						<c:if test="${user.username == bookClub.owner.username}">
+							<a href="createReadingList.do" class="btn btn-primary">Create a new Reading List</a>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
