@@ -40,18 +40,18 @@ public class User {
 	@Column(name="about_me")
 	private String aboutMe;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="location_id")
 	private Location location;
 	
 	@ManyToMany(mappedBy="users")
 	private List<BookClub> bookClubs;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Review> reviews;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<UserReadingList> readingLists;
 	
 	public User() {

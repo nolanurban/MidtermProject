@@ -1,12 +1,22 @@
 package com.skilldistillery.jpaclubindex.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import org.apache.jasper.tagplugins.jstl.core.If;
+import org.apache.tomcat.websocket.AsyncChannelWrapperNonSecure;
 import org.springframework.stereotype.Service;
+
+import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Location;
+import com.skilldistillery.jpaclubindex.entities.Review;
 import com.skilldistillery.jpaclubindex.entities.User;
+import com.skilldistillery.jpaclubindex.entities.UserReadingList;
 
 @Service
 @Transactional
@@ -63,6 +73,35 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public boolean removeUser(int userId) {
 		User currentUser = em.find(User.class, userId);
+		List<BookClub> allBookClubs = new ArrayList<>(currentUser.getBookClubs());
+		
+		for(BookClub bc : allBookClubs) {
+			if(bc.getOwner().equals(currentUser) && bc.getUsers().size() > 1) {
+				
+				List<User> users = new ArrayList<>(bc.getUsers()); 
+				for(User u : users) {
+					if(u.equals(currentUser)) {
+						continue;
+					} else {
+						currentUser.removeBookClub(bc);
+						bc.setOwner(u);
+						break;
+					}
+				}
+			} else {
+				em.remove(bc);
+			}
+		}
+		List<Review> allReviews = new ArrayList<>(currentUser.getReviews()); 
+		for(Review r : allReviews) {
+			em.remove(r);
+		}
+		
+		List<UserReadingList> allURL = new ArrayList<>(currentUser.getReadingLists());
+		for(UserReadingList url : allURL) {
+			em.remove(url);
+		}
+		
 		em.remove(currentUser);
 		return !em.contains(currentUser);
 	}
