@@ -35,16 +35,13 @@
 			</div>
 		</div>
 		<c:if test="${! empty book }">
-			<c:forEach var="bookList" items="${book}">
 				<table class="table">
 					<thead>
 						<tr>
 							<th scope="col">ISBN</th>
 							<th scope="col">Author</th>
 							<th scope="col">Title</th>
-							<c:if test="${! empty bookList.coverUrl}">
 							<th scope="col">Book Cover</th>
-							</c:if>
 							<th scope="col">Description</th>
 							<th scope="col">Genre</th>
 							<th scope="col">Pages</th>
@@ -52,29 +49,30 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>${bookList.isbn}</td>
-							<td>
-								<c:forEach var="aList" items="${bookList.authors}">
-									${aList.firstName} ${aList.lastName } 
-								</c:forEach>
-							</td>
-							<td><a href="showBook.do?bookSearchAll=${bookList.title}&bsearchType=6">${bookList.title}</a></td>
-							<c:if test="${! empty bookList.coverUrl}">
-					   		<td><img src="${bookList.coverUrl}" height="300" width="250" alt="${bookList.title}"></td>
-					   		</c:if>
-							<td>${bookList.description }</td>
-							<td>
-								<c:forEach var="gList" items="${bookList.genres}">
-									${gList.name} 
-								</c:forEach>
-							</td>
-							<td>${bookList.pages }</td>
-							<td>${bookList.publishYear }</td>
-						</tr>
+						<c:forEach var="bookList" items="${book}">
+							<tr>
+								<td>${bookList.isbn}</td>
+								<td>
+									<c:forEach var="aList" items="${bookList.authors}">
+										${aList.firstName} ${aList.lastName } 
+									</c:forEach>
+								</td>
+								<td><a href="showBook.do?bookSearchAll=${bookList.title}&bsearchType=6">${bookList.title}</a></td>
+								<c:if test="${! empty bookList.coverUrl}">
+						   		<td><img src="${bookList.coverUrl}" height="300" width="250" alt="${bookList.title}"></td>
+						   		</c:if>
+								<td>${bookList.description }</td>
+								<td>
+									<c:forEach var="gList" items="${bookList.genres}">
+										${gList.name} 
+									</c:forEach>
+								</td>
+								<td>${bookList.pages }</td>
+								<td>${bookList.publishYear }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-			</c:forEach>
 		</c:if>
 		<c:if test="${not empty user && empty userReview && not empty book}">
 		<div class="mb-2 container text-center">
