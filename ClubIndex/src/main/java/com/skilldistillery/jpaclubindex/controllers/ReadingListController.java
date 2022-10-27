@@ -64,6 +64,7 @@ public class ReadingListController {
 	
 	@RequestMapping(path="createReadingList.do")
 	public String createReadingList(HttpSession session) {
+		session.removeAttribute("readingList");
 		return "readinglist/readingListCreation";
 	}
 	
