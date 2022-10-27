@@ -81,7 +81,7 @@ public interface BookClubDAO {
 	 * fields
 	 * @author tylertanner
 	 */
-	List<BookClub> getBookClubsByLocation(Location location);
+//	List<BookClub> getBookClubsByLocation(List<Location> location);
 	
 	/**
 	 * Given a BookClub object, will persist and return the persisted BookClub
@@ -126,4 +126,12 @@ public interface BookClubDAO {
 	 * @author tylertanner
 	 */
 	BookClub removeUserFromBookClub(BookClub bc, User user);
+	
+	/**
+	 * given a zip code
+	 * @return a List<BookClub> bookClubs;
+	 * @param locationZip
+	 * @return
+	 */
+	List<BookClub> getBookClubsByLocationZip(String locationZip);
 }
