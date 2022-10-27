@@ -1,19 +1,13 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-
-import javax.lang.model.util.AbstractAnnotationValueVisitor14;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.skilldistillery.jpaclubindex.data.BookDAO;
 import com.skilldistillery.jpaclubindex.data.ReviewDAO;
-import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Review;
 

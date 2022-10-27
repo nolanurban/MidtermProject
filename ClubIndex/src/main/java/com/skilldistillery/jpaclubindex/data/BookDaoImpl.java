@@ -2,14 +2,10 @@ package com.skilldistillery.jpaclubindex.data;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
-
 import com.skilldistillery.jpaclubindex.entities.Author;
 import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Genre;

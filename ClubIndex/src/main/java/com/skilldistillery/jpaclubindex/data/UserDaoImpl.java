@@ -4,11 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import org.hibernate.property.access.spi.EnhancedGetterMethodImpl;
 import org.springframework.stereotype.Service;
-
-import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.Location;
 import com.skilldistillery.jpaclubindex.entities.User;
 

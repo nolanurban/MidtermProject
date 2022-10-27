@@ -5,16 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import org.eclipse.jdt.internal.compiler.problem.DefaultProblemFactory;
 import org.springframework.stereotype.Service;
-
 import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.Genre;
 import com.skilldistillery.jpaclubindex.entities.User;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
-import com.mchange.v1.db.sql.DriverManagerDataSource.DmdsObjectFactory;
-import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 
 @Service
 @Transactional
@@ -25,8 +20,6 @@ public class UserRLDaoImpl implements UserRLDAO {
 		
 		@Override
 		public UserReadingList findReadingListByID(int readingListId) {
-			String query = "SELECT l from UserReadingList l WHERE id = :readingListId";
-
 			return em.find(UserReadingList.class, readingListId);
 		}
 		

@@ -6,13 +6,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
-
 import com.skilldistillery.jpaclubindex.entities.Author;
 import com.skilldistillery.jpaclubindex.entities.Book;
-import com.skilldistillery.jpaclubindex.entities.Genre;
 
 @Service
 @Transactional

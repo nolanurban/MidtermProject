@@ -62,7 +62,6 @@
 					<a href="createReadingList.do" class="btn btn-primary">Create a new Reading List</a>
 				</div>
 			</div>
-		 </div>
 		 <a href="updateUser.do" class="btn btn-primary">Update Account</a>
 		 <a href="deleteUser.do" class="btn btn-danger">Delete Account</a>
 		<jsp:include page="../includes/footer.jsp"/>	

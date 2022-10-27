@@ -1,20 +1,11 @@
 package com.skilldistillery.jpaclubindex.controllers;
 
 import java.util.List;
-import java.util.function.IntPredicate;
-
-import javax.activation.URLDataSource;
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
-
-import org.hibernate.context.spi.AbstractCurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.skilldistillery.jpaclubindex.data.BCRLDAO;
 import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 import com.skilldistillery.jpaclubindex.data.BookDAO;

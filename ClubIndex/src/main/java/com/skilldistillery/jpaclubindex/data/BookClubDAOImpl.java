@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.BookClubReadingList;
 import com.skilldistillery.jpaclubindex.entities.Genre;
-import com.skilldistillery.jpaclubindex.entities.Location;
 import com.skilldistillery.jpaclubindex.entities.User;
 
 @Service
