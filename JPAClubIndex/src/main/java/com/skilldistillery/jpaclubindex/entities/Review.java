@@ -1,6 +1,5 @@
 package com.skilldistillery.jpaclubindex.entities;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.persistence.Entity;
