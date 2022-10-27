@@ -93,9 +93,6 @@
 			</c:forEach>
 		</c:if>
 							
-		<div class="col-2">
-			<p>${user.username}<p>
-		</div>
 		<jsp:include page="../includes/footer.jsp" />
 	</body>
 </html>
