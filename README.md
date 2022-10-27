@@ -43,7 +43,7 @@
     <ul>
       <li><a href="https://www.github.com/ashnlandofozz">github</a></li>
     </ul>
-    <li>Josh</li>
+    <li>Nolan</li>
     <ul>
       <li><a href="https://www.github.com/nolanurban">github</a></li>
     </ul>
