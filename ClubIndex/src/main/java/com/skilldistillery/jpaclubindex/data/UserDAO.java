@@ -38,4 +38,18 @@ public interface UserDAO {
 	 * @author tylertanner
 	 */
 	User findUserByUsername(String username);
+	
+	/**
+	 * Given a first name will find the associated User
+	 * @return User
+	 * @author ashleyosburn
+	 */
+	User findUserByFirstName(String firstName);
+	
+	/**
+	 * Given a last name will find the associated User
+	 * @return User
+	 * @author ashleyosburn 
+	 */
+	User findUserByLastName(String lastName);
 }
