@@ -28,7 +28,9 @@ public class BookClubDAOImpl implements BookClubDAO{
 
 	@Override
 	public BookClub getBookClubById(int id) {
-		return em.find(BookClub.class, id);
+		BookClub bc = em.find(BookClub.class, id);
+		bc.getReadingLists().size();
+		return bc;
 	}
 
 	@Override

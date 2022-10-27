@@ -3,6 +3,7 @@ package com.skilldistillery.jpaclubindex.controllers;
 import java.util.List;
 import java.util.function.IntPredicate;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import com.skilldistillery.jpaclubindex.data.BookClubDAO;
 import com.skilldistillery.jpaclubindex.data.BookDAO;
 import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.data.UserRLDAO;
+import com.skilldistillery.jpaclubindex.entities.Book;
 import com.skilldistillery.jpaclubindex.entities.BookClubReadingList;
 import com.skilldistillery.jpaclubindex.entities.User;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
@@ -103,18 +105,22 @@ public class ReadingListController {
 	
 	@RequestMapping(path="updateRL.do")
 	public String updateRL(HttpSession session) {
-		return "updateReadingList";
+		return "readinglist/updateReadingList";
 	}
 	
 	@RequestMapping(path="updateReadingList.do", params = "bcrlId", method = RequestMethod.POST)
 	public String updateReadingList(HttpSession session, String name, String[] isbns, int bcrlId) {
 		BookClubReadingList bcrl = bcrlDao.updateBCRLName(bcrlDao.getBCRLById(bcrlId), name);
 		
-		for(String s : isbns) {
-			bcrlDao.removeBookFromBCRL(bookDao.findBookById(s).get(0), bcrl);
+		if(isbns != null) {
+			for(String s : isbns) {
+				Book book = bookDao.findBookById(s).get(0);
+				System.out.println(book.getTitle());
+				bcrlDao.removeBookFromBCRL(book, bcrl);
+			}
 		}
-
 		session.setAttribute("readingList", bcrlDao.getBCRLById(bcrlId));
+		session.setAttribute("bookClub", bcDao.getBookClubById(bcrl.getBookClub().getId()));
 		return "redirect:updatedReadingList.do";
 	}
 	
@@ -123,8 +129,10 @@ public class ReadingListController {
 		
 		url = userRLDao.updateUserRL(userRLDao.findReadingListByID(userRLId), url);
 		
-		for(String s : isbns) {
-			userRLDao.removeBookFromUserRL(bookDao.findBookById(s).get(0), url);
+		if(isbns != null) {
+			for(String s : isbns) {
+				userRLDao.removeBookFromUserRL(bookDao.findBookById(s).get(0), url);
+			}
 		}
 		
 		session.setAttribute("readingList", userRLDao.findReadingListByID(userRLId));
@@ -133,6 +141,62 @@ public class ReadingListController {
 	
 	@RequestMapping(path="updatedReadingList.do")
 	public String updatedReadingList(HttpSession session) {
+		return "readinglist/singleReadingList";
+	}
+	
+	@RequestMapping(path="deleteRL.do", params="bcrlId")
+	public String deleteBCRL(HttpSession session, int bcrlId) {
+		BookClubReadingList bcrl = bcrlDao.getBCRLById(bcrlId);
+		boolean successful = bcrlDao.deleteBCRL(bcrl);
+		
+		if(successful) {
+			session.removeAttribute("readingList");
+			session.setAttribute("bookClub", bcDao.getBookClubById(bcrl.getBookClub().getId()));
+			return "redirect:deletedBCRL.do";
+		} else {
+			return "readinglist/singleReadingList";
+		}
+	}
+	
+	@RequestMapping(path="deletedBCRL.do")
+	public String deletedBCRL(HttpSession session) {
+		return "bookclub/bookClub";
+	}
+	
+	@RequestMapping(path = "deleteRL.do", params="urlId")
+	public String deleteURL(HttpSession session, int urlId) {
+		UserReadingList url = userRLDao.findReadingListByID(urlId);
+		boolean successful = userRLDao.deleteUserRL(url);
+		
+		if(successful) {
+			session.removeAttribute("readingList");
+			session.setAttribute("user", userDao.findUserById(url.getUser().getId()));
+			
+			return "redirect:deletedURL.do";
+		} else {
+			return "readinglist/singleReadingList";
+		}
+	}
+	
+	@RequestMapping(path="deletedURL.do")
+	public String deletedURL(HttpSession session) {
+		return "user/userProfile";
+	}
+	
+	@RequestMapping(path="addBookToRL.do", params = "bcrlId", method=RequestMethod.POST)
+	public String addBookToBCRL(HttpSession session, int bcrlId, String bookTitle) {
+		BookClubReadingList bcrl = bcrlDao.getBCRLById(bcrlId);
+		Book toAdd = bookDao.findBookByTitle(bookTitle).get(0);
+		bcrlDao.addBookToBCRL(toAdd, bcrl);
+		
+		session.setAttribute("readingList", bcrlDao.getBCRLById(bcrlId));
+		session.setAttribute("bookClub",  bcDao.getBookClubById(bcrl.getBookClub().getId()));
+		
+		return "redirect:addedBookToBCRL.do";
+	}
+	
+	@RequestMapping(path="addedBookToBCRL.do")
+	public String addedBookToBCRL(HttpSession session) {
 		return "readinglist/singleReadingList";
 	}
 }

@@ -65,7 +65,7 @@ public class BookClub {
 	@JoinColumn(name="owner_id")
 	private User owner;
 	
-	@OneToMany(mappedBy = "bookClub")
+	@OneToMany(mappedBy = "bookClub", cascade = CascadeType.ALL)
 	private List<BookClubReadingList> readingLists;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)

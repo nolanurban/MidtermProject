@@ -103,7 +103,7 @@ public class BookClubReadingList{
 	}
 	
 	public void removeBook(Book book) {
-		if(books != null && books.contains(books)) {
+		if(books != null && books.contains(book)) {
 			books.remove(book);
 			book.removeReadingList(this);
 		}
