@@ -40,11 +40,19 @@ public class BookController {
 			case 2:
 				return getBookByAuthor(bookSearchAll, session);
 			case 3:
-				return getBookByGenre(bookSearchAll, session);
+				try {
+					return getBookByGenre(bookSearchAll, session);
+				} catch(Exception e) {
+					return searchForBook(session);
+				}
 			case 4:
 				return getBookByKeyWord(bookSearchAll, session);
 			case 5:
-				return getBookByYear(Integer.parseInt(bookSearchAll), session);
+				try {
+					return getBookByYear(Integer.parseInt(bookSearchAll), session);
+				} catch(Exception e) {
+					return searchForBook(session);
+				}
 			case 6:
 				return getBookByTitle(bookSearchAll, session);
 			case 7:

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<nav>
+<nav id="nav">
 	<table class="table table-borderless hover">
 		<tr>
 			<td><a href="home.do" class="btn btn-dark">Home</a></td>

@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<jsp:include page="../includes/nav.jsp" />	
-		<table>
+		<table class="table">
 			<tr>
 				<th>Photo</th>
 				<th>Name</th>

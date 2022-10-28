@@ -14,8 +14,13 @@
 				<h1>${user.username}</h1>
 			</div>
 		 	<div class="row">
+<<<<<<< HEAD
 			 	<div class="col-8">
 		 			<table>
+=======
+			 	<div class="col-6">
+		 			<table class="table">
+>>>>>>> 4ded03f0c1bfecf2ebbd213abc604c59d8015a72
 		 				<thead>
 		 					<tr>
 		 						<th>Thumbnail</th>
@@ -51,7 +56,7 @@
 			</div>
 			<div class="row">
 				<div>
-					<table>
+					<table class="table">
 						<tr>
 							<td>Reading List Name</td>
 							<td>Number of Books</td>

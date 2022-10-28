@@ -8,7 +8,7 @@
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
 		<div class="container">
-			<table>
+			<table class="table">
 				<c:choose>
 					<c:when test="${not empty bookClub}">
 						<c:forEach var="readingList" items="${bookClub.readingLists }">

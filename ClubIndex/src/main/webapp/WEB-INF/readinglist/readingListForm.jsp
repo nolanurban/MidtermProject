@@ -10,7 +10,7 @@
 				<label for="name">Reading List Name</label>
 				<input type="text" name="name" value="${readingList.name}" required/><br>
 				
-				<table>
+				<table class="table">
 					<tr>
 						<th>Book Title</th>
 						<th>Author</th>
@@ -47,7 +47,7 @@
 				<label for="name">Reading List Name</label>
 				<input type="text" name="name" value="${readingList.name}" required/><br>
 				
-				<table>
+				<table class="table">
 					<tr>
 						<th>Book Title</th>
 						<th>Author</th>

@@ -89,12 +89,11 @@ public class UserController {
 		return "user/deleteUser";
 	}
 
-	@RequestMapping(path = "deleteUserConfirmation.do")
-	public String delete(HttpSession session) {
-		User user = (User)(session.getAttribute("user"));
-		boolean successful = userDao.removeUser(user.getId());
+	@RequestMapping(path = "deleteUserConfirmation.do", method=RequestMethod.POST)
+	public String delete(HttpSession session, int id) {
+		boolean successful = userDao.removeUser(id);
 		if (successful) {
-		return "redirect:deleteUserHome.do";
+			return "redirect:deleteUserHome.do";
 		}
 		else {
 			return "user/userProfile";
