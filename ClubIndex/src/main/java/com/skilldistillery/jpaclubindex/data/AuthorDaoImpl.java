@@ -61,8 +61,8 @@ public class AuthorDaoImpl implements AuthorDAO {
 	 */
 	@Override
 	public List<Author> findAuthorByLastName(String lastName) {
-		String query = "SELECT a FROM Author a WHERE a.lastName = :lastName";
-		List<Author> authorList = em.createQuery(query, Author.class).setParameter("lastName", lastName)
+		String query = "SELECT a FROM Author a WHERE a.lastName LIKE :lastName";
+		List<Author> authorList = em.createQuery(query, Author.class).setParameter("lastName", "%" + lastName + "%")
 				.getResultList();
 		for(Author a : authorList) {
 			for(Book b : a.getBooks()) {

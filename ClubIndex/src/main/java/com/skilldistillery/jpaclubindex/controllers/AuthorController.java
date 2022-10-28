@@ -30,17 +30,21 @@ public class AuthorController {
 	@RequestMapping(path="getAuthor.do", params = {"authorSearch", "searchType" })
 	public String switchSearchMethods(String authorSearch, int searchType, HttpSession session) {
 		session.setAttribute("genre", genreDao.getAllGenres());
-		switch (searchType) {
-		case 1: // find author by actual id #
-			return getAuthorById(Integer.parseInt(authorSearch), session);
-		case 2: //find author by isbn
-			return getAuthorByIsbn(authorSearch, session);
-		case 3: // find author by last name
-			return getAuthorByLastNameSearch(authorSearch, session);
-		case 4: // find author by genre
-			return getAuthorByGenre(authorSearch, session);
-		default:
-			return "author/author";
+		try {
+			switch (searchType) {
+				case 1: // find author by actual id #
+					return getAuthorById(Integer.parseInt(authorSearch), session);
+				case 2: //find author by isbn
+					return getAuthorByIsbn(authorSearch, session);
+				case 3: // find author by last name
+					return getAuthorByLastNameSearch(authorSearch, session);
+				case 4: // find author by genre
+					return getAuthorByGenre(authorSearch, session);
+				default:
+					return "author/author";
+			}
+		} catch (Exception e) {
+			return searchForBook(session);
 		}
 	}
 

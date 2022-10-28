@@ -42,8 +42,8 @@ public class BookDaoImpl implements BookDAO {
 	 */
 	@Override
 	public List<Book> findBookByTitle(String title) {
-		String query = "SELECT b from Book b WHERE b.title = :title";
-		return em.createQuery(query, Book.class).setParameter("title", title).getResultList();
+		String query = "SELECT b from Book b WHERE b.title LIKE :title";
+		return em.createQuery(query, Book.class).setParameter("title", "%" + title + "%").getResultList();
 	}
 	/**
 	 * Given a String keyword, search the DB and return a list
@@ -78,11 +78,11 @@ public class BookDaoImpl implements BookDAO {
 	 */
 	@Override
 	public List<Book> findBookByAuthorLastName(String lastName) {
-		String query = "SELECT a FROM Author a WHERE a.lastName = :lastName";
+		String query = "SELECT a FROM Author a WHERE a.lastName LIKE :lastName";
 		List<Book> books = new ArrayList<>();
 		try { 
 			List<Author> authors = em.createQuery(query, Author.class)
-				.setParameter("lastName", lastName).getResultList();
+				.setParameter("lastName", "%" + lastName + "%").getResultList();
 			
 			for(Author a : authors) {
 				a.getBooks().size();

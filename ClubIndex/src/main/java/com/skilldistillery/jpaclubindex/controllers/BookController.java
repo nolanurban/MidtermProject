@@ -34,31 +34,27 @@ public class BookController {
 	
 	@RequestMapping(path="showBook.do", params={ "bookSearchAll", "bsearchType" })
 	public String searchForBook(String bookSearchAll, int bsearchType, HttpSession session) {
-		switch (bsearchType) {
-			case 1:
-				return getBookByISBN(bookSearchAll, session);
-			case 2:
-				return getBookByAuthor(bookSearchAll, session);
-			case 3:
-				try {
+		try {
+			switch (bsearchType) {
+				case 1:
+					return getBookByISBN(bookSearchAll, session);
+				case 2:
+					return getBookByAuthor(bookSearchAll, session);
+				case 3:
 					return getBookByGenre(bookSearchAll, session);
-				} catch(Exception e) {
-					return searchForBook(session);
-				}
-			case 4:
-				return getBookByKeyWord(bookSearchAll, session);
-			case 5:
-				try {
+				case 4:
+					return getBookByKeyWord(bookSearchAll, session);
+				case 5:
 					return getBookByYear(Integer.parseInt(bookSearchAll), session);
-				} catch(Exception e) {
+				case 6:
+					return getBookByTitle(bookSearchAll, session);
+				case 7:
+					return getAllBooks(session);
+				default:
 					return searchForBook(session);
-				}
-			case 6:
-				return getBookByTitle(bookSearchAll, session);
-			case 7:
-				return getAllBooks(session);
-			default:
-				return searchForBook(session);
+			}
+		} catch (Exception e) {
+			return searchForBook(session);
 		}
 	}
 	

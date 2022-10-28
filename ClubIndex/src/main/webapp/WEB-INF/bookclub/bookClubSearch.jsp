@@ -15,7 +15,7 @@
 					<form action="getBookClub.do">
 						<input type="text" name="bookSearch" class="form-control"
 							aria-describedby="basic-addon2">  
-							<input type="radio" id="id" name="searchType" value="1">
+							<input type="radio" id="id" name="searchType" value="1" checked>
 							<label for="id">Clubs by Id</label>
 							<input type="radio" id="owner" name="searchType" value="2">
 							<label for="owner">Clubs by Book Club Owner</label>

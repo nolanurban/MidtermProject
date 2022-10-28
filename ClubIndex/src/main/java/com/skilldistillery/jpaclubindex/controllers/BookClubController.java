@@ -41,17 +41,21 @@ public class BookClubController {
 
 	@RequestMapping(path="getBookClub.do", params = {"bookSearch", "searchType" })
 	public String switchSearchMethods(String bookSearch, int searchType, HttpSession session) {
-		switch (searchType) {
-			case 1: // find book club by id #
-				return showBookClub(session, Integer.parseInt(bookSearch));
-			case 2: //find book club
-				return getBookClubsByOwner(session, bookSearch);
-			case 3: // find book club by genre
-				return bookClubByGenre(session, bookSearch);
-			case 4: // find book club by location
-				return getBookClubsByLocationZip(session, bookSearch);
-			default:
-				return bookClubSearchPage(session);
+		try {
+			switch (searchType) {
+				case 1: // find book club by id #
+					return showBookClub(session, Integer.parseInt(bookSearch));
+				case 2: //find book club
+					return getBookClubsByOwner(session, bookSearch);
+				case 3: // find book club by genre
+					return bookClubByGenre(session, bookSearch);
+				case 4: // find book club by location
+					return getBookClubsByLocationZip(session, bookSearch);
+				default:
+					return bookClubSearchPage(session);
+			}
+		} catch(Exception e) {
+			return bookClubSearchPage(session);
 		}
 	}
 	
