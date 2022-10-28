@@ -45,7 +45,6 @@
 							<th>Cover</th>
 							<th>Title</th>
 							<th>Author</th>
-							<th>Rating</th>
 						</tr>
 						<c:forEach var="tr" items="${toprated}">
 							<tr>
@@ -54,9 +53,7 @@
 									<c:forEach var="a" items="${tr.authors}">
 									<td>${a.firstName} ${a.lastName}</td>
 									</c:forEach>
-									<c:forEach var="r" items="${tr.reviews}">
-									<td>${r.rating}</td>
-									</c:forEach>
+						
 							</tr>
 						</c:forEach>
 					</table>
