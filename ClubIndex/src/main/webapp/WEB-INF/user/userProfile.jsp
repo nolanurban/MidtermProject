@@ -9,9 +9,18 @@
 	<body>
 		<jsp:include page="../includes/nav.jsp"/>
 		 <div class="container">
+		 <div class="container">
+			<div class="banner">
+				<h1>${user.username}</h1>
+			</div>
 		 	<div class="row">
+<<<<<<< HEAD
+			 	<div class="col-8">
+		 			<table>
+=======
 			 	<div class="col-6">
 		 			<table class="table">
+>>>>>>> 4ded03f0c1bfecf2ebbd213abc604c59d8015a72
 		 				<thead>
 		 					<tr>
 		 						<th>Thumbnail</th>
@@ -39,10 +48,10 @@
 		 			</table>
 			 	</div>
 			 	<div class="col-4">
-			 		<img src="${user.profileUrl}" style="height:300px;width:250px;height:100%;width:100%;img-fit:contain;border:4px solid black;padding:12px" alt="ImageNotFound"/>
+			 		<img src="${user.profileUrl}" style="height:300px;width:250px;img-fit:cover;border:4px solid black;padding:12px" alt="ImageNotFound"/>
 				</div>
-			 		<p>${user.username}<p>
-			 		<p>${user.aboutMe}</p>
+		<%-- 	 		<p>${user.username}<p>
+			 		<p>${user.aboutMe}</p> --%>
 			 	</div>
 			</div>
 			<div class="row">

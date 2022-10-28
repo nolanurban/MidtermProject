@@ -105,4 +105,38 @@ public class UserController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
+	
+//	@RequestMapping(path="getUser.do", params = {"userSearch", "searchType" })
+//	public String switchSearchMethods(String userSearch, int searchType, HttpSession session) {
+//		switch (searchType) {
+//			case 1: 
+//				return getUserByUserName(session, userSearch);
+//			case 2: 
+//				return getUserByFirstName(session, userSearch);
+//			case 3: 
+//				return getUserByLastName(session, userSearch);
+//			default:
+//				return userListsPage(session);
+//		}
+//	}
+//	
+//	@RequestMapping(path="userSearch.do")
+//	public String userListsPage(HttpSession session) {
+//		return "user/userListsPage";
+//	}
+//	
+//	private String getUserByUserName(HttpSession session, String username) {
+//		session.setAttribute("user", userDao.findUserByUsername(username));
+//		return "user/userProfile";
+//	}
+//	
+//	private String getUserByFirstName(HttpSession session, String firstName) {
+//		session.setAttribute("user", userDao.findUserByFirstName(firstName));
+//		return "user/userProfile";
+//	}
+//	
+//	private String getUserByLastName(HttpSession session, String lastName) {
+//		session.setAttribute("user", userDao.findUserByLastName(lastName));
+//		return "user/userProfile";
+//	}
 }

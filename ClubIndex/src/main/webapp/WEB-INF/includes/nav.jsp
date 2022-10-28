@@ -9,6 +9,7 @@
 			<td><a href="getAuthor.do" class="btn btn-dark">Authors</a></td>					
 			<td><a href="showUserRL.do" class="btn btn-dark">ReadingList</a></td>
 			<td><a href="bookClubSearch.do" class="btn btn-dark">Book Club Search</a></td>
+<!-- 			<td><a href="userSearch.do" class="btn btn-dark">User Search</a></td> -->
 			<c:choose>
 				<c:when test="${not empty user}">
 					<td><a href="account.do" class="btn btn-dark">Account view</a></td>

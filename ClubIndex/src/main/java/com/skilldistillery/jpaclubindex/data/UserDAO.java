@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaclubindex.data;
 
+import java.util.List;
+
 import com.skilldistillery.jpaclubindex.entities.User;
 
 public interface UserDAO {
@@ -38,4 +40,18 @@ public interface UserDAO {
 	 * @author tylertanner
 	 */
 	User findUserByUsername(String username);
+	
+	/**
+	 * Given a first name will find the associated Users
+	 * @return List<User>
+	 * @author ashleyosburn
+	 */
+	List<User> findUserByFirstName(String firstName);
+	
+	/**
+	 * Given a last name will find the associated User
+	 * @return List<User>
+	 * @author ashleyosburn 
+	 */
+	List<User> findUserByLastName(String lastName);
 }

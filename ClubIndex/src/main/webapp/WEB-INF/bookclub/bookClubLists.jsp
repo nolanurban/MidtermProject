@@ -21,7 +21,7 @@
 			<c:forEach var="bookClub" items="${bookClubs}">
 				<tr>
 					<td><img src="${bookClub.profileUrl}" height="50" width="50" alt="${bookClub.name}"></td>
-					<td><a href="bookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
+					<td><a href="showBookClub.do?id=${bookClub.id}">${bookClub.name}</a></td>
 					<td>${bookClub.aboutClub}</td>
 					<td>${bookClub.owner.username}</td>
 					<td>${bookClub.maxMembers}</td>

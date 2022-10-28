@@ -1,6 +1,7 @@
 package com.skilldistillery.jpaclubindex.data;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -116,5 +117,17 @@ public class UserDaoImpl implements UserDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public List<User> findUserByFirstName(String firstName) {
+		String query = "SELECT u FROM User u WHERE u.firstName = :firstName";	
+		return em.createQuery(query, User.class).setParameter("firstName", firstName).getResultList();
+	}
+
+	@Override
+	public List<User> findUserByLastName(String lastName) {
+		String query = "SELECT u FROM User u WHERE u.lastName = :lastName";	
+		return em.createQuery(query, User.class).setParameter("lastName", lastName).getResultList();
 	}
 }
