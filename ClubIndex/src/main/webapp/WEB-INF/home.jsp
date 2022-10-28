@@ -33,7 +33,7 @@
 									</c:otherwise>
 								</c:choose>
 								<td>${review.rating}</td>
-								<td><img src="${review.user.profileUrl}" alt="No Image Found" width="100" height="175">
+								<td><img src="${review.user.profileUrl}" style="height:175px;width:100px;img-fit:cover;height:100%;width:100%" alt="No Image Found">
 								${review.user.username}</td>
 							</tr>
 						</c:forEach>
