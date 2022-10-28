@@ -81,7 +81,7 @@
 			</div>
 			<div class="row">
 				<div>
-					<table>
+					<table class="table">
 						<tr>
 							<td>Reading List Name</td>
 							<td>Number of Books</td>
