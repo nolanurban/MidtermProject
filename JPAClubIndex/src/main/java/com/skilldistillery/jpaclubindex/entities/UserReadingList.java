@@ -107,6 +107,11 @@ public class UserReadingList{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "UserReadingList [id=" + id + ", name=" + name + ", books=" + books + ", user=" + user + "]";
+	}
 	
 	
 }

@@ -77,14 +77,32 @@ public class ReadingListController {
 		return "bookclub/bookClub";
 	}
 	
+//	@RequestMapping(path="createReadingList.do", params = "userId", method=RequestMethod.POST)
+//	public String createUserRL(HttpSession session, UserReadingList uRL, String firstBook, int userId) {
+//		uRL.addBook(bookDao.findBookByTitle(firstBook).get(0));
+//		uRL.setUser(userDao.findUserById(userId));
+//		
+//		uRL = userRLDao.createUserRL(uRL);
+//		
+//		User user = userDao.findUserById(userId);
+//		user.setBookClubs(bcDao.getBookClubsByUser(user));
+//
+//		session.setAttribute("user", user);
+//		
+//		return "redirect:createdURL.do";
+//	}
+	
 	@RequestMapping(path="createReadingList.do", params = "userId", method=RequestMethod.POST)
 	public String createUserRL(HttpSession session, UserReadingList uRL, String firstBook, int userId) {
+		User user = userDao.findUserById(userId);
+
 		uRL.addBook(bookDao.findBookByTitle(firstBook).get(0));
-		uRL.setUser(userDao.findUserById(userId));
+		uRL.setUser(user);
+		user.addReadingList(uRL);
 		
 		uRL = userRLDao.createUserRL(uRL);
 		
-		User user = userDao.findUserById(userId);
+		//preventing lazy initialization
 		user.setBookClubs(bcDao.getBookClubsByUser(user));
 		
 		session.setAttribute("user", user);

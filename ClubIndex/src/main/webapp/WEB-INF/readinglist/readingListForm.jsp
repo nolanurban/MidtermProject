@@ -74,7 +74,7 @@
 				<label for="firstBook">Title of the first book you want added</label>
 				<input type="text" name="firstBook" required/><br>
 			
-				<input type="hidden" name="userId" value="${user.id}"/>
+				<input type="hidden" name="userId" value="${sessionScope.user.id}"/>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>

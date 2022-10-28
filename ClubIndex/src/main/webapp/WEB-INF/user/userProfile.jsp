@@ -59,7 +59,7 @@
 							<td>Reading List Name</td>
 							<td>Number of Books</td>
 						</tr>
-						<c:forEach var="readingList" items="${user.readingLists}">
+						<c:forEach var="readingList" items="${sessionScope.user.readingLists}">
 							<tr>
 								<td><a href="showSingleUserRL.do?id=${readingList.id}">${readingList.name}</a></td>
 								<td>${readingList.books.size()}</td>
