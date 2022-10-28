@@ -97,6 +97,7 @@ public class BookClubController {
 	
 	@RequestMapping(path="createBookClub.do")
 	public String createBookClubForm(HttpSession session) {
+		session.removeAttribute("bookClub");
 		session.setAttribute("genres", genreDao.getAllGenres());
 		return "bookclub/createBookClub";
 	}

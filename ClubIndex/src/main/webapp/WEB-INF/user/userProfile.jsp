@@ -14,6 +14,10 @@
 			</div>
 		 	<div class="row">
 			 	<div class="col-6">
+			 		<h3>About Me</h3>
+			 		<p>${user.firstName} ${user.lastName}</p>
+			 		<p>${user.email}</p>
+			 		<p>${user.aboutMe}</p>
 		 			<table class="table">
 		 				<thead>
 		 					<tr>
