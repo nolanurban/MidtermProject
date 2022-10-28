@@ -12,6 +12,7 @@ import com.skilldistillery.jpaclubindex.data.BookDAO;
 import com.skilldistillery.jpaclubindex.data.UserDAO;
 import com.skilldistillery.jpaclubindex.data.UserRLDAO;
 import com.skilldistillery.jpaclubindex.entities.Book;
+import com.skilldistillery.jpaclubindex.entities.BookClub;
 import com.skilldistillery.jpaclubindex.entities.BookClubReadingList;
 import com.skilldistillery.jpaclubindex.entities.User;
 import com.skilldistillery.jpaclubindex.entities.UserReadingList;
@@ -63,12 +64,15 @@ public class ReadingListController {
 	
 	@RequestMapping(path="createReadingList.do", params = "bookClubId", method=RequestMethod.POST)
 	public String createBCRL(HttpSession session, BookClubReadingList bcrl, String firstBook, int bookClubId) {
+		BookClub bc = bcDao.getBookClubById(bookClubId);
+		
 		bcrl.addBook(bookDao.findBookByTitle(firstBook).get(0));
-		bcrl.setBookClub(bcDao.getBookClubById(bookClubId));
+		bcrl.setBookClub(bc);
+		bc.addReadingList(bcrl);
 		
 		bcrl = bcrlDao.createBCRL(bcrl);
 		
-		session.setAttribute("bookClub", bcDao.getBookClubById(bookClubId));
+		session.setAttribute("bookClub", bc);
 		return "redirect:createdBCRL.do";
 	}
 	
@@ -76,22 +80,7 @@ public class ReadingListController {
 	public String createdBCRL(HttpSession session) {
 		return "bookclub/bookClub";
 	}
-	
-//	@RequestMapping(path="createReadingList.do", params = "userId", method=RequestMethod.POST)
-//	public String createUserRL(HttpSession session, UserReadingList uRL, String firstBook, int userId) {
-//		uRL.addBook(bookDao.findBookByTitle(firstBook).get(0));
-//		uRL.setUser(userDao.findUserById(userId));
-//		
-//		uRL = userRLDao.createUserRL(uRL);
-//		
-//		User user = userDao.findUserById(userId);
-//		user.setBookClubs(bcDao.getBookClubsByUser(user));
-//
-//		session.setAttribute("user", user);
-//		
-//		return "redirect:createdURL.do";
-//	}
-	
+
 	@RequestMapping(path="createReadingList.do", params = "userId", method=RequestMethod.POST)
 	public String createUserRL(HttpSession session, UserReadingList uRL, String firstBook, int userId) {
 		User user = userDao.findUserById(userId);
